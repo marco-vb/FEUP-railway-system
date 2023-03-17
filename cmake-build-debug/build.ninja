@@ -55,20 +55,14 @@ build CMakeFiles/railways.dir/main.cpp.o: CXX_COMPILER__railways_Debug /home/mar
   OBJECT_DIR = CMakeFiles/railways.dir
   OBJECT_FILE_DIR = CMakeFiles/railways.dir
 
-build CMakeFiles/railways.dir/classes/Station.cpp.o: CXX_COMPILER__railways_Debug /home/marco-vb/feup/da/railways/classes/Station.cpp || cmake_object_order_depends_target_railways
-  DEP_FILE = CMakeFiles/railways.dir/classes/Station.cpp.o.d
+build CMakeFiles/railways.dir/classes/StationLink.cpp.o: CXX_COMPILER__railways_Debug /home/marco-vb/feup/da/railways/classes/StationLink.cpp || cmake_object_order_depends_target_railways
+  DEP_FILE = CMakeFiles/railways.dir/classes/StationLink.cpp.o.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles/railways.dir
   OBJECT_FILE_DIR = CMakeFiles/railways.dir/classes
 
-build CMakeFiles/railways.dir/classes/Line.cpp.o: CXX_COMPILER__railways_Debug /home/marco-vb/feup/da/railways/classes/Line.cpp || cmake_object_order_depends_target_railways
-  DEP_FILE = CMakeFiles/railways.dir/classes/Line.cpp.o.d
-  FLAGS = -g -std=gnu++20
-  OBJECT_DIR = CMakeFiles/railways.dir
-  OBJECT_FILE_DIR = CMakeFiles/railways.dir/classes
-
-build CMakeFiles/railways.dir/classes/Link.cpp.o: CXX_COMPILER__railways_Debug /home/marco-vb/feup/da/railways/classes/Link.cpp || cmake_object_order_depends_target_railways
-  DEP_FILE = CMakeFiles/railways.dir/classes/Link.cpp.o.d
+build CMakeFiles/railways.dir/classes/Network.cpp.o: CXX_COMPILER__railways_Debug /home/marco-vb/feup/da/railways/classes/Network.cpp || cmake_object_order_depends_target_railways
+  DEP_FILE = CMakeFiles/railways.dir/classes/Network.cpp.o.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles/railways.dir
   OBJECT_FILE_DIR = CMakeFiles/railways.dir/classes
@@ -81,7 +75,7 @@ build CMakeFiles/railways.dir/classes/Link.cpp.o: CXX_COMPILER__railways_Debug /
 #############################################
 # Link the executable railways
 
-build railways: CXX_EXECUTABLE_LINKER__railways_Debug CMakeFiles/railways.dir/main.cpp.o CMakeFiles/railways.dir/classes/Station.cpp.o CMakeFiles/railways.dir/classes/Line.cpp.o CMakeFiles/railways.dir/classes/Link.cpp.o
+build railways: CXX_EXECUTABLE_LINKER__railways_Debug CMakeFiles/railways.dir/main.cpp.o CMakeFiles/railways.dir/classes/StationLink.cpp.o CMakeFiles/railways.dir/classes/Network.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/railways.dir
   POST_BUILD = :

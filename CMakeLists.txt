@@ -3,4 +3,4 @@ project(railways)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(railways main.cpp classes/Station.cpp classes/Station.h classes/Line.cpp classes/Line.h classes/Link.cpp classes/Link.h)
+add_executable(railways main.cpp classes/StationLink.cpp classes/StationLink.h classes/Network.cpp classes/Network.h)

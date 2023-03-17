@@ -48,3 +48,16 @@ int main() {
     readLinks(network, stations);
     return 0;
 }
+
+
+
+/**
+*   Considerações sobre as perguntas feitas:
+ *   só usar o Edmonds-Karp
+ *   só há 532 estações, por isso podemos recorrer a complete search para ver todos os pares
+ *   pergunta estranha, mas suponho que temos de ver as linhas com mais capacidade e respetivas estacoes
+ *   assumindo que 1 estaçao tem no maximo 2 'links' a apontar para ela, é a capacidade minima dos dois
+ *   weird af this one
+ *   ??????????
+ *   ok bro
+*/

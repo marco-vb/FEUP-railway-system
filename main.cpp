@@ -34,9 +34,8 @@ void readLinks(const ptr<Network>& network, const std::unordered_map<std::string
         std::getline(ss, st2, ',');
         ss >> capacity;
         std::getline(ss, service);
-        int srvc = service == "STANDARD" ? 1 : 2;
+        int srvc = service == "STANDARD" ? STANDARD : PENDULAR;
         network->addLink(stations.at(st1), stations.at(st2), capacity, srvc);
-        std::cout << st1 << "->" << st2 << std::endl;
     }
     file.close();
 }
@@ -46,6 +45,10 @@ int main() {
     std::unordered_map<std::string, ptr<Station>> stations;
     readStations(network, stations);
     readLinks(network, stations);
+
+    auto st1 = stations.at("Porto Camapnhã");
+    auto st2 = stations.at("Vila Nova de Gaia-Devesas");
+    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
     return 0;
 }
 

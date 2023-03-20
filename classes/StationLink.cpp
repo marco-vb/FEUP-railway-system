@@ -67,3 +67,35 @@ std::vector<ptr<Link>> Station::getLinks() {
     return this->links;
 }
 
+void Station::setVisited(bool _visited) {
+    this->visited = _visited;
+}
+
+bool Station::isVisited() const {
+    return this->visited;
+}
+
+void Station::setParent(const ptr<Station>& _parent) {
+    this->parent = _parent;
+}
+
+ptr<Station> Station::getParent() {
+    return this->parent;
+}
+
+void Link::setFlowSrc(int flow) {
+    this->flowSrc = flow;
+}
+
+void Link::setFlowDest(int flow) {
+    this->flowDest = flow;
+}
+
+int Link::getFlowSrc() const {
+    return this->flowSrc;
+}
+
+int Link::getFlowDest() const {
+    return this->flowDest;
+}
+

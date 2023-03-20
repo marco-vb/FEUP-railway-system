@@ -18,12 +18,7 @@ void Network::addLink(const ptr<Station>& st1, const ptr<Station>& st2, int capa
         auto link = make<Link>(st1, st2, capacity, service);
         links.push_back(link);
         st1->addLink(link);
-    }
-
-    if (!linkExists(st2, st1)) {
-        auto reverse = make<Link>(st2, st1, capacity, service);
-        links.push_back(reverse);
-        st2->addLink(reverse);
+        st2->addLink(link);
     }
 }
 
@@ -53,8 +48,101 @@ std::vector<ptr<Link>> Network::getLinks() {
     return links;
 }
 
-bool Network::linkExists(const std::shared_ptr<Station> &st1, const std::shared_ptr<Station> &st2) {
-    for (auto &l : st1->getLinks()) if (l->getDest() == st2) return true;
+bool Network::linkExists(const ptr<Station> &st1, const ptr<Station> &st2) {
+    for (auto &l : st1->getLinks()) if (l->getDest() == st2 || l->getSrc() == st2) return true;
 
     return false;
+}
+
+int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest) {
+    int max_flow = 0;
+
+    for (auto &l : links) l->setFlowSrc(0), l->setFlowDest(0);
+
+    std::vector<ptr<Station>> path;
+
+    while (getAugmentingPath(src, dest, path)) {
+        int flow = getBottleneck(path);
+        max_flow += flow;
+        updatePath(path, flow);
+        path.clear();
+    }
+
+    return max_flow;
+}
+
+bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path) {
+    for (auto &s : stations) s->setVisited(false), s->setParent(nullptr);
+
+    std::queue<ptr<Station>> q;
+    q.push(src);
+    src->setVisited(true);
+
+    while (!q.empty()) {
+        auto s = q.front(); q.pop();
+
+        if (s == dest) break;
+
+        for (auto &l : s->getLinks()) {
+            if (s == l->getSrc()) {
+                auto w = l->getDest();
+                if (!w->isVisited() && l->getFlowSrc() + l->getFlowDest() < l->getCapacity()) {
+                    w->setVisited(true);
+                    w->setParent(s);
+                    q.push(w);
+                }
+            }
+            else if (s == l->getDest()) {
+                auto w = l->getSrc();
+                if (!w->isVisited() && l->getFlowSrc() + l->getFlowDest() < l->getCapacity()) {
+                    w->setVisited(true);
+                    w->setParent(s);
+                    q.push(w);
+                }
+            }
+        }
+    }
+
+    if (!dest->isVisited()) return false;
+
+    auto s = dest;
+    while (s != nullptr) {
+        path.push_back(s);
+        s = s->getParent();
+    }
+    std::reverse(path.begin(), path.end());
+
+    return true;
+}
+
+int Network::getBottleneck(const std::vector<std::shared_ptr<Station>> &path) {
+    int bottleneck = INT_MAX;
+
+    for (int i = 0; i < path.size() - 1; i++) {
+        const auto& s = path[i];
+        const auto& t = path[i + 1];
+
+        for (auto &l : s->getLinks()) {
+            if ((l->getSrc() == s && l->getDest() == t) || (l->getSrc() == t && l->getDest() == s))
+                bottleneck = std::min(bottleneck, l->getCapacity() - l->getFlowSrc() - l->getFlowDest());
+        }
+    }
+
+    return bottleneck;
+}
+
+void Network::updatePath(const std::vector<std::shared_ptr<Station>> &path, int flow) {
+    for (int i = 0; i < path.size() - 1; i++) {
+        const auto& s = path[i];
+        const auto& t = path[i + 1];
+
+        for (auto &l : s->getLinks()) {
+            if (l->getSrc() == s && l->getDest() == t) {
+                l->setFlowSrc(l->getFlowSrc() + flow);
+            }
+            else if (l->getSrc() == t && l->getDest() == s) {
+                l->setFlowDest(l->getFlowDest() + flow);
+            }
+        }
+    }
 }

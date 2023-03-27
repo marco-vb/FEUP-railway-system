@@ -54,6 +54,7 @@ public:
     bool isVisited() const;
     void setParent(const ptr<Station>& parent);
     ptr<Station> getParent();
+    unsigned int maxPossibleFlow();
 };
 
 

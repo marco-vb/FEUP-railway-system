@@ -54,7 +54,7 @@ bool Network::linkExists(const ptr<Station> &st1, const ptr<Station> &st2) {
     return false;
 }
 
-int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest) {
+unsigned int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest) {
     int max_flow = 0;
 
     for (auto &l : links) l->setFlowSrc(0), l->setFlowDest(0);
@@ -146,3 +146,43 @@ void Network::updatePath(const std::vector<std::shared_ptr<Station>> &path, int 
         }
     }
 }
+
+unsigned int Network::getMaxFlowNetwork(std::vector<std::pair<ptr<Station>, ptr<Station>>>& pairs) {
+    unsigned int max_flow = 0;
+    std::sort(links.begin(), links.end(), [](ptr<Link>& l1, ptr<Link>& l2) { return l1->getCapacity() > l2->getCapacity(); });
+
+    ptr<Station> src = links.front()->getSrc();
+
+    for (auto &s : stations) {
+        if (s == src) continue;
+        unsigned int flow = maxFlow(src, s);
+        if (flow > max_flow) {
+            max_flow = flow;
+            pairs.clear();
+            pairs.emplace_back(src, s);
+        }
+        else if (flow == max_flow) pairs.emplace_back(src, s);
+    }
+
+    for (int i = 0; i < (int) stations.size() - 1; i++) {
+        ptr<Station> s1 = stations[i];
+        if (s1 == src || s1->maxPossibleFlow() < max_flow) continue;
+
+        for (int j = i + 1; j < (int) stations.size(); j++) {
+            ptr<Station> s2 = stations[j];
+            if (s2 == src || s2->maxPossibleFlow() < max_flow) continue;
+
+            unsigned int flow = maxFlow(stations[i], stations[j]);
+
+            if (flow > max_flow) {
+                max_flow = flow;
+                pairs.clear();
+                pairs.emplace_back(stations[i], stations[j]);
+            }
+            else if (flow == max_flow) pairs.emplace_back(stations[i], stations[j]);
+        }
+    }
+
+    return max_flow;
+}
+

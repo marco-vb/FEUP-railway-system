@@ -83,6 +83,12 @@ ptr<Station> Station::getParent() {
     return this->parent;
 }
 
+unsigned int Station::maxPossibleFlow() {
+    unsigned int maxFlow = 0;
+    for (const auto& link : this->links) maxFlow += link->getCapacity();
+    return maxFlow;
+}
+
 void Link::setFlowSrc(int flow) {
     this->flowSrc = flow;
 }

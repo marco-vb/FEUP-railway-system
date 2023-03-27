@@ -46,21 +46,18 @@ int main() {
     readStations(network, stations);
     readLinks(network, stations);
 
-    auto st1 = stations.at("Porto Camapnhã");
+    auto st1 = stations.at("Porto Campanhã");
     auto st2 = stations.at("Vila Nova de Gaia-Devesas");
+
+    // 2.1 exemplo
     std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
+
+    // 2.2 exemplo
+    std::vector<std::pair<ptr<Station>, ptr<Station>>> pairs;
+    std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
+    for (const auto& pair : pairs) {
+        std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
+    }
+
     return 0;
 }
-
-
-
-/**
-*   Considerações sobre as perguntas feitas:
- *   só usar o Edmonds-Karp
- *   só há 532 estações, por isso podemos recorrer a complete search para ver todos os pares
- *   pergunta estranha, mas suponho que temos de ver as linhas com mais capacidade e respetivas estacoes
- *   assumindo que 1 estaçao tem no maximo 2 'links' a apontar para ela, é a capacidade minima dos dois
- *   weird af this one
- *   ??????????
- *   ok bro
-*/

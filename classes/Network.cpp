@@ -236,7 +236,18 @@ unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest)
 
     while (getAugmentingPath(src, dest, path, false)) { // path with all service links
         int flow = getBottleneck(path);
-        max_cost += flow * PENDULAR_COST * (path.size() - 1);
+        for (int i = 0; i < path.size() - 1; i++) {
+            const auto& s = path[i];
+            const auto& t = path[i + 1];
+
+            for (auto &l : s->getLinks()) {
+                if ((l->getSrc() == s && l->getDest() == t) || (l->getSrc() == t && l->getDest() == s)) {
+                    if (l->getService() == STANDARD) max_cost += flow * STANDARD_COST;
+                    else if (l->getService() == PENDULAR) max_cost += flow * PENDULAR_COST;
+                    break;
+                }
+            }
+        }
         updatePath(path, flow);
         path.clear();
     }

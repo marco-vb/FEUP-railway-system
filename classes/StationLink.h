@@ -8,6 +8,9 @@
 #define STANDARD 1
 #define PENDULAR 2
 
+#define STANDARD_COST 2
+#define PENDULAR_COST 4
+
 class Station;
 
 class Link {

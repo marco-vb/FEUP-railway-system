@@ -71,7 +71,7 @@ unsigned int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest)
     return max_flow;
 }
 
-bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path) {
+bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path, bool standard) {
     for (auto &s : stations) s->setVisited(false), s->setParent(nullptr);
 
     std::queue<ptr<Station>> q;
@@ -84,6 +84,7 @@ bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &des
         if (s == dest) break;
 
         for (auto &l : s->getLinks()) {
+            if (standard && l->getService() == PENDULAR) continue;
             if (s == l->getSrc()) {
                 auto w = l->getDest();
                 if (!w->isVisited() && l->getFlowSrc() + l->getFlowDest() < l->getCapacity()) {
@@ -184,5 +185,62 @@ unsigned int Network::getMaxFlowNetwork(std::vector<std::pair<ptr<Station>, ptr<
     }
 
     return max_flow;
+}
+
+unsigned int Network::maxTrains(const std::shared_ptr<Station> &sink) {
+    if (sink->getLinks().size() == 1) return sink->getLinks().front()->getCapacity();
+
+    std::vector<ptr<Station>> sources;
+    for (auto &s : stations) if (s->getLinks().size() == 1) sources.push_back(s);
+
+    ptr<Station> super_source = createSuperSource(sources);
+    unsigned int max_trains = maxFlow(super_source, sink);
+    removeSuperSource(super_source);
+
+    return max_trains;
+}
+
+ptr<Station> Network::createSuperSource(const std::vector<std::shared_ptr<Station>> &sources) {
+    ptr<Station> super_source = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
+    stations.push_back(super_source);
+
+    for (auto &s : sources) addLink(super_source, s, 10000000, STANDARD);
+
+    return super_source;
+}
+
+void Network::removeSuperSource(std::shared_ptr<Station> &superSource) {
+    for (auto it = links.begin(); it != links.end();)
+        if ((*it)->getSrc() == superSource || (*it)->getDest() == superSource) it = links.erase(it);
+        else it++;
+
+    for (auto it = stations.begin(); it != stations.end();)
+        if (*it == superSource) it = stations.erase(it);
+        else it++;
+}
+
+unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest) {
+    int max_cost = 0;
+
+    for (auto &l : links) l->setFlowSrc(0), l->setFlowDest(0);
+
+    std::vector<ptr<Station>> path;
+
+    while (getAugmentingPath(src, dest, path, true)) {  // path with ONLY standard service links
+        int flow = getBottleneck(path);
+        max_cost += flow * STANDARD_COST * (path.size() - 1);
+        updatePath(path, flow);
+        path.clear();
+    }
+    path.clear();
+
+    while (getAugmentingPath(src, dest, path, false)) { // path with all service links
+        int flow = getBottleneck(path);
+        max_cost += flow * PENDULAR_COST * (path.size() - 1);
+        updatePath(path, flow);
+        path.clear();
+    }
+
+    return max_cost;
 }
 

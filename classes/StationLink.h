@@ -21,6 +21,7 @@ protected:
     int service;    // 1 Standard, 2 Pendular
     int flowSrc;    // flow from src to dest
     int flowDest;   // flow from dest to src
+    bool enabled = true;
 
 public:
     Link(ptr<Station> src, ptr<Station> dest, int capacity, int service);
@@ -30,16 +31,19 @@ public:
     int getService() const;
     int getFlowSrc() const;
     int getFlowDest() const;
+    bool getEnabled() const;
     void setCapacity(int capacity);
     void setService(int service);
     void setFlowSrc(int flow);  // flow from src to dest
     void setFlowDest(int flow); // flow from dest to src
+    void setEnabled(bool enabled);
 };
 
 class Station {
 protected:
     int id;
     bool visited;
+    bool enabled = true;
     ptr<Station> parent;
     std::string name, district, municipality, township;
     std::vector<ptr<Link>> links;
@@ -53,9 +57,11 @@ public:
     std::string getMunicipality();
     std::string getTownship();
     std::vector<ptr<Link>> getLinks();
+    bool getEnabled() const;
     void setVisited(bool visited);
     bool isVisited() const;
     void setParent(const ptr<Station>& parent);
+    void setEnabled(bool enabled);
     ptr<Station> getParent();
     unsigned int maxPossibleFlow();
 };

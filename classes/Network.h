@@ -20,7 +20,8 @@ public:
     std::vector<ptr<Link>> getLinks();
     unsigned int maxFlow(const ptr<Station> &src, const ptr<Station> &dest);
     unsigned int maxCost(const ptr<Station> &src, const ptr<Station> &dest);
-    bool getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path, bool standard = false);
+    unsigned int maxFlowReduced(const ptr<Station> &src, const ptr<Station> &dest);
+    bool getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path);
     static int getBottleneck(const std::vector<ptr<Station>>& path);
     static void updatePath(const std::vector<ptr<Station>>& path, int flow);
     unsigned int getMaxFlowNetwork(std::vector<std::pair<ptr<Station>, ptr<Station>>>& pairs);

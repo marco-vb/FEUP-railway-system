@@ -37,8 +37,9 @@ void readLinks() {
         int capacity;
         std::getline(ss, st1, ',');
         std::getline(ss, st2, ',');
-        ss >> capacity;
-        std::getline(ss, service);
+        ss >> capacity; ss.ignore();
+        ss >> service;
+        if (service[service.size()-1] == '\r') service = service.substr(0, service.size() - 1);
         int srvc = service == "STANDARD" ? STANDARD : PENDULAR;
         network->addLink(stations.at(st1), stations.at(st2), capacity, srvc);
         std::string municipality1 = stations.at(st1)->getMunicipality();
@@ -58,7 +59,7 @@ int main() {
     readStations();
     readLinks();
 
-    auto st1 = stations.at("Porto Campanhã");
+    auto st1 = stations.at("Lisboa Oriente");
     auto st2 = stations.at("Vila Nova de Gaia-Devesas");
 
     // 2.1 exemplo
@@ -87,6 +88,10 @@ int main() {
 
     // 3.1 exemplo
     std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": " << network->maxCost(st1, st2) << std::endl;
+
+    // 4.1 exemplo
+    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: " << network->maxFlowReduced(st1, st2) << std::endl;
+
 
     return 0;
 }

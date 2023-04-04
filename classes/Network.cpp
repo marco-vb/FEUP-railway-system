@@ -71,7 +71,7 @@ unsigned int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest)
     return max_flow;
 }
 
-bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path, bool standard) {
+bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path) {
     for (auto &s : stations) s->setVisited(false), s->setParent(nullptr);
 
     std::queue<ptr<Station>> q;
@@ -82,9 +82,10 @@ bool Network::getAugmentingPath(const ptr<Station> &src, const ptr<Station> &des
         auto s = q.front(); q.pop();
 
         if (s == dest) break;
+        if (!s->getEnabled()) continue;
 
         for (auto &l : s->getLinks()) {
-            if (standard && l->getService() == PENDULAR) continue;
+            if (!l->getEnabled()) continue;
             if (s == l->getSrc()) {
                 auto w = l->getDest();
                 if (!w->isVisited() && l->getFlowSrc() + l->getFlowDest() < l->getCapacity()) {
@@ -222,19 +223,23 @@ void Network::removeSuperSource(std::shared_ptr<Station> &superSource) {
 unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest) {
     int max_cost = 0;
 
-    for (auto &l : links) l->setFlowSrc(0), l->setFlowDest(0);
+    for (auto &l : links) {
+        l->setFlowSrc(0), l->setFlowDest(0);
+        if (l->getService() == PENDULAR) l->setEnabled(false);
+    }
 
     std::vector<ptr<Station>> path;
 
-    while (getAugmentingPath(src, dest, path, true)) {  // path with ONLY standard service links
+    while (getAugmentingPath(src, dest, path)) {  // path with ONLY standard service links
         int flow = getBottleneck(path);
         max_cost += flow * STANDARD_COST * (path.size() - 1);
         updatePath(path, flow);
         path.clear();
     }
-    path.clear();
 
-    while (getAugmentingPath(src, dest, path, false)) { // path with all service links
+    for (auto &l : links) l->setEnabled(true);
+
+    while (getAugmentingPath(src, dest, path)) { // path with all service links
         int flow = getBottleneck(path);
         for (int i = 0; i < path.size() - 1; i++) {
             const auto& s = path[i];
@@ -253,5 +258,12 @@ unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest)
     }
 
     return max_cost;
+}
+
+unsigned int Network::maxFlowReduced(const std::shared_ptr<Station> &src, const std::shared_ptr<Station> &dest) {
+    sort(stations.begin(), stations.end(), [](const ptr<Station>& s1, const ptr<Station>& s2) { return s1->getLinks().size() > s2->getLinks().size(); });
+    for (auto &s : stations) {
+        std::cout << s->getName() << " " << s->getLinks().size() << std::endl;
+    }
 }
 

@@ -89,6 +89,14 @@ unsigned int Station::maxPossibleFlow() {
     return maxFlow;
 }
 
+bool Station::getEnabled() const {
+    return this->enabled;
+}
+
+void Station::setEnabled(bool enabled) {
+    this->enabled = enabled;
+}
+
 void Link::setFlowSrc(int flow) {
     this->flowSrc = flow;
 }
@@ -103,5 +111,13 @@ int Link::getFlowSrc() const {
 
 int Link::getFlowDest() const {
     return this->flowDest;
+}
+
+bool Link::getEnabled() const {
+    return this->enabled;
+}
+
+void Link::setEnabled(bool enabled) {
+    this->enabled = enabled;
 }
 

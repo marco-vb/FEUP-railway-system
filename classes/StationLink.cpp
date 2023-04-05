@@ -59,11 +59,12 @@ int Station::getId() const {
     return this->id;
 }
 
-bool Station::addLink(const ptr<Link>& link) {
-    this->links.push_back(link);
+void Station::addLink(const ptr<Link>& link) {
+    if (link->getService() == STANDARD) this->links.push_front(link);
+    else this->links.push_back(link);
 }
 
-std::vector<ptr<Link>> Station::getLinks() {
+std::list<ptr<Link>> Station::getLinks() {
     return this->links;
 }
 
@@ -75,49 +76,61 @@ bool Station::isVisited() const {
     return this->visited;
 }
 
-void Station::setParent(const ptr<Station>& _parent) {
-    this->parent = _parent;
-}
-
-ptr<Station> Station::getParent() {
-    return this->parent;
-}
-
 unsigned int Station::maxPossibleFlow() {
     unsigned int maxFlow = 0;
     for (const auto& link : this->links) maxFlow += link->getCapacity();
     return maxFlow;
 }
 
-bool Station::getEnabled() const {
+bool Station::isEnabled() const {
     return this->enabled;
 }
 
-void Station::setEnabled(bool enabled) {
-    this->enabled = enabled;
+void Station::setEnabled(bool _enabled) {
+    this->enabled = _enabled;
 }
 
-void Link::setFlowSrc(int flow) {
-    this->flowSrc = flow;
+ptr<Link> Station::getPath() {
+    return this->path;
 }
 
-void Link::setFlowDest(int flow) {
-    this->flowDest = flow;
+void Station::setPath(const ptr<Link>& _path) {
+    this->path = _path;
 }
 
-int Link::getFlowSrc() const {
-    return this->flowSrc;
+int Station::getCost() const {
+    return this->cost;
 }
 
-int Link::getFlowDest() const {
-    return this->flowDest;
+void Station::setCost(int _cost) {
+    this->cost = _cost;
 }
 
-bool Link::getEnabled() const {
+bool Link::isEnabled() const {
     return this->enabled;
 }
 
-void Link::setEnabled(bool enabled) {
-    this->enabled = enabled;
+void Link::setEnabled(bool _enabled) {
+    this->enabled = _enabled;
+}
+
+void Link::setReverse(const ptr<Link>& _reverse) {
+    this->reverse = _reverse;
+}
+
+ptr<Link> Link::getReverse() {
+    return this->reverse;
+}
+
+int Link::getFlow() const {
+    return this->flow;
+}
+
+void Link::setFlow(int _flow) {
+    this->flow = _flow;
+}
+
+int Link::getCost() const {
+    return this->service == STANDARD ? STANDARD_COST : PENDULAR_COST;
 }
 

@@ -59,21 +59,21 @@ int main() {
     readStations();
     readLinks();
 
-    auto st1 = stations.at("Lisboa Oriente");
-    auto st2 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st2 = stations.at("Lisboa Oriente");
 
     // 2.1 exemplo
-    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
+    //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
     // 2.2 exemplo
-    std::vector<std::pair<ptr<Station>, ptr<Station>>> pairs;
+    /*vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }
+    }*/
 
     // 2.3 exemplo
-    std::priority_queue<std::pair<int, std::string>> pq;
+    /*std::priority_queue<std::pair<int, std::string>> pq;
     for (const auto& pair : municipality_capacities) pq.push({pair.second, pair.first});
 
     std::cout << "Municipalities with the most capacity:" << std::endl;
@@ -81,17 +81,20 @@ int main() {
     while (n--) {
         auto pair = pq.top(); pq.pop();
         std::cout << pair.second << " (" << pair.first << ")" << std::endl;
-    }
+    }*/
 
     // 2.4 exemplo
-    std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
+    //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
 
     // 3.1 exemplo
-    std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": " << network->maxCost(st1, st2) << std::endl;
+    std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;
 
     // 4.1 exemplo
-    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: " << network->maxFlowReduced(st1, st2) << std::endl;
+    vec<ptr<Station>> remove_stations = {stations.at("Pombal")};
+    vec<ptr<Link>> removed_links;
 
+    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
+    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;
 
     return 0;
 }

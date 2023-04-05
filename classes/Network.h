@@ -6,8 +6,8 @@
 
 class Network {
 private:
-    std::vector<ptr<Station>> stations;
-    std::vector<ptr<Link>> links;
+    vec<ptr<Station>> stations;
+    vec<ptr<Link>> links;
 
 public:
     Network();
@@ -16,17 +16,18 @@ public:
     static bool linkExists(const ptr<Station>& st1, const ptr<Station>& st2);
     ptr<Station> getStation(int id);
     ptr<Station> getStation(const std::string& name);
-    std::vector<ptr<Station>> getStations();
-    std::vector<ptr<Link>> getLinks();
+    vec<ptr<Station>> getStations();
+    vec<ptr<Link>> getLinks();
     unsigned int maxFlow(const ptr<Station> &src, const ptr<Station> &dest);
     unsigned int maxCost(const ptr<Station> &src, const ptr<Station> &dest);
-    unsigned int maxFlowReduced(const ptr<Station> &src, const ptr<Station> &dest);
-    bool getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest, std::vector<ptr<Station>> &path);
-    static int getBottleneck(const std::vector<ptr<Station>>& path);
-    static void updatePath(const std::vector<ptr<Station>>& path, int flow);
-    unsigned int getMaxFlowNetwork(std::vector<std::pair<ptr<Station>, ptr<Station>>>& pairs);
+    unsigned int maxFlowReduced(const ptr<Station> &src, const ptr<Station> &dest, const vec<ptr<Station>> &_stations, const vec<ptr<Link>> &_links);
+    bool getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest);
+    bool getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest);
+    static int getBottleneck(const ptr<Station> &src, const ptr<Station> &dest);
+    static void updatePath(const ptr<Station> &source, const ptr<Station> &dest, int flow, unsigned int *cost = nullptr);
+    unsigned int getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs);
     unsigned int maxTrains(const ptr<Station>& sink);
-    ptr<Station> createSuperSource(const std::vector<ptr<Station>>& sources);
+    ptr<Station> createSuperSource(const vec<ptr<Station>>& sources);
     void removeSuperSource(ptr<Station>& superSource);
 };
 

@@ -127,7 +127,6 @@ int Network::getBottleneck(const ptr<Station> &src, const ptr<Station> &dest) {
 
 void Network::updatePath(const ptr<Station> &source, const ptr<Station> &dest, int flow, unsigned int *cost) {
     auto s = dest;
-    std::cout << "Reached flow of " << flow << " from " << s->getPath()->getSrc()->getName() << std::endl;
 
     while (s != source) {
         auto l = s->getPath();
@@ -244,22 +243,35 @@ unsigned int Network::maxFlowReduced(const ptr<Station> &src, const ptr<Station>
     return max_flow;
 }
 
+struct _pq {
+    std::queue<ptr<Station>> standard;
+    std::queue<ptr<Station>> pendular;
+};
+
 bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest) {
     for (auto &s : stations) s->setVisited(false), s->setPath(nullptr);
 
-    std::list<ptr<Station>> q;
-    q.push_front(src);
+    _pq q;
+    q.standard.push(src);
     src->setVisited(true);
 
-    while (!q.empty() && !dest->isVisited()) {
-        auto s = q.front(); q.pop_front();
+    while (!(q.standard.empty() && q.pendular.empty()) && !dest->isVisited()) {
+        ptr<Station> s;
+        if (q.standard.empty()) {
+            s = q.pendular.front();
+            q.pendular.pop();
+        }
+        else {
+            s = q.standard.front();
+            q.standard.pop();
+        }
 
         for (auto &l : s->getLinks()) {
             auto w = l->getDest();
             if (!w->isVisited() && l->getFlow() < l->getCapacity()) {
                 w->setVisited(true);
                 w->setPath(l);
-                l->getService() == STANDARD ? q.push_front(w) : q.push_back(w);
+                l->getService() == STANDARD ? q.standard.push(w) : q.pendular.push(w);
             }
         }
 
@@ -269,7 +281,7 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
             if (!w->isVisited() && l->getFlow() > 0) {
                 w->setVisited(true);
                 w->setPath(l);
-                l->getService() == STANDARD ? q.push_front(w) : q.push_back(w);
+                l->getService() == STANDARD ? q.standard.push(w) : q.pendular.push(w);
             }
         }
     }

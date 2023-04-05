@@ -251,27 +251,22 @@ struct _pq {
 bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest) {
     for (auto &s : stations) s->setVisited(false), s->setPath(nullptr);
 
-    _pq q;
-    q.standard.push(src);
+    std::priority_queue<ptr<Station>, vec<ptr<Station>>, std::function<bool(ptr<Station>, ptr<Station>)>> pq(
+            [](const ptr<Station> &s1, const ptr<Station> &s2) { return s1->getCost() < s2->getCost(); });
+
+    pq.push(src);
     src->setVisited(true);
 
-    while (!(q.standard.empty() && q.pendular.empty()) && !dest->isVisited()) {
-        ptr<Station> s;
-        if (q.standard.empty()) {
-            s = q.pendular.front();
-            q.pendular.pop();
-        }
-        else {
-            s = q.standard.front();
-            q.standard.pop();
-        }
+    while (!pq.empty() && !dest->isVisited()) {
+        ptr<Station> s = pq.top(); pq.pop();
 
         for (auto &l : s->getLinks()) {
             auto w = l->getDest();
             if (!w->isVisited() && l->getFlow() < l->getCapacity()) {
                 w->setVisited(true);
                 w->setPath(l);
-                l->getService() == STANDARD ? q.standard.push(w) : q.pendular.push(w);
+                w->setCost(l->getCost());
+                pq.push(w);
             }
         }
 
@@ -281,7 +276,8 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
             if (!w->isVisited() && l->getFlow() > 0) {
                 w->setVisited(true);
                 w->setPath(l);
-                l->getService() == STANDARD ? q.standard.push(w) : q.pendular.push(w);
+                w->setCost(l->getCost());
+                pq.push(w);
             }
         }
     }

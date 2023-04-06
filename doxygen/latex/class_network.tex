@@ -81,12 +81,7 @@ Add \mbox{\hyperlink{class_link}{Link}} to \mbox{\hyperlink{class_network}{Netwo
 {\em service} & \mbox{\hyperlink{class_link}{Link}} service\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true if link was added successfully 
-
-false if link already exists
-\end{DoxyReturn}
-Adds a link to the network. This function as Complexity O(n)
+Adds a link to the network. This function has Complexity O(1)
 
 \begin{DoxyWarning}{Warning}
 If link already exists, it will not be added 
@@ -111,7 +106,7 @@ true if station was added successfully
 
 false if station already exists
 \end{DoxyReturn}
-Adds a station to the network. This function as Complexity O(n)
+Adds a station to the network. This function as Complexity O(n) where n is the number of stations
 
 \begin{DoxyWarning}{Warning}
 If station already exists, it will not be added 
@@ -132,9 +127,9 @@ Create Super Source.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Super source
+A pseudo \mbox{\hyperlink{class_station}{Station}} which is a Super Source
 \end{DoxyReturn}
-Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
+Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n) where n is the number of stations passed as parameter \mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
 \index{Network@{Network}!getAugmentingPath@{getAugmentingPath}}
 \index{getAugmentingPath@{getAugmentingPath}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getAugmentingPath()}{getAugmentingPath()}}
@@ -156,10 +151,10 @@ true if path exists
 
 false if path does not exist
 \end{DoxyReturn}
-Returns true if an augmenting path exists between two stations
+Returns true if an augmenting path exists between two stations. This function has Complexity O(V + E) where V is the number of vertices and E is the number of edges
 
 \begin{DoxyWarning}{Warning}
-This function is used for the Ford-\/\+Fulkerson algorithm. This function as Complexity O(n$^\wedge$2) 
+This function is used for the Ford-\/\+Fulkerson algorithm. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_a0bc7625e6d0ea8f05127ead9a434a884}\label{class_network_a0bc7625e6d0ea8f05127ead9a434a884}} 
 \index{Network@{Network}!getAugmentingPathWithCosts@{getAugmentingPathWithCosts}}
@@ -183,10 +178,10 @@ true if path exists
 
 false if path does not exist
 \end{DoxyReturn}
-Returns true if an augmenting path exists between two stations
+Returns true if an augmenting path exists between two stations. This function has Complexity O((V + E)log(\+V)) where V is the number of vertices and E is the number of edges
 
 \begin{DoxyWarning}{Warning}
-This function gives priority to paths with lower costs in this case Standard Priority. This function as Complexity O(n$^\wedge$2) 
+This function also gets an augmenting path in the network, however it first greedily chooses the standard service edges, and only then considers the alfa edges. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_af467e9890224f526235a554d0fee1d75}\label{class_network_af467e9890224f526235a554d0fee1d75}} 
 \index{Network@{Network}!getBottleneck@{getBottleneck}}
@@ -208,7 +203,7 @@ Get Bottleneck.
 \begin{DoxyReturn}{Returns}
 Bottleneck of path between src and dest
 \end{DoxyReturn}
-Returns the bottleneck of the path between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
+The path info is stored in each station with the parameter \textquotesingle{}path\textquotesingle{}\+: each stations saves the edge that \textquotesingle{}discovered\textquotesingle{} it. The time complexity is O(n), where n is the number of stations in the path. \mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
 \index{Network@{Network}!getLinks@{getLinks}}
 \index{getLinks@{getLinks}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getLinks()}{getLinks()}}
@@ -239,7 +234,12 @@ Get Max Flow \mbox{\hyperlink{class_network}{Network}}.
 \begin{DoxyReturn}{Returns}
 Max flow network
 \end{DoxyReturn}
-Returns the max flow network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
+Returns the max flow network. This function has Complexity O(\+V$^\wedge$3 $\ast$ E$^\wedge$2), as we need to run Edmonds-\/\+Karp algorithm for each pair of stations. The time complexity of the Edmonds-\/\+Karp algorithm is O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges. However, we start with the \char`\"{}most promising\char`\"{} stations (the ones that have more incoming capacity) in order to greatly prune our search space. This technique is in fact efficient because we noticed a great improvement over the simple brute force (the running time improved from $\sim$20s to $\sim$0.12s)
+
+\begin{DoxyWarning}{Warning}
+This is FAST!!! 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
 \index{Network@{Network}!getStation@{getStation}}
 \index{getStation@{getStation}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -257,7 +257,7 @@ Get \mbox{\hyperlink{class_station}{Station}}.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{class_station}{Station}} with name
 \end{DoxyReturn}
-Returns a station with a given name. This function as Complexity O(n) \mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
+Returns a station with a given name. This function has Complexity O(n) \mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
 \index{Network@{Network}!getStation@{getStation}}
 \index{getStation@{getStation}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
@@ -275,7 +275,7 @@ Get \mbox{\hyperlink{class_station}{Station}}.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{class_station}{Station}} with ID
 \end{DoxyReturn}
-Returns a station with a given ID. This function as Complexity O(n) \mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
+Returns a station with a given ID. This function has Complexity O(n) \mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
 \index{Network@{Network}!getStations@{getStations}}
 \index{getStations@{getStations}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStations()}{getStations()}}
@@ -310,7 +310,7 @@ true if link exists
 
 false if link does not exist
 \end{DoxyReturn}
-Checks if a link exists between two stations. This function as Complexity O(n) \mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
+Checks if a link exists between two stations. This function has Complexity O(n) \mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
 \index{Network@{Network}!maxCost@{maxCost}}
 \index{maxCost@{maxCost}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxCost()}{maxCost()}}
@@ -330,7 +330,7 @@ Get Cost.
 \begin{DoxyReturn}{Returns}
 Cost of flow between src and dest
 \end{DoxyReturn}
-Returns the cost between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
+Returns the cost between two stations. This function has Complexity O(V(\+E$^\wedge$2)log(\+V)) where V is the number of vertices and E is the number of edges. \mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
 \index{Network@{Network}!maxFlow@{maxFlow}}
 \index{maxFlow@{maxFlow}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
@@ -350,7 +350,7 @@ Get Max Flow.
 \begin{DoxyReturn}{Returns}
 Max flow between src and dest
 \end{DoxyReturn}
-Returns the maximum flow between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
+Returns the maximum flow between two stations. This function has Complexity O(\+VE$^\wedge$2) where V is the number of vertices and E is the number of edges. \mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
 \index{Network@{Network}!maxFlowReduced@{maxFlowReduced}}
 \index{maxFlowReduced@{maxFlowReduced}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxFlowReduced()}{maxFlowReduced()}}
@@ -374,10 +374,10 @@ Get Max Flow Reduced.
 \begin{DoxyReturn}{Returns}
 Max flow between src and dest
 \end{DoxyReturn}
-Returns the maximum flow between two stations
+Returns the maximum flow between two stations. This function has Complexity O(\+VE$^\wedge$2) where V is the number of vertices and E is the number of edges.
 
 \begin{DoxyWarning}{Warning}
-This function is used for the reduced network. This function as Complexity O(n$^\wedge$2) 
+This function is used for the reduced network. 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}\label{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}} 
 \index{Network@{Network}!maxTrains@{maxTrains}}
@@ -397,7 +397,7 @@ Get Max Trains.
 \begin{DoxyReturn}{Returns}
 Max trains
 \end{DoxyReturn}
-Returns the max trains that can be sent to a sink station from all sources in the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
+Returns the max trains that can be sent to a sink station from all sources in the network. This function has Complexity O(\+VE$^\wedge$2) where V is the number of vertices and E is the number of edges. \mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
 \index{Network@{Network}!removeSuperSource@{removeSuperSource}}
 \index{removeSuperSource@{removeSuperSource}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{removeSuperSource()}{removeSuperSource()}}
@@ -412,7 +412,7 @@ Remove Super Source.
 {\em super\+Source} & Super source\\
 \hline
 \end{DoxyParams}
-Removes a super source from the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
+Removes a super source from the network. This function as Complexity O(n) where n is size of the adjacency list of the super source \mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
 \index{Network@{Network}!updatePath@{updatePath}}
 \index{updatePath@{updatePath}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{updatePath()}{updatePath()}}
@@ -433,7 +433,7 @@ Update Path.
 {\em cost} & Cost of flow\\
 \hline
 \end{DoxyParams}
-Updates the path between two stations. This function as Complexity O(n$^\wedge$2) 
+Updates the path between two stations. This function has Complexity O(n) where n is the number of stations in the path. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

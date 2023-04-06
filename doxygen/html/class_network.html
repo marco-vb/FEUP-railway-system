@@ -210,10 +210,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if link was added successfully </dd>
-<dd>
-false if link already exists</dd></dl>
-<p>Adds a link to the network. This function as Complexity O(n)</p>
+<p>Adds a link to the network. This function has Complexity O(1)</p>
 <dl class="section warning"><dt>Warning</dt><dd>If link already exists, it will not be added </dd></dl>
 
 </div>
@@ -244,7 +241,7 @@ false if link already exists</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if station was added successfully </dd>
 <dd>
 false if station already exists</dd></dl>
-<p>Adds a station to the network. This function as Complexity O(n)</p>
+<p>Adds a station to the network. This function as Complexity O(n) where n is the number of stations</p>
 <dl class="section warning"><dt>Warning</dt><dd>If station already exists, it will not be added </dd></dl>
 
 </div>
@@ -272,8 +269,8 @@ false if station already exists</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Super source</dd></dl>
-<p>Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n^2) </p>
+<dl class="section return"><dt>Returns</dt><dd>A pseudo <a class="el" href="class_station.html" title="Station class.">Station</a> which is a Super Source</dd></dl>
+<p>Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n) where n is the number of stations passed as parameter </p>
 
 </div>
 </div>
@@ -314,8 +311,8 @@ false if station already exists</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if path exists </dd>
 <dd>
 false if path does not exist</dd></dl>
-<p>Returns true if an augmenting path exists between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Ford-Fulkerson algorithm. This function as Complexity O(n^2) </dd></dl>
+<p>Returns true if an augmenting path exists between two stations. This function has Complexity O(V + E) where V is the number of vertices and E is the number of edges</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Ford-Fulkerson algorithm. </dd></dl>
 
 </div>
 </div>
@@ -356,8 +353,8 @@ false if path does not exist</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if path exists </dd>
 <dd>
 false if path does not exist</dd></dl>
-<p>Returns true if an augmenting path exists between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function gives priority to paths with lower costs in this case Standard Priority. This function as Complexity O(n^2) </dd></dl>
+<p>Returns true if an augmenting path exists between two stations. This function has Complexity O((V + E)log(V)) where V is the number of vertices and E is the number of edges</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function also gets an augmenting path in the network, however it first greedily chooses the standard service edges, and only then considers the alfa edges. </dd></dl>
 
 </div>
 </div>
@@ -404,7 +401,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Bottleneck of path between src and dest</dd></dl>
-<p>Returns the bottleneck of the path between two stations. This function as Complexity O(n^2) </p>
+<p>The path info is stored in each station with the parameter 'path': each stations saves the edge that 'discovered' it. The time complexity is O(n), where n is the number of stations in the path. </p>
 
 </div>
 </div>
@@ -453,7 +450,8 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow network</dd></dl>
-<p>Returns the max flow network. This function as Complexity O(n^2) </p>
+<p>Returns the max flow network. This function has Complexity O(V^3 * E^2), as we need to run Edmonds-Karp algorithm for each pair of stations. The time complexity of the Edmonds-Karp algorithm is O(V * E^2), where V is the number of vertices and E is the number of edges. However, we start with the "most promising" stations (the ones that have more incoming capacity) in order to greatly prune our search space. This technique is in fact efficient because we noticed a great improvement over the simple brute force (the running time improved from ~20s to ~0.12s)</p>
+<dl class="section warning"><dt>Warning</dt><dd>This is FAST!!! </dd></dl>
 
 </div>
 </div>
@@ -481,7 +479,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with name</dd></dl>
-<p>Returns a station with a given name. This function as Complexity O(n) </p>
+<p>Returns a station with a given name. This function has Complexity O(n) </p>
 
 </div>
 </div>
@@ -509,7 +507,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with ID</dd></dl>
-<p>Returns a station with a given ID. This function as Complexity O(n) </p>
+<p>Returns a station with a given ID. This function has Complexity O(n) </p>
 
 </div>
 </div>
@@ -579,7 +577,7 @@ false if path does not exist</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if link exists </dd>
 <dd>
 false if link does not exist</dd></dl>
-<p>Checks if a link exists between two stations. This function as Complexity O(n) </p>
+<p>Checks if a link exists between two stations. This function has Complexity O(n) </p>
 
 </div>
 </div>
@@ -618,7 +616,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Cost of flow between src and dest</dd></dl>
-<p>Returns the cost between two stations. This function as Complexity O(n^2) </p>
+<p>Returns the cost between two stations. This function has Complexity O(V(E^2)log(V)) where V is the number of vertices and E is the number of edges. </p>
 
 </div>
 </div>
@@ -657,7 +655,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
-<p>Returns the maximum flow between two stations. This function as Complexity O(n^2) </p>
+<p>Returns the maximum flow between two stations. This function has Complexity O(VE^2) where V is the number of vertices and E is the number of edges. </p>
 
 </div>
 </div>
@@ -710,8 +708,8 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
-<p>Returns the maximum flow between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is used for the reduced network. This function as Complexity O(n^2) </dd></dl>
+<p>Returns the maximum flow between two stations. This function has Complexity O(VE^2) where V is the number of vertices and E is the number of edges.</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the reduced network. </dd></dl>
 
 </div>
 </div>
@@ -739,7 +737,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max trains</dd></dl>
-<p>Returns the max trains that can be sent to a sink station from all sources in the network. This function as Complexity O(n^2) </p>
+<p>Returns the max trains that can be sent to a sink station from all sources in the network. This function has Complexity O(VE^2) where V is the number of vertices and E is the number of edges. </p>
 
 </div>
 </div>
@@ -766,7 +764,7 @@ false if link does not exist</dd></dl>
   </table>
   </dd>
 </dl>
-<p>Removes a super source from the network. This function as Complexity O(n^2) </p>
+<p>Removes a super source from the network. This function as Complexity O(n) where n is size of the adjacency list of the super source </p>
 
 </div>
 </div>
@@ -826,7 +824,7 @@ false if link does not exist</dd></dl>
   </table>
   </dd>
 </dl>
-<p>Updates the path between two stations. This function as Complexity O(n^2) </p>
+<p>Updates the path between two stations. This function has Complexity O(n) where n is the number of stations in the path. </p>
 
 </div>
 </div>

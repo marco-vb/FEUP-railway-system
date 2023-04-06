@@ -149,28 +149,15 @@ void Network::updatePath(const ptr<Station> &source, const ptr<Station> &dest, i
 //check this
 unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs) {
     unsigned int max_flow = 0;
-    std::sort(links.begin(), links.end(), [](ptr<Link>& l1, ptr<Link>& l2) { return l1->getCapacity() > l2->getCapacity(); });
-
-    ptr<Station> src = links.front()->getSrc();
-
-    for (auto &s : stations) {
-        if (s == src) continue;
-        unsigned int flow = maxFlow(src, s);
-        if (flow > max_flow) {
-            max_flow = flow;
-            pairs.clear();
-            pairs.emplace_back(src, s);
-        }
-        else if (flow == max_flow) pairs.emplace_back(src, s);
-    }
+    std::sort(stations.begin(), stations.end(), [](ptr<Station>& s1, ptr<Station>& s2) { return s1->maxPossibleFlow() > s2->maxPossibleFlow(); });
 
     for (int i = 0; i < (int) stations.size() - 1; i++) {
         ptr<Station> s1 = stations[i];
-        if (s1 == src || s1->maxPossibleFlow() < max_flow) continue;
+        if (s1->maxPossibleFlow() < max_flow) continue;
 
         for (int j = i + 1; j < (int) stations.size(); j++) {
             ptr<Station> s2 = stations[j];
-            if (s2 == src || s2->maxPossibleFlow() < max_flow) continue;
+            if (s2->maxPossibleFlow() < max_flow) continue;
 
             unsigned int flow = maxFlow(stations[i], stations[j]);
 

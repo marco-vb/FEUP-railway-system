@@ -124,6 +124,8 @@ void readLinks() {
  */
 int main() {
 
+    system("Color 0C");
+
     int option;
 
     starting_screen();
@@ -242,9 +244,9 @@ void starting_screen(){
     std::cout << "||                                                                           ||" << std::endl;
     std::cout << "||                                            (###)     (#####)              ||" << std::endl;
     std::cout << "||                                     (##)     (#######)        (#######)   ||" << std::endl;
-    std::cout << "||                               (#######)   (#####)       (###########)     ||" << std::endl;
-    std::cout << "||                          (###)     (#######)   (######)             (###) ||" << std::endl;
-    std::cout << "||                     (######)    (######)                (#)               ||" << std::endl;
+    std::cout << "||                               (#######)   (##R##)       (###########)     ||" << std::endl;
+    std::cout << "||                          (###)     (#######)   (######)             (#7#) ||" << std::endl;
+    std::cout << "||                     (##F###)    (######)                (#)               ||" << std::endl;
     std::cout << "||                 (###)  (####)           (##)                              ||" << std::endl;
     std::cout << "||              (##)              (###)                                      ||" << std::endl;
     std::cout << "||             .-.                                                           ||" << std::endl;

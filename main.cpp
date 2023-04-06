@@ -123,7 +123,7 @@ void readLinks() {
  * @return 0
  */
 int main() {
-
+/*
     int option;
 
     starting_screen();
@@ -185,21 +185,27 @@ int main() {
                 break;
         }
 
-    }while(option != 0);
+    }while(option != 0);*/
 
+    readStations();
+    readLinks();
 
-    /*auto st1 = stations.at("Vila Nova de Gaia-Devesas");
-    auto st2 = stations.at("Lisboa Oriente");*/
+    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st2 = stations.at("Lisboa Oriente");
 
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
+    clock_t begin = clock();
     // 2.2 exemplo
-    /*vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }*/
+    }
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "Time: " << elapsed_secs << std::endl;
 
     // 2.3 exemplo
     /*std::priority_queue<std::pair<int, std::string>> pq;

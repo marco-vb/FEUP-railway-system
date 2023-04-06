@@ -367,7 +367,7 @@ public:
      *
      * @return Max possible flow
      *
-     * @details This method gets the max possible flow of the station
+     * @details This method gets the max possible flow of the station. This function as a Complexity of O(n)
      */
     unsigned int maxPossibleFlow();
 };

@@ -22,6 +22,8 @@ public:
 
     /**
      * @brief Network Constructor
+     *
+     * @details Creates a new network
      */
     Network();
 
@@ -33,7 +35,7 @@ public:
      * @return true if station was added successfully
      * @return false if station already exists
      *
-     * @details Adds a station to the network
+     * @details Adds a station to the network. This function as Complexity O(n)
      *
      * @warning If station already exists, it will not be added
      */
@@ -50,7 +52,7 @@ public:
      * @return true if link was added successfully
      * @return false if link already exists
      *
-     * @details Adds a link to the network
+     * @details Adds a link to the network. This function as Complexity O(n)
      *
      * @warning If link already exists, it will not be added
      */
@@ -65,7 +67,7 @@ public:
      * @return true if link exists
      * @return false if link does not exist
      *
-     * @details Checks if a link exists between two stations
+     * @details Checks if a link exists between two stations. This function as Complexity O(n)
      */
     static bool linkExists(const ptr<Station>& st1, const ptr<Station>& st2);
 
@@ -76,7 +78,7 @@ public:
      *
      * @return Station with ID
      *
-     * @details Returns a station with a given ID
+     * @details Returns a station with a given ID. This function as Complexity O(n)
      */
     ptr<Station> getStation(int id);
 
@@ -87,7 +89,7 @@ public:
      *
      * @return Station with name
      *
-     * @details Returns a station with a given name
+     * @details Returns a station with a given name. This function as Complexity O(n)
      */
     ptr<Station> getStation(const std::string& name);
 
@@ -96,7 +98,7 @@ public:
      *
      * @return Vector of stations
      *
-     * @details Returns a vector of all stations in the network
+     * @details Returns a vector of all stations in the network.
      */
     vec<ptr<Station>> getStations();
 
@@ -105,7 +107,7 @@ public:
      *
      * @return Vector of links
      *
-     * @details Returns a vector of all links in the network
+     * @details Returns a vector of all links in the network.
      */
     vec<ptr<Link>> getLinks();
 
@@ -117,7 +119,7 @@ public:
      *
      * @return Max flow between src and dest
      *
-     * @details Returns the maximum flow between two stations
+     * @details Returns the maximum flow between two stations. This function as Complexity O(n^2)
      */
     unsigned int maxFlow(const ptr<Station> &src, const ptr<Station> &dest);
 
@@ -129,7 +131,7 @@ public:
      *
      * @return Cost of flow between src and dest
      *
-     * @details Returns the cost between two stations
+     * @details Returns the cost between two stations. This function as Complexity O(n^2)
      */
     unsigned int maxCost(const ptr<Station> &src, const ptr<Station> &dest);
 
@@ -145,7 +147,7 @@ public:
      *
      * @details Returns the maximum flow between two stations
      *
-     * @warning This function is used for the reduced network
+     * @warning This function is used for the reduced network. This function as Complexity O(n^2)
      */
     unsigned int maxFlowReduced(const ptr<Station> &src, const ptr<Station> &dest, const vec<ptr<Station>> &_stations, const vec<ptr<Link>> &_links);
 
@@ -160,7 +162,7 @@ public:
      *
      * @details Returns true if an augmenting path exists between two stations
      *
-     * @warning This function is used for the Ford-Fulkerson algorithm
+     * @warning This function is used for the Ford-Fulkerson algorithm. This function as Complexity O(n^2)
      */
     bool getAugmentingPath(const ptr<Station> &src, const ptr<Station> &dest);
 
@@ -175,7 +177,7 @@ public:
      *
      * @details Returns true if an augmenting path exists between two stations
      *
-     * @warning This function gives priority to paths with lower costs in this case Standard Priority
+     * @warning This function gives priority to paths with lower costs in this case Standard Priority. This function as Complexity O(n^2)
      */
     bool getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest);
 
@@ -186,7 +188,7 @@ public:
      *
      * @return Bottleneck of path between src and dest
      *
-     * @details Returns the bottleneck of the path between two stations
+     * @details Returns the bottleneck of the path between two stations. This function as Complexity O(n^2)
      */
     static int getBottleneck(const ptr<Station> &src, const ptr<Station> &dest);
 
@@ -198,7 +200,7 @@ public:
      * @param flow Flow to be added
      * @param cost Cost of flow
      *
-     * @details Updates the path between two stations
+     * @details Updates the path between two stations. This function as Complexity O(n^2)
      */
     static void updatePath(const ptr<Station> &source, const ptr<Station> &dest, int flow, unsigned int *cost = nullptr);
 
@@ -209,7 +211,7 @@ public:
      *
      * @return Max flow network
      *
-     * @details Returns the max flow network
+     * @details Returns the max flow network. This function as Complexity O(n^2)
      */
     unsigned int getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs);
 
@@ -220,7 +222,7 @@ public:
      *
      * @return Max trains
      *
-     * @details Returns the max trains that can be sent to a sink station from all sources in the network
+     * @details Returns the max trains that can be sent to a sink station from all sources in the network. This function as Complexity O(n^2)
      */
     unsigned int maxTrains(const ptr<Station>& sink);
 
@@ -231,7 +233,7 @@ public:
      *
      * @return Super source
      *
-     * @details Creates a super source from a vector of source stations and adds it to the network
+     * @details Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n^2)
      */
     ptr<Station> createSuperSource(const vec<ptr<Station>>& sources);
 
@@ -240,7 +242,7 @@ public:
      *
      * @param superSource Super source
      *
-     * @details Removes a super source from the network
+     * @details Removes a super source from the network. This function as Complexity O(n^2)
      */
     void removeSuperSource(ptr<Station>& superSource);
 };

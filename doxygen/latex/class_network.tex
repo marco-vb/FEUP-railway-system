@@ -3,8 +3,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}\label{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}} 
-{\bfseries Network} ()
+\mbox{\hyperlink{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network}} ()
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_network}{Network}} Constructor. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}{add\+Station}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&station)
 \begin{DoxyCompactList}\small\item\em Add \mbox{\hyperlink{class_station}{Station}} to \mbox{\hyperlink{class_network}{Network}}. \end{DoxyCompactList}\item 
@@ -47,6 +46,19 @@ static void \mbox{\hyperlink{class_network_a32b16d5a7debcf9375a41af79fc76c51}{up
 \begin{DoxyCompactList}\small\item\em Update Path. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}\label{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}} 
+\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{Network()}{Network()}}
+{\footnotesize\ttfamily Network\+::\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_network}{Network}} Constructor. 
+
+Creates a new network 
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_network_aa6f2260035a459bb6d10a13c6263998e}\label{class_network_aa6f2260035a459bb6d10a13c6263998e}} 
 \index{Network@{Network}!addLink@{addLink}}
@@ -74,7 +86,7 @@ true if link was added successfully
 
 false if link already exists
 \end{DoxyReturn}
-Adds a link to the network
+Adds a link to the network. This function as Complexity O(n)
 
 \begin{DoxyWarning}{Warning}
 If link already exists, it will not be added 
@@ -99,7 +111,7 @@ true if station was added successfully
 
 false if station already exists
 \end{DoxyReturn}
-Adds a station to the network
+Adds a station to the network. This function as Complexity O(n)
 
 \begin{DoxyWarning}{Warning}
 If station already exists, it will not be added 
@@ -122,7 +134,7 @@ Create Super Source.
 \begin{DoxyReturn}{Returns}
 Super source
 \end{DoxyReturn}
-Creates a super source from a vector of source stations and adds it to the network \mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
+Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
 \index{Network@{Network}!getAugmentingPath@{getAugmentingPath}}
 \index{getAugmentingPath@{getAugmentingPath}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getAugmentingPath()}{getAugmentingPath()}}
@@ -147,7 +159,7 @@ false if path does not exist
 Returns true if an augmenting path exists between two stations
 
 \begin{DoxyWarning}{Warning}
-This function is used for the Ford-\/\+Fulkerson algorithm 
+This function is used for the Ford-\/\+Fulkerson algorithm. This function as Complexity O(n$^\wedge$2) 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_a0bc7625e6d0ea8f05127ead9a434a884}\label{class_network_a0bc7625e6d0ea8f05127ead9a434a884}} 
 \index{Network@{Network}!getAugmentingPathWithCosts@{getAugmentingPathWithCosts}}
@@ -174,7 +186,7 @@ false if path does not exist
 Returns true if an augmenting path exists between two stations
 
 \begin{DoxyWarning}{Warning}
-This function gives priority to paths with lower costs in this case Standard Priority 
+This function gives priority to paths with lower costs in this case Standard Priority. This function as Complexity O(n$^\wedge$2) 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_af467e9890224f526235a554d0fee1d75}\label{class_network_af467e9890224f526235a554d0fee1d75}} 
 \index{Network@{Network}!getBottleneck@{getBottleneck}}
@@ -196,7 +208,7 @@ Get Bottleneck.
 \begin{DoxyReturn}{Returns}
 Bottleneck of path between src and dest
 \end{DoxyReturn}
-Returns the bottleneck of the path between two stations \mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
+Returns the bottleneck of the path between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
 \index{Network@{Network}!getLinks@{getLinks}}
 \index{getLinks@{getLinks}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getLinks()}{getLinks()}}
@@ -209,7 +221,7 @@ Get Links.
 \begin{DoxyReturn}{Returns}
 Vector of links
 \end{DoxyReturn}
-Returns a vector of all links in the network \mbox{\Hypertarget{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}\label{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}} 
+Returns a vector of all links in the network. \mbox{\Hypertarget{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}\label{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}} 
 \index{Network@{Network}!getMaxFlowNetwork@{getMaxFlowNetwork}}
 \index{getMaxFlowNetwork@{getMaxFlowNetwork}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getMaxFlowNetwork()}{getMaxFlowNetwork()}}
@@ -227,7 +239,7 @@ Get Max Flow \mbox{\hyperlink{class_network}{Network}}.
 \begin{DoxyReturn}{Returns}
 Max flow network
 \end{DoxyReturn}
-Returns the max flow network \mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
+Returns the max flow network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
 \index{Network@{Network}!getStation@{getStation}}
 \index{getStation@{getStation}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
@@ -245,7 +257,7 @@ Get \mbox{\hyperlink{class_station}{Station}}.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{class_station}{Station}} with name
 \end{DoxyReturn}
-Returns a station with a given name \mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
+Returns a station with a given name. This function as Complexity O(n) \mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
 \index{Network@{Network}!getStation@{getStation}}
 \index{getStation@{getStation}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
@@ -263,7 +275,7 @@ Get \mbox{\hyperlink{class_station}{Station}}.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{class_station}{Station}} with ID
 \end{DoxyReturn}
-Returns a station with a given ID \mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
+Returns a station with a given ID. This function as Complexity O(n) \mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
 \index{Network@{Network}!getStations@{getStations}}
 \index{getStations@{getStations}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{getStations()}{getStations()}}
@@ -276,7 +288,7 @@ Get Stations.
 \begin{DoxyReturn}{Returns}
 Vector of stations
 \end{DoxyReturn}
-Returns a vector of all stations in the network \mbox{\Hypertarget{class_network_ae3a0c2ac3c376782511937d539061237}\label{class_network_ae3a0c2ac3c376782511937d539061237}} 
+Returns a vector of all stations in the network. \mbox{\Hypertarget{class_network_ae3a0c2ac3c376782511937d539061237}\label{class_network_ae3a0c2ac3c376782511937d539061237}} 
 \index{Network@{Network}!linkExists@{linkExists}}
 \index{linkExists@{linkExists}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{linkExists()}{linkExists()}}
@@ -298,7 +310,7 @@ true if link exists
 
 false if link does not exist
 \end{DoxyReturn}
-Checks if a link exists between two stations \mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
+Checks if a link exists between two stations. This function as Complexity O(n) \mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
 \index{Network@{Network}!maxCost@{maxCost}}
 \index{maxCost@{maxCost}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxCost()}{maxCost()}}
@@ -318,7 +330,7 @@ Get Cost.
 \begin{DoxyReturn}{Returns}
 Cost of flow between src and dest
 \end{DoxyReturn}
-Returns the cost between two stations \mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
+Returns the cost between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
 \index{Network@{Network}!maxFlow@{maxFlow}}
 \index{maxFlow@{maxFlow}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
@@ -338,7 +350,7 @@ Get Max Flow.
 \begin{DoxyReturn}{Returns}
 Max flow between src and dest
 \end{DoxyReturn}
-Returns the maximum flow between two stations \mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
+Returns the maximum flow between two stations. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
 \index{Network@{Network}!maxFlowReduced@{maxFlowReduced}}
 \index{maxFlowReduced@{maxFlowReduced}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{maxFlowReduced()}{maxFlowReduced()}}
@@ -365,7 +377,7 @@ Max flow between src and dest
 Returns the maximum flow between two stations
 
 \begin{DoxyWarning}{Warning}
-This function is used for the reduced network 
+This function is used for the reduced network. This function as Complexity O(n$^\wedge$2) 
 \end{DoxyWarning}
 \mbox{\Hypertarget{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}\label{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}} 
 \index{Network@{Network}!maxTrains@{maxTrains}}
@@ -385,7 +397,7 @@ Get Max Trains.
 \begin{DoxyReturn}{Returns}
 Max trains
 \end{DoxyReturn}
-Returns the max trains that can be sent to a sink station from all sources in the network \mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
+Returns the max trains that can be sent to a sink station from all sources in the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
 \index{Network@{Network}!removeSuperSource@{removeSuperSource}}
 \index{removeSuperSource@{removeSuperSource}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{removeSuperSource()}{removeSuperSource()}}
@@ -400,7 +412,7 @@ Remove Super Source.
 {\em super\+Source} & Super source\\
 \hline
 \end{DoxyParams}
-Removes a super source from the network \mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
+Removes a super source from the network. This function as Complexity O(n$^\wedge$2) \mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
 \index{Network@{Network}!updatePath@{updatePath}}
 \index{updatePath@{updatePath}!Network@{Network}}
 \doxysubsubsection{\texorpdfstring{updatePath()}{updatePath()}}
@@ -421,7 +433,7 @@ Update Path.
 {\em cost} & Cost of flow\\
 \hline
 \end{DoxyParams}
-Updates the path between two stations 
+Updates the path between two stations. This function as Complexity O(n$^\wedge$2) 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

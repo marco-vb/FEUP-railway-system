@@ -79,9 +79,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memItemLeft" align="right" valign="top"><a id="a3cc2fb4f8fa4d507077e8da85ce5a1c8" name="a3cc2fb4f8fa4d507077e8da85ce5a1c8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Network</b> ()</td></tr>
-<tr class="memdesc:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_network.html">Network</a> Constructor. <br /></td></tr>
+<tr class="memitem:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8">Network</a> ()</td></tr>
+<tr class="memdesc:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_network.html">Network</a> Constructor.  <br /></td></tr>
 <tr class="separator:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a78fdb859e3d57bdf5532d5bc41f04a4a">addStation</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;station)</td></tr>
 <tr class="memdesc:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add <a class="el" href="class_station.html" title="Station class.">Station</a> to <a class="el" href="class_network.html">Network</a>.  <br /></td></tr>
@@ -141,6 +140,27 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a32b16d5a7debcf9375a41af79fc76c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Path.  <br /></td></tr>
 <tr class="separator:a32b16d5a7debcf9375a41af79fc76c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3cc2fb4f8fa4d507077e8da85ce5a1c8" name="a3cc2fb4f8fa4d507077e8da85ce5a1c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc2fb4f8fa4d507077e8da85ce5a1c8">&#9670;&#160;</a></span>Network()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Network::Network </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_network.html">Network</a> Constructor. </p>
+<p>Creates a new network </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa6f2260035a459bb6d10a13c6263998e" name="aa6f2260035a459bb6d10a13c6263998e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa6f2260035a459bb6d10a13c6263998e">&#9670;&#160;</a></span>addLink()</h2>
@@ -193,7 +213,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if link was added successfully </dd>
 <dd>
 false if link already exists</dd></dl>
-<p>Adds a link to the network</p>
+<p>Adds a link to the network. This function as Complexity O(n)</p>
 <dl class="section warning"><dt>Warning</dt><dd>If link already exists, it will not be added </dd></dl>
 
 </div>
@@ -224,7 +244,7 @@ false if link already exists</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if station was added successfully </dd>
 <dd>
 false if station already exists</dd></dl>
-<p>Adds a station to the network</p>
+<p>Adds a station to the network. This function as Complexity O(n)</p>
 <dl class="section warning"><dt>Warning</dt><dd>If station already exists, it will not be added </dd></dl>
 
 </div>
@@ -253,7 +273,7 @@ false if station already exists</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Super source</dd></dl>
-<p>Creates a super source from a vector of source stations and adds it to the network </p>
+<p>Creates a super source from a vector of source stations and adds it to the network. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -295,7 +315,7 @@ false if station already exists</dd></dl>
 <dd>
 false if path does not exist</dd></dl>
 <p>Returns true if an augmenting path exists between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Ford-Fulkerson algorithm </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Ford-Fulkerson algorithm. This function as Complexity O(n^2) </dd></dl>
 
 </div>
 </div>
@@ -337,7 +357,7 @@ false if path does not exist</dd></dl>
 <dd>
 false if path does not exist</dd></dl>
 <p>Returns true if an augmenting path exists between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function gives priority to paths with lower costs in this case Standard Priority </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function gives priority to paths with lower costs in this case Standard Priority. This function as Complexity O(n^2) </dd></dl>
 
 </div>
 </div>
@@ -384,7 +404,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Bottleneck of path between src and dest</dd></dl>
-<p>Returns the bottleneck of the path between two stations </p>
+<p>Returns the bottleneck of the path between two stations. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -405,7 +425,7 @@ false if path does not exist</dd></dl>
 
 <p>Get Links. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of links</dd></dl>
-<p>Returns a vector of all links in the network </p>
+<p>Returns a vector of all links in the network. </p>
 
 </div>
 </div>
@@ -433,7 +453,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow network</dd></dl>
-<p>Returns the max flow network </p>
+<p>Returns the max flow network. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -461,7 +481,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with name</dd></dl>
-<p>Returns a station with a given name </p>
+<p>Returns a station with a given name. This function as Complexity O(n) </p>
 
 </div>
 </div>
@@ -489,7 +509,7 @@ false if path does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with ID</dd></dl>
-<p>Returns a station with a given ID </p>
+<p>Returns a station with a given ID. This function as Complexity O(n) </p>
 
 </div>
 </div>
@@ -510,7 +530,7 @@ false if path does not exist</dd></dl>
 
 <p>Get Stations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Vector of stations</dd></dl>
-<p>Returns a vector of all stations in the network </p>
+<p>Returns a vector of all stations in the network. </p>
 
 </div>
 </div>
@@ -559,7 +579,7 @@ false if path does not exist</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true if link exists </dd>
 <dd>
 false if link does not exist</dd></dl>
-<p>Checks if a link exists between two stations </p>
+<p>Checks if a link exists between two stations. This function as Complexity O(n) </p>
 
 </div>
 </div>
@@ -598,7 +618,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Cost of flow between src and dest</dd></dl>
-<p>Returns the cost between two stations </p>
+<p>Returns the cost between two stations. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -637,7 +657,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
-<p>Returns the maximum flow between two stations </p>
+<p>Returns the maximum flow between two stations. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -691,7 +711,7 @@ false if link does not exist</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
 <p>Returns the maximum flow between two stations</p>
-<dl class="section warning"><dt>Warning</dt><dd>This function is used for the reduced network </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the reduced network. This function as Complexity O(n^2) </dd></dl>
 
 </div>
 </div>
@@ -719,7 +739,7 @@ false if link does not exist</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Max trains</dd></dl>
-<p>Returns the max trains that can be sent to a sink station from all sources in the network </p>
+<p>Returns the max trains that can be sent to a sink station from all sources in the network. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -746,7 +766,7 @@ false if link does not exist</dd></dl>
   </table>
   </dd>
 </dl>
-<p>Removes a super source from the network </p>
+<p>Removes a super source from the network. This function as Complexity O(n^2) </p>
 
 </div>
 </div>
@@ -806,7 +826,7 @@ false if link does not exist</dd></dl>
   </table>
   </dd>
 </dl>
-<p>Updates the path between two stations </p>
+<p>Updates the path between two stations. This function as Complexity O(n^2) </p>
 
 </div>
 </div>

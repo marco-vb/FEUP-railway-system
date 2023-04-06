@@ -1,7 +1,8 @@
 #ifndef RAILWAYS_NETWORK_H
 #define RAILWAYS_NETWORK_H
 
-#include <bits/stdc++.h>
+
+
 #include "StationLink.h"
 
 class Network {
@@ -174,7 +175,7 @@ public:
      *
      * @details Returns true if an augmenting path exists between two stations
      *
-     * @warning This function is used for the Edmonds-Karp algorithm
+     * @warning This function gives priority to paths with lower costs in this case Standard Priority
      */
     bool getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest);
 

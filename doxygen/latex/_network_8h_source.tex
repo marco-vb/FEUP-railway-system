@@ -1,0 +1,63 @@
+\hypertarget{_network_8h_source}{}\doxysection{Network.\+h}
+\label{_network_8h_source}\index{C:/Users/pland/OneDrive/Desktop/FEUP/2Ano/2\_semestre/DA/Projeto/DA\_Railways/DA\_Railways/classes/Network.h@{C:/Users/pland/OneDrive/Desktop/FEUP/2Ano/2\_semestre/DA/Projeto/DA\_Railways/DA\_Railways/classes/Network.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAILWAYS\_NETWORK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAILWAYS\_NETWORK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}StationLink.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_network}{Network}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \ \ \ \ vec<ptr<Station>>\ stations;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \ \ \ \ vec<ptr<Link>>\ links;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}{addStation}}(\textcolor{keyword}{const}\ ptr<Station>\&\ station);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_network_aa6f2260035a459bb6d10a13c6263998e}{addLink}}(\textcolor{keyword}{const}\ ptr<Station>\&\ st1,\ \textcolor{keyword}{const}\ ptr<Station>\&\ st2,\ \textcolor{keywordtype}{int}\ capacity,\ \textcolor{keywordtype}{int}\ service);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_network_ae3a0c2ac3c376782511937d539061237}{linkExists}}(\textcolor{keyword}{const}\ ptr<Station>\&\ st1,\ \textcolor{keyword}{const}\ ptr<Station>\&\ st2);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00081\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_network_abff374bfef5668eeae3294d06412a786}{getStation}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00092\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_network_abff374bfef5668eeae3294d06412a786}{getStation}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00101\ \ \ \ \ vec<ptr<Station>>\ \mbox{\hyperlink{class_network_ab69518ab851457424abb428493419573}{getStations}}();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00110\ \ \ \ \ vec<ptr<Link>>\ \mbox{\hyperlink{class_network_a454912d33faf1bde4a25a59bfa047a41}{getLinks}}();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_af748620f4a0f93a37dbfe6d96f9bb171}{maxFlow}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}{maxCost}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_a838bd6c3c470641ddf82be33663dffc0}{maxFlowReduced}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest,\ \textcolor{keyword}{const}\ vec<ptr<Station>>\ \&\_stations,\ \textcolor{keyword}{const}\ vec<ptr<Link>>\ \&\_links);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_network_a9450f12688221dadc74c3fc3a663acf4}{getAugmentingPath}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_network_a0bc7625e6d0ea8f05127ead9a434a884}{getAugmentingPathWithCosts}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_af467e9890224f526235a554d0fee1d75}{getBottleneck}}(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_network_a32b16d5a7debcf9375a41af79fc76c51}{updatePath}}(\textcolor{keyword}{const}\ ptr<Station>\ \&source,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest,\ \textcolor{keywordtype}{int}\ flow,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ *cost\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}{getMaxFlowNetwork}}(vec<std::pair<ptr<Station>,\ ptr<Station>>>\&\ pairs);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}{maxTrains}}(\textcolor{keyword}{const}\ ptr<Station>\&\ sink);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00236\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_network_a1482c57776816d09131c20ead3276f20}{createSuperSource}}(\textcolor{keyword}{const}\ vec<ptr<Station>>\&\ sources);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_network_a26ad9c74d059758f6465e199df71a42f}{removeSuperSource}}(ptr<Station>\&\ superSource);}
+\DoxyCodeLine{00246\ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//RAILWAYS\_NETWORK\_H}}
+
+\end{DoxyCode}

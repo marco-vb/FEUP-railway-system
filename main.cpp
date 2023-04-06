@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
 #include "classes/Network.h"
-
 
 /**
  * @brief Network
@@ -23,6 +21,10 @@ std::unordered_map<std::string, ptr<Station>> stations;
  */
 std::unordered_map<std::string, int> municipality_capacities;
 
+
+void starting_screen();
+void clear_screen();
+void wait();
 
 /**
  * @brief Reads the Stations
@@ -89,7 +91,6 @@ void readLinks() {
     file.close();
 }
 
-
 /**
  * @brief Main function
  *
@@ -98,11 +99,53 @@ void readLinks() {
  * @return 0
  */
 int main() {
+
     readStations();
     readLinks();
 
-    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
-    auto st2 = stations.at("Lisboa Oriente");
+
+    int option;
+
+    starting_screen();
+
+    do{
+
+        clear_screen();
+        std::cout << "  ===========================================================================  " << std::endl;
+        std::cout << "//                                                                           \\\\" << std::endl;
+        std::cout << "||       #####    ####   ##  ##   ##        ##   ####   ##  ##   #####       ||" << std::endl;
+        std::cout << "||       ##  ##  ##  ##  ##  ##   ##   ##   ##  ##  ##  ##  ##  ##           ||" << std::endl;
+        std::cout << "||       #####   ######  ##  ##   ##   ##   ##  ######   ####    ####        ||" << std::endl;
+        std::cout << "||       ##  ##  ##  ##  ##  ##    ##  ##  ##   ##  ##    ##        ##       ||" << std::endl;
+        std::cout << "||       ##  ##  ##  ##  ##  ####   ########    ##  ##    ##    #####        ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "||                                                                           ||" << std::endl;
+        std::cout << "\\\\                                                                           //" << std::endl;
+        std::cout << "  ===========================================================================  " << std::endl;
+
+
+    }while(option != 0);
+
+
+    /*auto st1 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st2 = stations.at("Lisboa Oriente");*/
 
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
@@ -129,14 +172,60 @@ int main() {
     //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
 
     // 3.1 exemplo
-    std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;
+    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
 
     // 4.1 exemplo
-    vec<ptr<Station>> remove_stations = {stations.at("Pombal")};
+    /* vec<ptr<Station>> remove_stations = {stations.at("Pombal")};
     vec<ptr<Link>> removed_links;
 
     std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
-    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;
+    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
 
     return 0;
+}
+
+
+void starting_screen(){
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||   ##          ##  ######  ##      #####    #####  ####     ####  ######   ||" << std::endl;
+    std::cout << "||    ##   ##   ##   ##      ##     ##   ##  ##  ##  ## ##   ## ##  ##       ||" << std::endl;
+    std::cout << "||    ##   ##   ##   ####    ##     ##       ##  ##  ##  ## ##  ##  ####     ||" << std::endl;
+    std::cout << "||     ##  ##  ##    ##      ##     ##   ##  ##  ##  ##   ###   ##  ##       ||" << std::endl;
+    std::cout << "||      ########     ######  #####   #####   #####   ##         ##  ######   ||" << std::endl;
+    std::cout << "||                                                                           ||" << std::endl;
+    std::cout << "||                                            (###)     (#####)              ||" << std::endl;
+    std::cout << "||                                     (##)     (#######)        (#######)   ||" << std::endl;
+    std::cout << "||                               (#######)   (#####)       (###########)     ||" << std::endl;
+    std::cout << "||                          (###)     (#######)   (######)             (###) ||" << std::endl;
+    std::cout << "||                     (######)    (######)                (#)               ||" << std::endl;
+    std::cout << "||                 (###)  (####)           (##)                              ||" << std::endl;
+    std::cout << "||              (##)              (###)                                      ||" << std::endl;
+    std::cout << "||             .-.                                                           ||" << std::endl;
+    std::cout << "||             ] [    .-.      _    .-----.                                  ||" << std::endl;
+    std::cout << "||           .\"   \"\"\"\"   \"\"\"\"\"\" \"\"\"\"| .--`                                   ||" << std::endl;
+    std::cout << "||          (:--:--:--:--:--:--:--:-| [___    .------------------------.     ||" << std::endl;
+    std::cout << "||           |C&O  :  :  :  :  :  : [_9_] |'='|.----------------------.|     ||" << std::endl;
+    std::cout << "||          /|.___________________________|___|'--.___.--.___.--.___.-'|     ||" << std::endl;
+    std::cout << "||         / ||_.--.______.--.______.--._ |---\\'--\\-.-/==\\-.-/==\\-.-/-'/--   ||" << std::endl;
+    std::cout << "||        /__;^=(==)======(==)======(==)=^~^^^ ^^^^(-)^^^^(-)^^^^(-)^^^      ||" << std::endl;
+    std::cout << "||  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ||" << std::endl;
+    std::cout << "||                                                                           ||" << std::endl;
+    std::cout << "||                      --- Press Enter to Continue ---                      ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    wait();
+
+}
+
+void clear_screen(){
+    for (int i = 0; i < 50; i++) {
+        std::cout << std::endl;
+    }
+}
+
+void wait(){
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
 }

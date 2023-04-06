@@ -1,3 +1,23 @@
 # ninja log v5
+9	2894	7024881256591657	CMakeFiles/railways.dir/classes/Network.cpp.obj	3df506912b1ad7bb
 2549	2621	1680734044610995586	railways	bebfc51b3c004916
 0	13	7024775179908183	build.ninja	f013da777904ced4
+22	2501	7024839175197616	CMakeFiles/railways.dir/classes/StationLink.cpp.obj	6b22d45074275eea
+4	2381	7024908201743998	CMakeFiles/railways.dir/main.cpp.obj	c87c16d836e1edd6
+2381	2750	7024908205406531	railways.exe	5ece9509ffaa7fb6
+5	2552	7024909670067576	CMakeFiles/railways.dir/main.cpp.obj	c87c16d836e1edd6
+2553	2931	7024909673784110	railways.exe	5ece9509ffaa7fb6
+6	2796	7024913519579658	CMakeFiles/railways.dir/main.cpp.obj	c87c16d836e1edd6
+25	3004	7024913521639670	CMakeFiles/railways.dir/classes/Network.cpp.obj	3df506912b1ad7bb
+3004	3531	7024913526863246	railways.exe	5ece9509ffaa7fb6
+9	1474	7024915424704758	CMakeFiles/railways.dir/classes/StationLink.cpp.obj	6b22d45074275eea
+13	1709	7024915658642677	CMakeFiles/railways.dir/classes/StationLink.cpp.obj	6b22d45074275eea
+17	2352	7024915665101103	CMakeFiles/railways.dir/classes/Network.cpp.obj	3df506912b1ad7bb
+16	1956	7024915831801970	CMakeFiles/railways.dir/classes/StationLink.cpp.obj	6b22d45074275eea
+5	2284	7024915835069879	CMakeFiles/railways.dir/main.cpp.obj	c87c16d836e1edd6
+11	2452	7024915836731094	CMakeFiles/railways.dir/classes/Network.cpp.obj	3df506912b1ad7bb
+2452	2876	7024915840872227	railways.exe	5ece9509ffaa7fb6
+14	2891	7024916448544275	CMakeFiles/railways.dir/classes/StationLink.cpp.obj	6b22d45074275eea
+4	3198	7024916451574382	CMakeFiles/railways.dir/main.cpp.obj	c87c16d836e1edd6
+9	3482	7024916454417565	CMakeFiles/railways.dir/classes/Network.cpp.obj	3df506912b1ad7bb
+3483	3931	7024916458878975	railways.exe	5ece9509ffaa7fb6

@@ -3,64 +3,425 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}\label{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}} 
-bool {\bfseries add\+Station} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&station)
-\item 
-\mbox{\Hypertarget{class_network_aa6f2260035a459bb6d10a13c6263998e}\label{class_network_aa6f2260035a459bb6d10a13c6263998e}} 
-void {\bfseries add\+Link} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2, int capacity, int service)
-\item 
-\mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
-ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries get\+Station} (int id)
-\item 
-\mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
-ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries get\+Station} (const std\+::string \&name)
-\item 
-\mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
-vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ {\bfseries get\+Stations} ()
-\item 
-\mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
-vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ {\bfseries get\+Links} ()
-\item 
-\mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
-unsigned int {\bfseries max\+Flow} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
-\item 
-\mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
-unsigned int {\bfseries max\+Cost} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
-\item 
-\mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
-unsigned int {\bfseries max\+Flow\+Reduced} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&\+\_\+stations, const vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \&\+\_\+links)
-\item 
-\mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
-bool {\bfseries get\+Augmenting\+Path} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
-\item 
-\mbox{\Hypertarget{class_network_a0bc7625e6d0ea8f05127ead9a434a884}\label{class_network_a0bc7625e6d0ea8f05127ead9a434a884}} 
-bool {\bfseries get\+Augmenting\+Path\+With\+Costs} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
-\item 
-\mbox{\Hypertarget{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}\label{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}} 
-unsigned int {\bfseries get\+Max\+Flow\+Network} (vec$<$ std\+::pair$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$, ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ $>$ \&pairs)
-\item 
-\mbox{\Hypertarget{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}\label{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}} 
-unsigned int {\bfseries max\+Trains} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&sink)
-\item 
-\mbox{\Hypertarget{class_network_a1482c57776816d09131c20ead3276f20}\label{class_network_a1482c57776816d09131c20ead3276f20}} 
-ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries create\+Super\+Source} (const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&sources)
-\item 
-\mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
-void {\bfseries remove\+Super\+Source} (ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&super\+Source)
-\end{DoxyCompactItemize}
+\mbox{\Hypertarget{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}\label{class_network_a3cc2fb4f8fa4d507077e8da85ce5a1c8}} 
+{\bfseries Network} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_network}{Network}} Constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}{add\+Station}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&station)
+\begin{DoxyCompactList}\small\item\em Add \mbox{\hyperlink{class_station}{Station}} to \mbox{\hyperlink{class_network}{Network}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_aa6f2260035a459bb6d10a13c6263998e}{add\+Link}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2, int capacity, int service)
+\begin{DoxyCompactList}\small\item\em Add \mbox{\hyperlink{class_link}{Link}} to \mbox{\hyperlink{class_network}{Network}}. \end{DoxyCompactList}\item 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \mbox{\hyperlink{class_network_abff374bfef5668eeae3294d06412a786}{get\+Station}} (int id)
+\begin{DoxyCompactList}\small\item\em Get \mbox{\hyperlink{class_station}{Station}}. \end{DoxyCompactList}\item 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \mbox{\hyperlink{class_network_adf47962266e0c7d6d813a7b704b1123d}{get\+Station}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Get \mbox{\hyperlink{class_station}{Station}}. \end{DoxyCompactList}\item 
+vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \mbox{\hyperlink{class_network_ab69518ab851457424abb428493419573}{get\+Stations}} ()
+\begin{DoxyCompactList}\small\item\em Get Stations. \end{DoxyCompactList}\item 
+vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \mbox{\hyperlink{class_network_a454912d33faf1bde4a25a59bfa047a41}{get\+Links}} ()
+\begin{DoxyCompactList}\small\item\em Get Links. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_network_af748620f4a0f93a37dbfe6d96f9bb171}{max\+Flow}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\begin{DoxyCompactList}\small\item\em Get Max Flow. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}{max\+Cost}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\begin{DoxyCompactList}\small\item\em Get Cost. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_network_a838bd6c3c470641ddf82be33663dffc0}{max\+Flow\+Reduced}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&\+\_\+stations, const vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \&\+\_\+links)
+\begin{DoxyCompactList}\small\item\em Get Max Flow Reduced. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_network_a9450f12688221dadc74c3fc3a663acf4}{get\+Augmenting\+Path}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\begin{DoxyCompactList}\small\item\em Get Augmenting Path. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_network_a0bc7625e6d0ea8f05127ead9a434a884}{get\+Augmenting\+Path\+With\+Costs}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\begin{DoxyCompactList}\small\item\em Get Augmenting Path with Costs. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}{get\+Max\+Flow\+Network}} (vec$<$ std\+::pair$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$, ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ $>$ \&pairs)
+\begin{DoxyCompactList}\small\item\em Get Max Flow \mbox{\hyperlink{class_network}{Network}}. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}{max\+Trains}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&sink)
+\begin{DoxyCompactList}\small\item\em Get Max Trains. \end{DoxyCompactList}\item 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \mbox{\hyperlink{class_network_a1482c57776816d09131c20ead3276f20}{create\+Super\+Source}} (const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&sources)
+\begin{DoxyCompactList}\small\item\em Create Super Source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_network_a26ad9c74d059758f6465e199df71a42f}{remove\+Super\+Source}} (ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&super\+Source)
+\begin{DoxyCompactList}\small\item\em Remove Super Source. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_network_ae3a0c2ac3c376782511937d539061237}\label{class_network_ae3a0c2ac3c376782511937d539061237}} 
-static bool {\bfseries link\+Exists} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2)
-\item 
-\mbox{\Hypertarget{class_network_af467e9890224f526235a554d0fee1d75}\label{class_network_af467e9890224f526235a554d0fee1d75}} 
-static int {\bfseries get\+Bottleneck} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
-\item 
-\mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
-static void {\bfseries update\+Path} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&source, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, int flow, unsigned int $\ast$cost=nullptr)
-\end{DoxyCompactItemize}
+static bool \mbox{\hyperlink{class_network_ae3a0c2ac3c376782511937d539061237}{link\+Exists}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2)
+\begin{DoxyCompactList}\small\item\em Check if link exists. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_network_af467e9890224f526235a554d0fee1d75}{get\+Bottleneck}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\begin{DoxyCompactList}\small\item\em Get Bottleneck. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_network_a32b16d5a7debcf9375a41af79fc76c51}{update\+Path}} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&source, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, int flow, unsigned int $\ast$cost=nullptr)
+\begin{DoxyCompactList}\small\item\em Update Path. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_network_aa6f2260035a459bb6d10a13c6263998e}\label{class_network_aa6f2260035a459bb6d10a13c6263998e}} 
+\index{Network@{Network}!addLink@{addLink}}
+\index{addLink@{addLink}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{addLink()}{addLink()}}
+{\footnotesize\ttfamily void Network\+::add\+Link (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{st1,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{st2,  }\item[{int}]{capacity,  }\item[{int}]{service }\end{DoxyParamCaption})}
+
+
+
+Add \mbox{\hyperlink{class_link}{Link}} to \mbox{\hyperlink{class_network}{Network}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st1} & Source station \\
+\hline
+{\em st2} & Destination station \\
+\hline
+{\em capacity} & \mbox{\hyperlink{class_link}{Link}} capacity \\
+\hline
+{\em service} & \mbox{\hyperlink{class_link}{Link}} service\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if link was added successfully 
+
+false if link already exists
+\end{DoxyReturn}
+Adds a link to the network
+
+\begin{DoxyWarning}{Warning}
+If link already exists, it will not be added 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}\label{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}} 
+\index{Network@{Network}!addStation@{addStation}}
+\index{addStation@{addStation}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{addStation()}{addStation()}}
+{\footnotesize\ttfamily bool Network\+::add\+Station (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{station }\end{DoxyParamCaption})}
+
+
+
+Add \mbox{\hyperlink{class_station}{Station}} to \mbox{\hyperlink{class_network}{Network}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station} & \mbox{\hyperlink{class_station}{Station}} to be added\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if station was added successfully 
+
+false if station already exists
+\end{DoxyReturn}
+Adds a station to the network
+
+\begin{DoxyWarning}{Warning}
+If station already exists, it will not be added 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_a1482c57776816d09131c20ead3276f20}\label{class_network_a1482c57776816d09131c20ead3276f20}} 
+\index{Network@{Network}!createSuperSource@{createSuperSource}}
+\index{createSuperSource@{createSuperSource}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{createSuperSource()}{createSuperSource()}}
+{\footnotesize\ttfamily ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ Network\+::create\+Super\+Source (\begin{DoxyParamCaption}\item[{const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&}]{sources }\end{DoxyParamCaption})}
+
+
+
+Create Super Source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources} & Vector of sources stations\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Super source
+\end{DoxyReturn}
+Creates a super source from a vector of source stations and adds it to the network \mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
+\index{Network@{Network}!getAugmentingPath@{getAugmentingPath}}
+\index{getAugmentingPath@{getAugmentingPath}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getAugmentingPath()}{getAugmentingPath()}}
+{\footnotesize\ttfamily bool Network\+::get\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Get Augmenting Path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if path exists 
+
+false if path does not exist
+\end{DoxyReturn}
+Returns true if an augmenting path exists between two stations
+
+\begin{DoxyWarning}{Warning}
+This function is used for the Ford-\/\+Fulkerson algorithm 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_a0bc7625e6d0ea8f05127ead9a434a884}\label{class_network_a0bc7625e6d0ea8f05127ead9a434a884}} 
+\index{Network@{Network}!getAugmentingPathWithCosts@{getAugmentingPathWithCosts}}
+\index{getAugmentingPathWithCosts@{getAugmentingPathWithCosts}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getAugmentingPathWithCosts()}{getAugmentingPathWithCosts()}}
+{\footnotesize\ttfamily bool Network\+::get\+Augmenting\+Path\+With\+Costs (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Get Augmenting Path with Costs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if path exists 
+
+false if path does not exist
+\end{DoxyReturn}
+Returns true if an augmenting path exists between two stations
+
+\begin{DoxyWarning}{Warning}
+This function is used for the Edmonds-\/\+Karp algorithm 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_af467e9890224f526235a554d0fee1d75}\label{class_network_af467e9890224f526235a554d0fee1d75}} 
+\index{Network@{Network}!getBottleneck@{getBottleneck}}
+\index{getBottleneck@{getBottleneck}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getBottleneck()}{getBottleneck()}}
+{\footnotesize\ttfamily int Network\+::get\+Bottleneck (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get Bottleneck. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bottleneck of path between src and dest
+\end{DoxyReturn}
+Returns the bottleneck of the path between two stations \mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
+\index{Network@{Network}!getLinks@{getLinks}}
+\index{getLinks@{getLinks}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getLinks()}{getLinks()}}
+{\footnotesize\ttfamily vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ Network\+::get\+Links (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Links. 
+
+\begin{DoxyReturn}{Returns}
+Vector of links
+\end{DoxyReturn}
+Returns a vector of all links in the network \mbox{\Hypertarget{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}\label{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}} 
+\index{Network@{Network}!getMaxFlowNetwork@{getMaxFlowNetwork}}
+\index{getMaxFlowNetwork@{getMaxFlowNetwork}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getMaxFlowNetwork()}{getMaxFlowNetwork()}}
+{\footnotesize\ttfamily unsigned int Network\+::get\+Max\+Flow\+Network (\begin{DoxyParamCaption}\item[{vec$<$ std\+::pair$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$, ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ $>$ \&}]{pairs }\end{DoxyParamCaption})}
+
+
+
+Get Max Flow \mbox{\hyperlink{class_network}{Network}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pairs} & Vector of pairs of stations\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Max flow network
+\end{DoxyReturn}
+Returns the max flow network \mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
+\index{Network@{Network}!getStation@{getStation}}
+\index{getStation@{getStation}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ Network\+::get\+Station (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Get \mbox{\hyperlink{class_station}{Station}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \mbox{\hyperlink{class_station}{Station}} name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} with name
+\end{DoxyReturn}
+Returns a station with a given name \mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
+\index{Network@{Network}!getStation@{getStation}}
+\index{getStation@{getStation}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStation()}{getStation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ Network\+::get\+Station (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get \mbox{\hyperlink{class_station}{Station}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \mbox{\hyperlink{class_station}{Station}} ID\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} with ID
+\end{DoxyReturn}
+Returns a station with a given ID \mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
+\index{Network@{Network}!getStations@{getStations}}
+\index{getStations@{getStations}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{getStations()}{getStations()}}
+{\footnotesize\ttfamily vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ Network\+::get\+Stations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Stations. 
+
+\begin{DoxyReturn}{Returns}
+Vector of stations
+\end{DoxyReturn}
+Returns a vector of all stations in the network \mbox{\Hypertarget{class_network_ae3a0c2ac3c376782511937d539061237}\label{class_network_ae3a0c2ac3c376782511937d539061237}} 
+\index{Network@{Network}!linkExists@{linkExists}}
+\index{linkExists@{linkExists}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{linkExists()}{linkExists()}}
+{\footnotesize\ttfamily bool Network\+::link\+Exists (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{st1,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{st2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if link exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st1} & Source station \\
+\hline
+{\em st2} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if link exists 
+
+false if link does not exist
+\end{DoxyReturn}
+Checks if a link exists between two stations \mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
+\index{Network@{Network}!maxCost@{maxCost}}
+\index{maxCost@{maxCost}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxCost()}{maxCost()}}
+{\footnotesize\ttfamily unsigned int Network\+::max\+Cost (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Get Cost. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cost of flow between src and dest
+\end{DoxyReturn}
+Returns the cost between two stations \mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
+\index{Network@{Network}!maxFlow@{maxFlow}}
+\index{maxFlow@{maxFlow}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
+{\footnotesize\ttfamily unsigned int Network\+::max\+Flow (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Get Max Flow. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Max flow between src and dest
+\end{DoxyReturn}
+Returns the maximum flow between two stations \mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
+\index{Network@{Network}!maxFlowReduced@{maxFlowReduced}}
+\index{maxFlowReduced@{maxFlowReduced}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxFlowReduced()}{maxFlowReduced()}}
+{\footnotesize\ttfamily unsigned int Network\+::max\+Flow\+Reduced (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{src,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest,  }\item[{const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&}]{\+\_\+stations,  }\item[{const vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \&}]{\+\_\+links }\end{DoxyParamCaption})}
+
+
+
+Get Max Flow Reduced. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source station \\
+\hline
+{\em dest} & Destination station \\
+\hline
+{\em \+\_\+stations} & Vector of stations \\
+\hline
+{\em \+\_\+links} & Vector of links\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Max flow between src and dest
+\end{DoxyReturn}
+Returns the maximum flow between two stations
+
+\begin{DoxyWarning}{Warning}
+This function is used for the reduced network 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}\label{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}} 
+\index{Network@{Network}!maxTrains@{maxTrains}}
+\index{maxTrains@{maxTrains}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{maxTrains()}{maxTrains()}}
+{\footnotesize\ttfamily unsigned int Network\+::max\+Trains (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{sink }\end{DoxyParamCaption})}
+
+
+
+Get Max Trains. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sink} & Sink station\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Max trains
+\end{DoxyReturn}
+Returns the max trains that can be sent to a sink station from all sources in the network \mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
+\index{Network@{Network}!removeSuperSource@{removeSuperSource}}
+\index{removeSuperSource@{removeSuperSource}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{removeSuperSource()}{removeSuperSource()}}
+{\footnotesize\ttfamily void Network\+::remove\+Super\+Source (\begin{DoxyParamCaption}\item[{ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{super\+Source }\end{DoxyParamCaption})}
+
+
+
+Remove Super Source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em super\+Source} & Super source\\
+\hline
+\end{DoxyParams}
+Removes a super source from the network \mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
+\index{Network@{Network}!updatePath@{updatePath}}
+\index{updatePath@{updatePath}!Network@{Network}}
+\doxysubsubsection{\texorpdfstring{updatePath()}{updatePath()}}
+{\footnotesize\ttfamily void Network\+::update\+Path (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{source,  }\item[{const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&}]{dest,  }\item[{int}]{flow,  }\item[{unsigned int $\ast$}]{cost = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Update Path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Source station \\
+\hline
+{\em dest} & Destination station \\
+\hline
+{\em flow} & Flow to be added \\
+\hline
+{\em cost} & Cost of flow\\
+\hline
+\end{DoxyParams}
+Updates the path between two stations 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

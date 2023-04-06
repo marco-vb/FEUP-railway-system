@@ -79,64 +79,737 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="memItemLeft" align="right" valign="top"><a id="a78fdb859e3d57bdf5532d5bc41f04a4a" name="a78fdb859e3d57bdf5532d5bc41f04a4a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addStation</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;station)</td></tr>
+<tr class="memitem:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memItemLeft" align="right" valign="top"><a id="a3cc2fb4f8fa4d507077e8da85ce5a1c8" name="a3cc2fb4f8fa4d507077e8da85ce5a1c8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Network</b> ()</td></tr>
+<tr class="memdesc:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_network.html">Network</a> Constructor. <br /></td></tr>
+<tr class="separator:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a78fdb859e3d57bdf5532d5bc41f04a4a">addStation</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;station)</td></tr>
+<tr class="memdesc:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add <a class="el" href="class_station.html" title="Station class.">Station</a> to <a class="el" href="class_network.html">Network</a>.  <br /></td></tr>
 <tr class="separator:a78fdb859e3d57bdf5532d5bc41f04a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6f2260035a459bb6d10a13c6263998e"><td class="memItemLeft" align="right" valign="top"><a id="aa6f2260035a459bb6d10a13c6263998e" name="aa6f2260035a459bb6d10a13c6263998e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addLink</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st1, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st2, int capacity, int service)</td></tr>
+<tr class="memitem:aa6f2260035a459bb6d10a13c6263998e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#aa6f2260035a459bb6d10a13c6263998e">addLink</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st1, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st2, int capacity, int service)</td></tr>
+<tr class="memdesc:aa6f2260035a459bb6d10a13c6263998e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add <a class="el" href="class_link.html" title="Link class.">Link</a> to <a class="el" href="class_network.html">Network</a>.  <br /></td></tr>
 <tr class="separator:aa6f2260035a459bb6d10a13c6263998e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abff374bfef5668eeae3294d06412a786"><td class="memItemLeft" align="right" valign="top"><a id="abff374bfef5668eeae3294d06412a786" name="abff374bfef5668eeae3294d06412a786"></a>
-ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStation</b> (int id)</td></tr>
+<tr class="memitem:abff374bfef5668eeae3294d06412a786"><td class="memItemLeft" align="right" valign="top">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#abff374bfef5668eeae3294d06412a786">getStation</a> (int id)</td></tr>
+<tr class="memdesc:abff374bfef5668eeae3294d06412a786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="class_station.html" title="Station class.">Station</a>.  <br /></td></tr>
 <tr class="separator:abff374bfef5668eeae3294d06412a786"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf47962266e0c7d6d813a7b704b1123d"><td class="memItemLeft" align="right" valign="top"><a id="adf47962266e0c7d6d813a7b704b1123d" name="adf47962266e0c7d6d813a7b704b1123d"></a>
-ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStation</b> (const std::string &amp;name)</td></tr>
+<tr class="memitem:adf47962266e0c7d6d813a7b704b1123d"><td class="memItemLeft" align="right" valign="top">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#adf47962266e0c7d6d813a7b704b1123d">getStation</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:adf47962266e0c7d6d813a7b704b1123d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="class_station.html" title="Station class.">Station</a>.  <br /></td></tr>
 <tr class="separator:adf47962266e0c7d6d813a7b704b1123d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab69518ab851457424abb428493419573"><td class="memItemLeft" align="right" valign="top"><a id="ab69518ab851457424abb428493419573" name="ab69518ab851457424abb428493419573"></a>
-vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getStations</b> ()</td></tr>
+<tr class="memitem:ab69518ab851457424abb428493419573"><td class="memItemLeft" align="right" valign="top">vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#ab69518ab851457424abb428493419573">getStations</a> ()</td></tr>
+<tr class="memdesc:ab69518ab851457424abb428493419573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Stations.  <br /></td></tr>
 <tr class="separator:ab69518ab851457424abb428493419573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454912d33faf1bde4a25a59bfa047a41"><td class="memItemLeft" align="right" valign="top"><a id="a454912d33faf1bde4a25a59bfa047a41" name="a454912d33faf1bde4a25a59bfa047a41"></a>
-vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getLinks</b> ()</td></tr>
+<tr class="memitem:a454912d33faf1bde4a25a59bfa047a41"><td class="memItemLeft" align="right" valign="top">vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a454912d33faf1bde4a25a59bfa047a41">getLinks</a> ()</td></tr>
+<tr class="memdesc:a454912d33faf1bde4a25a59bfa047a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Links.  <br /></td></tr>
 <tr class="separator:a454912d33faf1bde4a25a59bfa047a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af748620f4a0f93a37dbfe6d96f9bb171"><td class="memItemLeft" align="right" valign="top"><a id="af748620f4a0f93a37dbfe6d96f9bb171" name="af748620f4a0f93a37dbfe6d96f9bb171"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>maxFlow</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memitem:af748620f4a0f93a37dbfe6d96f9bb171"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#af748620f4a0f93a37dbfe6d96f9bb171">maxFlow</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memdesc:af748620f4a0f93a37dbfe6d96f9bb171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Max Flow.  <br /></td></tr>
 <tr class="separator:af748620f4a0f93a37dbfe6d96f9bb171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7aa65d622dee1ade15e29a2ba80d0b27"><td class="memItemLeft" align="right" valign="top"><a id="a7aa65d622dee1ade15e29a2ba80d0b27" name="a7aa65d622dee1ade15e29a2ba80d0b27"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>maxCost</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memitem:a7aa65d622dee1ade15e29a2ba80d0b27"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a7aa65d622dee1ade15e29a2ba80d0b27">maxCost</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memdesc:a7aa65d622dee1ade15e29a2ba80d0b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Cost.  <br /></td></tr>
 <tr class="separator:a7aa65d622dee1ade15e29a2ba80d0b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a838bd6c3c470641ddf82be33663dffc0"><td class="memItemLeft" align="right" valign="top"><a id="a838bd6c3c470641ddf82be33663dffc0" name="a838bd6c3c470641ddf82be33663dffc0"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>maxFlowReduced</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest, const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;_stations, const vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt; &amp;_links)</td></tr>
+<tr class="memitem:a838bd6c3c470641ddf82be33663dffc0"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a838bd6c3c470641ddf82be33663dffc0">maxFlowReduced</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest, const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;_stations, const vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt; &amp;_links)</td></tr>
+<tr class="memdesc:a838bd6c3c470641ddf82be33663dffc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Max Flow Reduced.  <br /></td></tr>
 <tr class="separator:a838bd6c3c470641ddf82be33663dffc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9450f12688221dadc74c3fc3a663acf4"><td class="memItemLeft" align="right" valign="top"><a id="a9450f12688221dadc74c3fc3a663acf4" name="a9450f12688221dadc74c3fc3a663acf4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAugmentingPath</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memitem:a9450f12688221dadc74c3fc3a663acf4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a9450f12688221dadc74c3fc3a663acf4">getAugmentingPath</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memdesc:a9450f12688221dadc74c3fc3a663acf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Augmenting Path.  <br /></td></tr>
 <tr class="separator:a9450f12688221dadc74c3fc3a663acf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bc7625e6d0ea8f05127ead9a434a884"><td class="memItemLeft" align="right" valign="top"><a id="a0bc7625e6d0ea8f05127ead9a434a884" name="a0bc7625e6d0ea8f05127ead9a434a884"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getAugmentingPathWithCosts</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memitem:a0bc7625e6d0ea8f05127ead9a434a884"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a0bc7625e6d0ea8f05127ead9a434a884">getAugmentingPathWithCosts</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memdesc:a0bc7625e6d0ea8f05127ead9a434a884"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Augmenting Path with Costs.  <br /></td></tr>
 <tr class="separator:a0bc7625e6d0ea8f05127ead9a434a884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7989f5c5b89063627cf2b2f6c500bb9"><td class="memItemLeft" align="right" valign="top"><a id="aa7989f5c5b89063627cf2b2f6c500bb9" name="aa7989f5c5b89063627cf2b2f6c500bb9"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxFlowNetwork</b> (vec&lt; std::pair&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;, ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &gt; &amp;pairs)</td></tr>
+<tr class="memitem:aa7989f5c5b89063627cf2b2f6c500bb9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#aa7989f5c5b89063627cf2b2f6c500bb9">getMaxFlowNetwork</a> (vec&lt; std::pair&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;, ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &gt; &amp;pairs)</td></tr>
+<tr class="memdesc:aa7989f5c5b89063627cf2b2f6c500bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Max Flow <a class="el" href="class_network.html">Network</a>.  <br /></td></tr>
 <tr class="separator:aa7989f5c5b89063627cf2b2f6c500bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6f1da4d6c2cd48cc264732cbc92aaac"><td class="memItemLeft" align="right" valign="top"><a id="ad6f1da4d6c2cd48cc264732cbc92aaac" name="ad6f1da4d6c2cd48cc264732cbc92aaac"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>maxTrains</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;sink)</td></tr>
+<tr class="memitem:ad6f1da4d6c2cd48cc264732cbc92aaac"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#ad6f1da4d6c2cd48cc264732cbc92aaac">maxTrains</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;sink)</td></tr>
+<tr class="memdesc:ad6f1da4d6c2cd48cc264732cbc92aaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Max Trains.  <br /></td></tr>
 <tr class="separator:ad6f1da4d6c2cd48cc264732cbc92aaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1482c57776816d09131c20ead3276f20"><td class="memItemLeft" align="right" valign="top"><a id="a1482c57776816d09131c20ead3276f20" name="a1482c57776816d09131c20ead3276f20"></a>
-ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>createSuperSource</b> (const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;sources)</td></tr>
+<tr class="memitem:a1482c57776816d09131c20ead3276f20"><td class="memItemLeft" align="right" valign="top">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a1482c57776816d09131c20ead3276f20">createSuperSource</a> (const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;sources)</td></tr>
+<tr class="memdesc:a1482c57776816d09131c20ead3276f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create Super Source.  <br /></td></tr>
 <tr class="separator:a1482c57776816d09131c20ead3276f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26ad9c74d059758f6465e199df71a42f"><td class="memItemLeft" align="right" valign="top"><a id="a26ad9c74d059758f6465e199df71a42f" name="a26ad9c74d059758f6465e199df71a42f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeSuperSource</b> (ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;superSource)</td></tr>
+<tr class="memitem:a26ad9c74d059758f6465e199df71a42f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a26ad9c74d059758f6465e199df71a42f">removeSuperSource</a> (ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;superSource)</td></tr>
+<tr class="memdesc:a26ad9c74d059758f6465e199df71a42f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove Super Source.  <br /></td></tr>
 <tr class="separator:a26ad9c74d059758f6465e199df71a42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae3a0c2ac3c376782511937d539061237"><td class="memItemLeft" align="right" valign="top"><a id="ae3a0c2ac3c376782511937d539061237" name="ae3a0c2ac3c376782511937d539061237"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>linkExists</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st1, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st2)</td></tr>
+<tr class="memitem:ae3a0c2ac3c376782511937d539061237"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#ae3a0c2ac3c376782511937d539061237">linkExists</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st1, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;st2)</td></tr>
+<tr class="memdesc:ae3a0c2ac3c376782511937d539061237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if link exists.  <br /></td></tr>
 <tr class="separator:ae3a0c2ac3c376782511937d539061237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af467e9890224f526235a554d0fee1d75"><td class="memItemLeft" align="right" valign="top"><a id="af467e9890224f526235a554d0fee1d75" name="af467e9890224f526235a554d0fee1d75"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>getBottleneck</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memitem:af467e9890224f526235a554d0fee1d75"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#af467e9890224f526235a554d0fee1d75">getBottleneck</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;src, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest)</td></tr>
+<tr class="memdesc:af467e9890224f526235a554d0fee1d75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Bottleneck.  <br /></td></tr>
 <tr class="separator:af467e9890224f526235a554d0fee1d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32b16d5a7debcf9375a41af79fc76c51"><td class="memItemLeft" align="right" valign="top"><a id="a32b16d5a7debcf9375a41af79fc76c51" name="a32b16d5a7debcf9375a41af79fc76c51"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePath</b> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;source, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest, int flow, unsigned int *cost=nullptr)</td></tr>
+<tr class="memitem:a32b16d5a7debcf9375a41af79fc76c51"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network.html#a32b16d5a7debcf9375a41af79fc76c51">updatePath</a> (const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;source, const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;dest, int flow, unsigned int *cost=nullptr)</td></tr>
+<tr class="memdesc:a32b16d5a7debcf9375a41af79fc76c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Path.  <br /></td></tr>
 <tr class="separator:a32b16d5a7debcf9375a41af79fc76c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa6f2260035a459bb6d10a13c6263998e" name="aa6f2260035a459bb6d10a13c6263998e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6f2260035a459bb6d10a13c6263998e">&#9670;&#160;</a></span>addLink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Network::addLink </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>st1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>st2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>service</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add <a class="el" href="class_link.html" title="Link class.">Link</a> to <a class="el" href="class_network.html">Network</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st1</td><td>Source station </td></tr>
+    <tr><td class="paramname">st2</td><td>Destination station </td></tr>
+    <tr><td class="paramname">capacity</td><td><a class="el" href="class_link.html" title="Link class.">Link</a> capacity </td></tr>
+    <tr><td class="paramname">service</td><td><a class="el" href="class_link.html" title="Link class.">Link</a> service</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if link was added successfully </dd>
+<dd>
+false if link already exists</dd></dl>
+<p>Adds a link to the network</p>
+<dl class="section warning"><dt>Warning</dt><dd>If link already exists, it will not be added </dd></dl>
+
+</div>
+</div>
+<a id="a78fdb859e3d57bdf5532d5bc41f04a4a" name="a78fdb859e3d57bdf5532d5bc41f04a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78fdb859e3d57bdf5532d5bc41f04a4a">&#9670;&#160;</a></span>addStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Network::addStation </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>station</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add <a class="el" href="class_station.html" title="Station class.">Station</a> to <a class="el" href="class_network.html">Network</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station</td><td><a class="el" href="class_station.html" title="Station class.">Station</a> to be added</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if station was added successfully </dd>
+<dd>
+false if station already exists</dd></dl>
+<p>Adds a station to the network</p>
+<dl class="section warning"><dt>Warning</dt><dd>If station already exists, it will not be added </dd></dl>
+
+</div>
+</div>
+<a id="a1482c57776816d09131c20ead3276f20" name="a1482c57776816d09131c20ead3276f20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1482c57776816d09131c20ead3276f20">&#9670;&#160;</a></span>createSuperSource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; Network::createSuperSource </td>
+          <td>(</td>
+          <td class="paramtype">const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sources</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create Super Source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sources</td><td>Vector of sources stations</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Super source</dd></dl>
+<p>Creates a super source from a vector of source stations and adds it to the network </p>
+
+</div>
+</div>
+<a id="a9450f12688221dadc74c3fc3a663acf4" name="a9450f12688221dadc74c3fc3a663acf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9450f12688221dadc74c3fc3a663acf4">&#9670;&#160;</a></span>getAugmentingPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Network::getAugmentingPath </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Augmenting Path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if path exists </dd>
+<dd>
+false if path does not exist</dd></dl>
+<p>Returns true if an augmenting path exists between two stations</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Ford-Fulkerson algorithm </dd></dl>
+
+</div>
+</div>
+<a id="a0bc7625e6d0ea8f05127ead9a434a884" name="a0bc7625e6d0ea8f05127ead9a434a884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bc7625e6d0ea8f05127ead9a434a884">&#9670;&#160;</a></span>getAugmentingPathWithCosts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Network::getAugmentingPathWithCosts </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Augmenting Path with Costs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if path exists </dd>
+<dd>
+false if path does not exist</dd></dl>
+<p>Returns true if an augmenting path exists between two stations</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the Edmonds-Karp algorithm </dd></dl>
+
+</div>
+</div>
+<a id="af467e9890224f526235a554d0fee1d75" name="af467e9890224f526235a554d0fee1d75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af467e9890224f526235a554d0fee1d75">&#9670;&#160;</a></span>getBottleneck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Network::getBottleneck </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get Bottleneck. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Bottleneck of path between src and dest</dd></dl>
+<p>Returns the bottleneck of the path between two stations </p>
+
+</div>
+</div>
+<a id="a454912d33faf1bde4a25a59bfa047a41" name="a454912d33faf1bde4a25a59bfa047a41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454912d33faf1bde4a25a59bfa047a41">&#9670;&#160;</a></span>getLinks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt; Network::getLinks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Links. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of links</dd></dl>
+<p>Returns a vector of all links in the network </p>
+
+</div>
+</div>
+<a id="aa7989f5c5b89063627cf2b2f6c500bb9" name="aa7989f5c5b89063627cf2b2f6c500bb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7989f5c5b89063627cf2b2f6c500bb9">&#9670;&#160;</a></span>getMaxFlowNetwork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Network::getMaxFlowNetwork </td>
+          <td>(</td>
+          <td class="paramtype">vec&lt; std::pair&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt;, ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pairs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Max Flow <a class="el" href="class_network.html">Network</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pairs</td><td>Vector of pairs of stations</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Max flow network</dd></dl>
+<p>Returns the max flow network </p>
+
+</div>
+</div>
+<a id="adf47962266e0c7d6d813a7b704b1123d" name="adf47962266e0c7d6d813a7b704b1123d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf47962266e0c7d6d813a7b704b1123d">&#9670;&#160;</a></span>getStation() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; Network::getStation </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="class_station.html" title="Station class.">Station</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td><a class="el" href="class_station.html" title="Station class.">Station</a> name</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with name</dd></dl>
+<p>Returns a station with a given name </p>
+
+</div>
+</div>
+<a id="abff374bfef5668eeae3294d06412a786" name="abff374bfef5668eeae3294d06412a786"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abff374bfef5668eeae3294d06412a786">&#9670;&#160;</a></span>getStation() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; Network::getStation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="class_station.html" title="Station class.">Station</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td><a class="el" href="class_station.html" title="Station class.">Station</a> ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_station.html" title="Station class.">Station</a> with ID</dd></dl>
+<p>Returns a station with a given ID </p>
+
+</div>
+</div>
+<a id="ab69518ab851457424abb428493419573" name="ab69518ab851457424abb428493419573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab69518ab851457424abb428493419573">&#9670;&#160;</a></span>getStations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; Network::getStations </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Stations. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of stations</dd></dl>
+<p>Returns a vector of all stations in the network </p>
+
+</div>
+</div>
+<a id="ae3a0c2ac3c376782511937d539061237" name="ae3a0c2ac3c376782511937d539061237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a0c2ac3c376782511937d539061237">&#9670;&#160;</a></span>linkExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Network::linkExists </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>st1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>st2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if link exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st1</td><td>Source station </td></tr>
+    <tr><td class="paramname">st2</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if link exists </dd>
+<dd>
+false if link does not exist</dd></dl>
+<p>Checks if a link exists between two stations </p>
+
+</div>
+</div>
+<a id="a7aa65d622dee1ade15e29a2ba80d0b27" name="a7aa65d622dee1ade15e29a2ba80d0b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa65d622dee1ade15e29a2ba80d0b27">&#9670;&#160;</a></span>maxCost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Network::maxCost </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Cost. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cost of flow between src and dest</dd></dl>
+<p>Returns the cost between two stations </p>
+
+</div>
+</div>
+<a id="af748620f4a0f93a37dbfe6d96f9bb171" name="af748620f4a0f93a37dbfe6d96f9bb171"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af748620f4a0f93a37dbfe6d96f9bb171">&#9670;&#160;</a></span>maxFlow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Network::maxFlow </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Max Flow. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
+<p>Returns the maximum flow between two stations </p>
+
+</div>
+</div>
+<a id="a838bd6c3c470641ddf82be33663dffc0" name="a838bd6c3c470641ddf82be33663dffc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838bd6c3c470641ddf82be33663dffc0">&#9670;&#160;</a></span>maxFlowReduced()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Network::maxFlowReduced </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vec&lt; ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_stations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vec&lt; ptr&lt; <a class="el" href="class_link.html">Link</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_links</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Max Flow Reduced. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station </td></tr>
+    <tr><td class="paramname">_stations</td><td>Vector of stations </td></tr>
+    <tr><td class="paramname">_links</td><td>Vector of links</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Max flow between src and dest</dd></dl>
+<p>Returns the maximum flow between two stations</p>
+<dl class="section warning"><dt>Warning</dt><dd>This function is used for the reduced network </dd></dl>
+
+</div>
+</div>
+<a id="ad6f1da4d6c2cd48cc264732cbc92aaac" name="ad6f1da4d6c2cd48cc264732cbc92aaac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f1da4d6c2cd48cc264732cbc92aaac">&#9670;&#160;</a></span>maxTrains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Network::maxTrains </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sink</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get Max Trains. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sink</td><td>Sink station</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Max trains</dd></dl>
+<p>Returns the max trains that can be sent to a sink station from all sources in the network </p>
+
+</div>
+</div>
+<a id="a26ad9c74d059758f6465e199df71a42f" name="a26ad9c74d059758f6465e199df71a42f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ad9c74d059758f6465e199df71a42f">&#9670;&#160;</a></span>removeSuperSource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Network::removeSuperSource </td>
+          <td>(</td>
+          <td class="paramtype">ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>superSource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove Super Source. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">superSource</td><td>Super source</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Removes a super source from the network </p>
+
+</div>
+</div>
+<a id="a32b16d5a7debcf9375a41af79fc76c51" name="a32b16d5a7debcf9375a41af79fc76c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b16d5a7debcf9375a41af79fc76c51">&#9670;&#160;</a></span>updatePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Network::updatePath </td>
+          <td>(</td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const ptr&lt; <a class="el" href="class_station.html">Station</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>cost</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update Path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>Source station </td></tr>
+    <tr><td class="paramname">dest</td><td>Destination station </td></tr>
+    <tr><td class="paramname">flow</td><td>Flow to be added </td></tr>
+    <tr><td class="paramname">cost</td><td>Cost of flow</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Updates the path between two stations </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>classes/<a class="el" href="_network_8h_source.html">Network.h</a></li>
 <li>classes/Network.cpp</li>

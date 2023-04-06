@@ -1,0 +1,126 @@
+\hypertarget{_station_link_8h_source}{}\doxysection{Station\+Link.\+h}
+\label{_station_link_8h_source}\index{classes/StationLink.h@{classes/StationLink.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAILWAYS\_STATIONLINK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAILWAYS\_STATIONLINK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ptr\ std::shared\_ptr}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ make\ std::make\_shared}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ vec\ std::vector}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ STANDARD\ 1}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ PENDULAR\ 2}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ STANDARD\_COST\ 2}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ PENDULAR\_COST\ 4}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_station}{Station}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_link}{Link}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_link_a8c6a2f7de53d91a8c5c21c197897c1c0}{src}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_link_aaa17684be5cfb7016afaf2bf1b6f6bef}{dest}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_ab4d49c1fdebb6ce7b4b76a7166dc2c60}{capacity}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_aae78185a9372f90ac8ba1fc6ca6ba716}{service}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_a1d367ea1c388d8f5ef7b8259d4e7c23b}{flow}}\ =\ 0;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_link_ac045d177373633b7eb7c6b233373a1f5}{enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ ptr<Link>\ \mbox{\hyperlink{class_link_a27f9bc992445047fe3126afafdcdf184}{reverse}}\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ reverse\ link}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_link}{Link}}(ptr<Station>\ \mbox{\hyperlink{class_link_a8c6a2f7de53d91a8c5c21c197897c1c0}{src}},\ ptr<Station>\ \mbox{\hyperlink{class_link_aaa17684be5cfb7016afaf2bf1b6f6bef}{dest}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_ab4d49c1fdebb6ce7b4b76a7166dc2c60}{capacity}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_aae78185a9372f90ac8ba1fc6ca6ba716}{service}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_link_a063dc69d8ae56d2defc45cf76e1537b4}{getSrc}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ ptr<Station>\ \mbox{\hyperlink{class_link_a80e519d235afbda475df34c1ad6eb704}{getDest}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_a34fc905b4b1ea50a97a9688773607fc3}{getCapacity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_afc13138f57bf536c4d019f9469ceedae}{getService}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_a682d5a224a89a82ab41c102ea11b2b05}{getFlow}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_a542855d1501442151af0fc8d29b96c2e}{getCost}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_link_aa0784e30093022696ac6bcbab8665eab}{isEnabled}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00133\ \ \ \ \ ptr<Link>\ \mbox{\hyperlink{class_link_a4a27ae210dbb8d20a797fc2ec55a3c48}{getReverse}}();}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_link_a0464d48e4618b0e040a2c5bc575d3d4e}{setCapacity}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_ab4d49c1fdebb6ce7b4b76a7166dc2c60}{capacity}});}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_link_ac18d6f17fabc2dc9bbe0cdbd74b3a08a}{setService}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_aae78185a9372f90ac8ba1fc6ca6ba716}{service}});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_link_a5e4b590672efad3704148ead1d18e89f}{setFlow}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_link_a1d367ea1c388d8f5ef7b8259d4e7c23b}{flow}});}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_link_a3e55c7cab9573af7cafd17a1c5c99e42}{setEnabled}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_link_ac045d177373633b7eb7c6b233373a1f5}{enabled}});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_link_a0aa3adb1ed508d774971bdf42fdc38ab}{setReverse}}(\textcolor{keyword}{const}\ ptr<Link>\&\ \mbox{\hyperlink{class_link_a27f9bc992445047fe3126afafdcdf184}{reverse}});}
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_station}{Station}}\ \{}
+\DoxyCodeLine{00177\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_a4144cd1a5a69d5900f473ea9d792b3fe}{id}};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00188\ \ \ \ \ std::string\ \mbox{\hyperlink{class_station_a683cec6eec5fd580717ee57a2e1644fb}{name}},\ district,\ municipality,\ township;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_a5c1636c3bc53579499c97bf41e02a3c5}{visited}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_ad27bbccd565c9e12328692c653fe3d24}{enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00203\ \ \ \ \ ptr<Link>\ \mbox{\hyperlink{class_station_a1871e43796f7be7d238bc3c029a34028}{path}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_ab31a43921a056eccb691ef3ae3e6e843}{cost}}\ =\ 0;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00213\ \ \ \ \ std::list<ptr<Link>>\ \mbox{\hyperlink{class_station_a39e87515691d45a3becb6adc61011d8a}{links}};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{class_station}{Station}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ std::string\ \mbox{\hyperlink{class_station_a683cec6eec5fd580717ee57a2e1644fb}{name}},\ std::string\ municipality,\ std::string\ township,\ std::string\ district);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_afd0de4c1f7e51648bfe465c5b8b02c88}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_station_a4c1eb8efb42f1c0646b0d23cbc420713}{addLink}}(\textcolor{keyword}{const}\ ptr<Link>\&\ link);}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00255\ \ \ \ \ std::string\ \mbox{\hyperlink{class_station_ae353616abbfca44e00a0baa730998d1c}{getName}}();}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00264\ \ \ \ \ std::string\ \mbox{\hyperlink{class_station_acfe636153d2c7699ae07ab898249498f}{getDistrict}}();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00273\ \ \ \ \ std::string\ \mbox{\hyperlink{class_station_a452ec1b75f990c61b69dbc02b4eb3235}{getMunicipality}}();}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00282\ \ \ \ \ std::string\ \mbox{\hyperlink{class_station_aa4d7de015a1d6b8d9d68a3bbaa7aca29}{getTownship}}();}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00291\ \ \ \ \ std::list<ptr<Link>>\ \mbox{\hyperlink{class_station_ac5ef39769b6047e842ce5545343b7d2e}{getLinks}}();}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_a5f596515b237bbdf5f865a16e79786aa}{getCost}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_station_afa816ac15e56b295a5237a593b3bed3e}{setCost}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_ab31a43921a056eccb691ef3ae3e6e843}{cost}});}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_a063d5adaa117e61d0cf3b91c61bb3779}{isEnabled}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_station_a3c8260eaac6de7910d9e8f4f516951af}{setEnabled}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_ad27bbccd565c9e12328692c653fe3d24}{enabled}});}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_a3eee49988559a4a26fa715f3fc44beac}{isVisited}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_station_a17bb35a315d323921b0841dd949f73e4}{setVisited}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_station_a5c1636c3bc53579499c97bf41e02a3c5}{visited}});}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00354\ \ \ \ \ ptr<Link>\ \mbox{\hyperlink{class_station_aaf9ceea0811156eff9269d1f5a8f6b9f}{getPath}}();}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_station_ab25a148349997bbe41d0fb3b032db16a}{setPath}}(\textcolor{keyword}{const}\ ptr<Link>\&\ \mbox{\hyperlink{class_station_a1871e43796f7be7d238bc3c029a34028}{path}});}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_station_a4d68c03e064a1ec88b39f1f671256a0d}{maxPossibleFlow}}();}
+\DoxyCodeLine{00373\ \};}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//RAILWAYS\_STATIONLINK\_H}}
+
+\end{DoxyCode}

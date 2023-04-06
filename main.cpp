@@ -1,10 +1,36 @@
 #include <bits/stdc++.h>
 #include "classes/Network.h"
 
+
+/**
+ * @brief Network
+ *
+ * @details The network object
+ */
 auto network = make<Network>();
+
+/**
+ * @brief Stations
+ *
+ * @details Map of stations
+ */
 std::unordered_map<std::string, ptr<Station>> stations;
+
+/**
+ * @brief Municipality Capacities
+ *
+ * @details Map of municipality capacities
+ */
 std::unordered_map<std::string, int> municipality_capacities;
 
+
+/**
+ * @brief Reads the Stations
+ *
+ * @details Reads the stations from the stations.csv file and adds them to the network
+ *
+ * @warning The file must be in the data folder
+ */
 void readStations() {
     std::ifstream file("../data/stations.csv");
     std::string line;
@@ -27,6 +53,14 @@ void readStations() {
     file.close();
 }
 
+
+/**
+ * @brief Reads the Links
+ *
+ * @details Reads the links from the network.csv file and adds them to the network
+ *
+ * @warning The file must be in the data folder
+ */
 void readLinks() {
     std::ifstream file("../data/network.csv");
     std::string line;
@@ -55,6 +89,14 @@ void readLinks() {
     file.close();
 }
 
+
+/**
+ * @brief Main function
+ *
+ * @details Reads the stations and links from the files and runs the menu
+ *
+ * @return 0
+ */
 int main() {
     readStations();
     readLinks();

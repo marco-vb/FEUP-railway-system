@@ -1,0 +1,68 @@
+\hypertarget{class_network}{}\doxysection{Network Class Reference}
+\label{class_network}\index{Network@{Network}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}\label{class_network_a78fdb859e3d57bdf5532d5bc41f04a4a}} 
+bool {\bfseries add\+Station} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&station)
+\item 
+\mbox{\Hypertarget{class_network_aa6f2260035a459bb6d10a13c6263998e}\label{class_network_aa6f2260035a459bb6d10a13c6263998e}} 
+void {\bfseries add\+Link} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2, int capacity, int service)
+\item 
+\mbox{\Hypertarget{class_network_abff374bfef5668eeae3294d06412a786}\label{class_network_abff374bfef5668eeae3294d06412a786}} 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries get\+Station} (int id)
+\item 
+\mbox{\Hypertarget{class_network_adf47962266e0c7d6d813a7b704b1123d}\label{class_network_adf47962266e0c7d6d813a7b704b1123d}} 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries get\+Station} (const std\+::string \&name)
+\item 
+\mbox{\Hypertarget{class_network_ab69518ab851457424abb428493419573}\label{class_network_ab69518ab851457424abb428493419573}} 
+vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ {\bfseries get\+Stations} ()
+\item 
+\mbox{\Hypertarget{class_network_a454912d33faf1bde4a25a59bfa047a41}\label{class_network_a454912d33faf1bde4a25a59bfa047a41}} 
+vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ {\bfseries get\+Links} ()
+\item 
+\mbox{\Hypertarget{class_network_af748620f4a0f93a37dbfe6d96f9bb171}\label{class_network_af748620f4a0f93a37dbfe6d96f9bb171}} 
+unsigned int {\bfseries max\+Flow} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\item 
+\mbox{\Hypertarget{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}\label{class_network_a7aa65d622dee1ade15e29a2ba80d0b27}} 
+unsigned int {\bfseries max\+Cost} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\item 
+\mbox{\Hypertarget{class_network_a838bd6c3c470641ddf82be33663dffc0}\label{class_network_a838bd6c3c470641ddf82be33663dffc0}} 
+unsigned int {\bfseries max\+Flow\+Reduced} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&\+\_\+stations, const vec$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \&\+\_\+links)
+\item 
+\mbox{\Hypertarget{class_network_a9450f12688221dadc74c3fc3a663acf4}\label{class_network_a9450f12688221dadc74c3fc3a663acf4}} 
+bool {\bfseries get\+Augmenting\+Path} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\item 
+\mbox{\Hypertarget{class_network_a0bc7625e6d0ea8f05127ead9a434a884}\label{class_network_a0bc7625e6d0ea8f05127ead9a434a884}} 
+bool {\bfseries get\+Augmenting\+Path\+With\+Costs} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\item 
+\mbox{\Hypertarget{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}\label{class_network_aa7989f5c5b89063627cf2b2f6c500bb9}} 
+unsigned int {\bfseries get\+Max\+Flow\+Network} (vec$<$ std\+::pair$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$, ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ $>$ \&pairs)
+\item 
+\mbox{\Hypertarget{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}\label{class_network_ad6f1da4d6c2cd48cc264732cbc92aaac}} 
+unsigned int {\bfseries max\+Trains} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&sink)
+\item 
+\mbox{\Hypertarget{class_network_a1482c57776816d09131c20ead3276f20}\label{class_network_a1482c57776816d09131c20ead3276f20}} 
+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ {\bfseries create\+Super\+Source} (const vec$<$ ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&sources)
+\item 
+\mbox{\Hypertarget{class_network_a26ad9c74d059758f6465e199df71a42f}\label{class_network_a26ad9c74d059758f6465e199df71a42f}} 
+void {\bfseries remove\+Super\+Source} (ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&super\+Source)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_network_ae3a0c2ac3c376782511937d539061237}\label{class_network_ae3a0c2ac3c376782511937d539061237}} 
+static bool {\bfseries link\+Exists} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st1, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&st2)
+\item 
+\mbox{\Hypertarget{class_network_af467e9890224f526235a554d0fee1d75}\label{class_network_af467e9890224f526235a554d0fee1d75}} 
+static int {\bfseries get\+Bottleneck} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&src, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest)
+\item 
+\mbox{\Hypertarget{class_network_a32b16d5a7debcf9375a41af79fc76c51}\label{class_network_a32b16d5a7debcf9375a41af79fc76c51}} 
+static void {\bfseries update\+Path} (const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&source, const ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ \&dest, int flow, unsigned int $\ast$cost=nullptr)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/Network.\+h\item 
+classes/Network.\+cpp\end{DoxyCompactItemize}

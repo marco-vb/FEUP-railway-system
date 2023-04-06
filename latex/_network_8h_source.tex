@@ -1,0 +1,41 @@
+\hypertarget{_network_8h_source}{}\doxysection{Network.\+h}
+\label{_network_8h_source}\index{classes/Network.h@{classes/Network.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAILWAYS\_NETWORK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAILWAYS\_NETWORK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <bits/stdc++.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}StationLink.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_network}{Network}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ vec<ptr<Station>>\ stations;}
+\DoxyCodeLine{00010\ \ \ \ \ vec<ptr<Link>>\ links;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_network}{Network}}();}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ addStation(\textcolor{keyword}{const}\ ptr<Station>\&\ station);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ addLink(\textcolor{keyword}{const}\ ptr<Station>\&\ st1,\ \textcolor{keyword}{const}\ ptr<Station>\&\ st2,\ \textcolor{keywordtype}{int}\ capacity,\ \textcolor{keywordtype}{int}\ service);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ linkExists(\textcolor{keyword}{const}\ ptr<Station>\&\ st1,\ \textcolor{keyword}{const}\ ptr<Station>\&\ st2);}
+\DoxyCodeLine{00017\ \ \ \ \ ptr<Station>\ getStation(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00018\ \ \ \ \ ptr<Station>\ getStation(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00019\ \ \ \ \ vec<ptr<Station>>\ getStations();}
+\DoxyCodeLine{00020\ \ \ \ \ vec<ptr<Link>>\ getLinks();}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxFlow(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxCost(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxFlowReduced(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest,\ \textcolor{keyword}{const}\ vec<ptr<Station>>\ \&\_stations,\ \textcolor{keyword}{const}\ vec<ptr<Link>>\ \&\_links);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAugmentingPath(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAugmentingPathWithCosts(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ getBottleneck(\textcolor{keyword}{const}\ ptr<Station>\ \&src,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ updatePath(\textcolor{keyword}{const}\ ptr<Station>\ \&source,\ \textcolor{keyword}{const}\ ptr<Station>\ \&dest,\ \textcolor{keywordtype}{int}\ flow,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ *cost\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ getMaxFlowNetwork(vec<std::pair<ptr<Station>,\ ptr<Station>>>\&\ pairs);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ maxTrains(\textcolor{keyword}{const}\ ptr<Station>\&\ sink);}
+\DoxyCodeLine{00030\ \ \ \ \ ptr<Station>\ createSuperSource(\textcolor{keyword}{const}\ vec<ptr<Station>>\&\ sources);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ removeSuperSource(ptr<Station>\&\ superSource);}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//RAILWAYS\_NETWORK\_H}}
+
+\end{DoxyCode}

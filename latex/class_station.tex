@@ -1,0 +1,342 @@
+\hypertarget{class_station}{}\doxysection{Station Class Reference}
+\label{class_station}\index{Station@{Station}}
+
+
+\mbox{\hyperlink{class_station}{Station}} class.  
+
+
+
+
+{\ttfamily \#include $<$Station\+Link.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_station_add6cb0cf422afaf1f71cc92f552faf72}{Station}} (int \mbox{\hyperlink{class_station_a4144cd1a5a69d5900f473ea9d792b3fe}{id}}, std\+::string \mbox{\hyperlink{class_station_a683cec6eec5fd580717ee57a2e1644fb}{name}}, std\+::string municipality, std\+::string township, std\+::string district)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_station_afd0de4c1f7e51648bfe465c5b8b02c88}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Get Id method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_station_a4c1eb8efb42f1c0646b0d23cbc420713}{add\+Link}} (const ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ \&link)
+\begin{DoxyCompactList}\small\item\em Add \mbox{\hyperlink{class_link}{Link}} method. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_station_ae353616abbfca44e00a0baa730998d1c}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get Name method. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_station_acfe636153d2c7699ae07ab898249498f}{get\+District}} ()
+\begin{DoxyCompactList}\small\item\em Get District method. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_station_a452ec1b75f990c61b69dbc02b4eb3235}{get\+Municipality}} ()
+\begin{DoxyCompactList}\small\item\em Get Municipality method. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_station_aa4d7de015a1d6b8d9d68a3bbaa7aca29}{get\+Township}} ()
+\begin{DoxyCompactList}\small\item\em Get Township method. \end{DoxyCompactList}\item 
+std\+::list$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ \mbox{\hyperlink{class_station_ac5ef39769b6047e842ce5545343b7d2e}{get\+Links}} ()
+\begin{DoxyCompactList}\small\item\em Get Links method. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_station_a5f596515b237bbdf5f865a16e79786aa}{get\+Cost}} () const
+\begin{DoxyCompactList}\small\item\em Get Cost method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_station_afa816ac15e56b295a5237a593b3bed3e}{set\+Cost}} (int \mbox{\hyperlink{class_station_ab31a43921a056eccb691ef3ae3e6e843}{cost}})
+\begin{DoxyCompactList}\small\item\em Set Cost method. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_station_a063d5adaa117e61d0cf3b91c61bb3779}{is\+Enabled}} () const
+\begin{DoxyCompactList}\small\item\em Is Enabled method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_station_a3c8260eaac6de7910d9e8f4f516951af}{set\+Enabled}} (bool \mbox{\hyperlink{class_station_ad27bbccd565c9e12328692c653fe3d24}{enabled}})
+\begin{DoxyCompactList}\small\item\em Set Enabled method. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_station_a3eee49988559a4a26fa715f3fc44beac}{is\+Visited}} () const
+\begin{DoxyCompactList}\small\item\em Is Visited method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_station_a17bb35a315d323921b0841dd949f73e4}{set\+Visited}} (bool \mbox{\hyperlink{class_station_a5c1636c3bc53579499c97bf41e02a3c5}{visited}})
+\begin{DoxyCompactList}\small\item\em Set Visited method. \end{DoxyCompactList}\item 
+ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ \mbox{\hyperlink{class_station_aaf9ceea0811156eff9269d1f5a8f6b9f}{get\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Get Path method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_station_ab25a148349997bbe41d0fb3b032db16a}{set\+Path}} (const ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ \&\mbox{\hyperlink{class_station_a1871e43796f7be7d238bc3c029a34028}{path}})
+\begin{DoxyCompactList}\small\item\em Set Path method. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_station_a4d68c03e064a1ec88b39f1f671256a0d}{max\+Possible\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Max Possible Flow Method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_station_a4144cd1a5a69d5900f473ea9d792b3fe}\label{class_station_a4144cd1a5a69d5900f473ea9d792b3fe}} 
+int {\bfseries id}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} id. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_a683cec6eec5fd580717ee57a2e1644fb}\label{class_station_a683cec6eec5fd580717ee57a2e1644fb}} 
+std\+::string {\bfseries name}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} name, district, municipality and township. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_a0d07e5afc43d0a34ad02bc0801914de7}\label{class_station_a0d07e5afc43d0a34ad02bc0801914de7}} 
+std\+::string {\bfseries district}
+\item 
+\mbox{\Hypertarget{class_station_afc7ced847bb4273f9154ee3259265d79}\label{class_station_afc7ced847bb4273f9154ee3259265d79}} 
+std\+::string {\bfseries municipality}
+\item 
+\mbox{\Hypertarget{class_station_a79086b6cb880819f035d721834242f28}\label{class_station_a79086b6cb880819f035d721834242f28}} 
+std\+::string {\bfseries township}
+\item 
+\mbox{\Hypertarget{class_station_a5c1636c3bc53579499c97bf41e02a3c5}\label{class_station_a5c1636c3bc53579499c97bf41e02a3c5}} 
+bool {\bfseries visited} = false
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} Visited status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_ad27bbccd565c9e12328692c653fe3d24}\label{class_station_ad27bbccd565c9e12328692c653fe3d24}} 
+bool {\bfseries enabled} = true
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} Enabled status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_a1871e43796f7be7d238bc3c029a34028}\label{class_station_a1871e43796f7be7d238bc3c029a34028}} 
+ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ {\bfseries path} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} Path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_ab31a43921a056eccb691ef3ae3e6e843}\label{class_station_ab31a43921a056eccb691ef3ae3e6e843}} 
+int {\bfseries cost} = 0
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_station}{Station}} Cost. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_station_a39e87515691d45a3becb6adc61011d8a}\label{class_station_a39e87515691d45a3becb6adc61011d8a}} 
+std\+::list$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ {\bfseries links}
+\begin{DoxyCompactList}\small\item\em List of \mbox{\hyperlink{class_station}{Station}} Links. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_station}{Station}} class. 
+
+This class represents a station in the railway network 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_station_add6cb0cf422afaf1f71cc92f552faf72}\label{class_station_add6cb0cf422afaf1f71cc92f552faf72}} 
+\index{Station@{Station}!Station@{Station}}
+\index{Station@{Station}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{Station()}{Station()}}
+{\footnotesize\ttfamily Station\+::\+Station (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{std\+::string}]{name,  }\item[{std\+::string}]{municipality,  }\item[{std\+::string}]{township,  }\item[{std\+::string}]{district }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_station}{Station}} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \mbox{\hyperlink{class_station}{Station}} id \\
+\hline
+{\em name} & \mbox{\hyperlink{class_station}{Station}} name \\
+\hline
+{\em municipality} & \mbox{\hyperlink{class_station}{Station}} municipality \\
+\hline
+{\em township} & \mbox{\hyperlink{class_station}{Station}} township \\
+\hline
+{\em district} & \mbox{\hyperlink{class_station}{Station}} district\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} object
+\end{DoxyReturn}
+This constructor creates a \mbox{\hyperlink{class_station}{Station}} object with the given parameters. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_station_a4c1eb8efb42f1c0646b0d23cbc420713}\label{class_station_a4c1eb8efb42f1c0646b0d23cbc420713}} 
+\index{Station@{Station}!addLink@{addLink}}
+\index{addLink@{addLink}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{addLink()}{addLink()}}
+{\footnotesize\ttfamily void Station\+::add\+Link (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ \&}]{link }\end{DoxyParamCaption})}
+
+
+
+Add \mbox{\hyperlink{class_link}{Link}} method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & \mbox{\hyperlink{class_link}{Link}} to be added\\
+\hline
+\end{DoxyParams}
+This method adds a link between the station and the destination station \mbox{\Hypertarget{class_station_a5f596515b237bbdf5f865a16e79786aa}\label{class_station_a5f596515b237bbdf5f865a16e79786aa}} 
+\index{Station@{Station}!getCost@{getCost}}
+\index{getCost@{getCost}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getCost()}{getCost()}}
+{\footnotesize\ttfamily int Station\+::get\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get Cost method. 
+
+\begin{DoxyReturn}{Returns}
+Cost of the station
+\end{DoxyReturn}
+This method gets the cost of the station \mbox{\Hypertarget{class_station_acfe636153d2c7699ae07ab898249498f}\label{class_station_acfe636153d2c7699ae07ab898249498f}} 
+\index{Station@{Station}!getDistrict@{getDistrict}}
+\index{getDistrict@{getDistrict}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getDistrict()}{getDistrict()}}
+{\footnotesize\ttfamily std\+::string Station\+::get\+District (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get District method. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} district
+\end{DoxyReturn}
+This method gets the district of the station \mbox{\Hypertarget{class_station_afd0de4c1f7e51648bfe465c5b8b02c88}\label{class_station_afd0de4c1f7e51648bfe465c5b8b02c88}} 
+\index{Station@{Station}!getId@{getId}}
+\index{getId@{getId}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily int Station\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get Id method. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} id
+\end{DoxyReturn}
+This method gets the id of the station \mbox{\Hypertarget{class_station_ac5ef39769b6047e842ce5545343b7d2e}\label{class_station_ac5ef39769b6047e842ce5545343b7d2e}} 
+\index{Station@{Station}!getLinks@{getLinks}}
+\index{getLinks@{getLinks}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getLinks()}{getLinks()}}
+{\footnotesize\ttfamily std\+::list$<$ ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ $>$ Station\+::get\+Links (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Links method. 
+
+\begin{DoxyReturn}{Returns}
+List of links
+\end{DoxyReturn}
+This method gets the list of links of the station \mbox{\Hypertarget{class_station_a452ec1b75f990c61b69dbc02b4eb3235}\label{class_station_a452ec1b75f990c61b69dbc02b4eb3235}} 
+\index{Station@{Station}!getMunicipality@{getMunicipality}}
+\index{getMunicipality@{getMunicipality}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getMunicipality()}{getMunicipality()}}
+{\footnotesize\ttfamily std\+::string Station\+::get\+Municipality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Municipality method. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} municipality
+\end{DoxyReturn}
+This method gets the municipality of the station \mbox{\Hypertarget{class_station_ae353616abbfca44e00a0baa730998d1c}\label{class_station_ae353616abbfca44e00a0baa730998d1c}} 
+\index{Station@{Station}!getName@{getName}}
+\index{getName@{getName}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Station\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Name method. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} name
+\end{DoxyReturn}
+This method gets the name of the station \mbox{\Hypertarget{class_station_aaf9ceea0811156eff9269d1f5a8f6b9f}\label{class_station_aaf9ceea0811156eff9269d1f5a8f6b9f}} 
+\index{Station@{Station}!getPath@{getPath}}
+\index{getPath@{getPath}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ Station\+::get\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Path method. 
+
+\begin{DoxyReturn}{Returns}
+Path to the station
+\end{DoxyReturn}
+This method gets the path to the station \mbox{\Hypertarget{class_station_aa4d7de015a1d6b8d9d68a3bbaa7aca29}\label{class_station_aa4d7de015a1d6b8d9d68a3bbaa7aca29}} 
+\index{Station@{Station}!getTownship@{getTownship}}
+\index{getTownship@{getTownship}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{getTownship()}{getTownship()}}
+{\footnotesize\ttfamily std\+::string Station\+::get\+Township (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Township method. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_station}{Station}} township
+\end{DoxyReturn}
+This method gets the township of the station \mbox{\Hypertarget{class_station_a063d5adaa117e61d0cf3b91c61bb3779}\label{class_station_a063d5adaa117e61d0cf3b91c61bb3779}} 
+\index{Station@{Station}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{isEnabled()}{isEnabled()}}
+{\footnotesize\ttfamily bool Station\+::is\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Is Enabled method. 
+
+\begin{DoxyReturn}{Returns}
+True if the station is enabled, false otherwise
+\end{DoxyReturn}
+This method checks if the station is enabled \mbox{\Hypertarget{class_station_a3eee49988559a4a26fa715f3fc44beac}\label{class_station_a3eee49988559a4a26fa715f3fc44beac}} 
+\index{Station@{Station}!isVisited@{isVisited}}
+\index{isVisited@{isVisited}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{isVisited()}{isVisited()}}
+{\footnotesize\ttfamily bool Station\+::is\+Visited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Is Visited method. 
+
+\begin{DoxyReturn}{Returns}
+True if the station is visited, false otherwise
+\end{DoxyReturn}
+This method checks if the station is visited \mbox{\Hypertarget{class_station_a4d68c03e064a1ec88b39f1f671256a0d}\label{class_station_a4d68c03e064a1ec88b39f1f671256a0d}} 
+\index{Station@{Station}!maxPossibleFlow@{maxPossibleFlow}}
+\index{maxPossibleFlow@{maxPossibleFlow}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{maxPossibleFlow()}{maxPossibleFlow()}}
+{\footnotesize\ttfamily unsigned int Station\+::max\+Possible\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Max Possible Flow Method. 
+
+\begin{DoxyReturn}{Returns}
+Max possible flow
+\end{DoxyReturn}
+This method gets the max possible flow of the station \mbox{\Hypertarget{class_station_afa816ac15e56b295a5237a593b3bed3e}\label{class_station_afa816ac15e56b295a5237a593b3bed3e}} 
+\index{Station@{Station}!setCost@{setCost}}
+\index{setCost@{setCost}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{setCost()}{setCost()}}
+{\footnotesize\ttfamily void Station\+::set\+Cost (\begin{DoxyParamCaption}\item[{int}]{cost }\end{DoxyParamCaption})}
+
+
+
+Set Cost method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost} & Cost of the station\\
+\hline
+\end{DoxyParams}
+This method sets the cost of the station \mbox{\Hypertarget{class_station_a3c8260eaac6de7910d9e8f4f516951af}\label{class_station_a3c8260eaac6de7910d9e8f4f516951af}} 
+\index{Station@{Station}!setEnabled@{setEnabled}}
+\index{setEnabled@{setEnabled}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{setEnabled()}{setEnabled()}}
+{\footnotesize\ttfamily void Station\+::set\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Set Enabled method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enabled} & True if the station is enabled, false otherwise\\
+\hline
+\end{DoxyParams}
+This method sets the station as enabled or disabled \mbox{\Hypertarget{class_station_ab25a148349997bbe41d0fb3b032db16a}\label{class_station_ab25a148349997bbe41d0fb3b032db16a}} 
+\index{Station@{Station}!setPath@{setPath}}
+\index{setPath@{setPath}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{setPath()}{setPath()}}
+{\footnotesize\ttfamily void Station\+::set\+Path (\begin{DoxyParamCaption}\item[{const ptr$<$ \mbox{\hyperlink{class_link}{Link}} $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Set Path method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the station\\
+\hline
+\end{DoxyParams}
+This method sets the path to the station \mbox{\Hypertarget{class_station_a17bb35a315d323921b0841dd949f73e4}\label{class_station_a17bb35a315d323921b0841dd949f73e4}} 
+\index{Station@{Station}!setVisited@{setVisited}}
+\index{setVisited@{setVisited}!Station@{Station}}
+\doxysubsubsection{\texorpdfstring{setVisited()}{setVisited()}}
+{\footnotesize\ttfamily void Station\+::set\+Visited (\begin{DoxyParamCaption}\item[{bool}]{visited }\end{DoxyParamCaption})}
+
+
+
+Set Visited method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visited} & True if the station is visited, false otherwise\\
+\hline
+\end{DoxyParams}
+This method sets the station as visited or not visited 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/Station\+Link.\+h\item 
+classes/Station\+Link.\+cpp\end{DoxyCompactItemize}

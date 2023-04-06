@@ -230,11 +230,6 @@ unsigned int Network::maxFlowReduced(const ptr<Station> &src, const ptr<Station>
     return max_flow;
 }
 
-struct _pq {
-    std::queue<ptr<Station>> standard;
-    std::queue<ptr<Station>> pendular;
-};
-
 bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest) {
     for (auto &s : stations) s->setVisited(false), s->setPath(nullptr);
 

@@ -60,8 +60,7 @@ int Station::getId() const {
 }
 
 void Station::addLink(const ptr<Link>& link) {
-    if (link->getService() == STANDARD) this->links.push_front(link);
-    else this->links.push_back(link);
+    this->links.push_back(link);
 }
 
 std::list<ptr<Link>> Station::getLinks() {

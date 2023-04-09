@@ -18,8 +18,8 @@ void Network::addLink(const ptr<Station>& st1, const ptr<Station>& st2, int capa
         auto link = make<Link>(st1, st2, capacity, service);
         auto rev = make<Link>(st2, st1, capacity, service);
         link->setReverse(rev); rev->setReverse(link);
-        links.push_back(link); links.push_back(rev);
         st1->addLink(link); st2->addLink(rev);
+        links.push_back(link); links.push_back(rev);
     }
 }
 
@@ -146,7 +146,6 @@ void Network::updatePath(const ptr<Station> &source, const ptr<Station> &dest, i
 }
 
 
-//check this
 unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs) {
     unsigned int max_flow = 0;
     std::sort(stations.begin(), stations.end(), [](ptr<Station>& s1, ptr<Station>& s2) { return s1->maxPossibleFlow() > s2->maxPossibleFlow(); });
@@ -174,10 +173,11 @@ unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>
 }
 
 unsigned int Network::maxTrains(const ptr<Station> &sink) {
-    if (sink->getLinks().size() == 1) return sink->getLinks().front()->getCapacity();
-
     vec<ptr<Station>> sources;
-    for (auto &s : stations) if (s->getLinks().size() == 1) sources.push_back(s);
+    for (auto &s : stations) {
+        if (s == sink) continue;
+        if (s->getLinks().size() == 1) sources.push_back(s);
+    }
 
     ptr<Station> super_source = createSuperSource(sources);
     unsigned int max_trains = maxFlow(super_source, sink);
@@ -264,5 +264,55 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
         }
     }
     return dest->isVisited();
+}
+
+void Network::topAffectedStations(int k, const ptr<Station> &st_remove, std::vector<std::pair<unsigned int, int>> &ans) {
+    vec<unsigned int> max_flows(stations.size(), 0);
+    for (auto &s : stations) max_flows[s->getId()] = maxTrains(s);
+
+    std::priority_queue<std::pair<unsigned int, int>, vec<std::pair<unsigned int, int>>, std::greater<>> pq;
+
+    st_remove->setEnabled(false);
+    for (auto &s : stations) {
+        if (s == st_remove) continue;
+        unsigned int max_flow = maxTrains(s);
+        pq.emplace(max_flows[s->getId()] - max_flow, s->getId());
+    }
+    st_remove->setEnabled(true);
+
+    for (int i = 0; i < k && !pq.empty(); i++) {
+        ans[i] = pq.top();
+        pq.pop();
+    }
+}
+
+void Network::topAffectedStations(int k, const ptr<Link> &l_remove, std::vector<std::pair<unsigned int, int>> &ans) {
+    vec<unsigned int> max_flows(stations.size());
+
+    int i = 0;
+    for (const ptr<Station> &s : stations) {
+        for (auto &link : s->getLinks()) {
+            std::cout << link->getCost() << " ";
+        }
+        max_flows[i] = maxTrains(s);
+        std::cout << maxTrains(s) << " ";
+        i++;
+    }
+
+    for (auto x : max_flows) std::cout << x << " ";
+
+    std::priority_queue<std::pair<unsigned int, int>, vec<std::pair<unsigned int, int>>, std::greater<>> pq;
+
+    for (auto &l : links) l->setEnabled(false);
+    for (const ptr<Station> &s : stations) {
+        unsigned int max_flow = maxTrains(s);
+        pq.emplace(max_flows[s->getId()] - max_flow, s->getId());
+    }
+    l_remove->setEnabled(true);
+
+    for (int i = 0; i < k && !pq.empty(); i++) {
+        ans[i] = pq.top();
+        pq.pop();
+    }
 }
 

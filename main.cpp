@@ -123,6 +123,7 @@ void readLinks() {
  * @return 0
  */
 int main() {
+/*
 
     system("Color 0C");
 
@@ -188,8 +189,9 @@ int main() {
         }
 
     }while(option != 0);
+*/
 
-    /*readStations();
+    readStations();
     readLinks();
 
     auto st1 = stations.at("Vila Nova de Gaia-Devesas");
@@ -198,16 +200,12 @@ int main() {
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
-    clock_t begin = clock();
     // 2.2 exemplo
-    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+/*    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    std::cout << "Time: " << elapsed_secs << std::endl;*/
+    }*/
 
     // 2.3 exemplo
     /*std::priority_queue<std::pair<int, std::string>> pq;
@@ -221,7 +219,7 @@ int main() {
     }*/
 
     // 2.4 exemplo
-    //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
+    std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
 
     // 3.1 exemplo
     /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
@@ -232,6 +230,14 @@ int main() {
 
     std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
     std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
+
+    // 4.2 exemplo
+    int k = 5; //std::cin >> k;
+    vec<std::pair<unsigned int, int>> top_stations(5);
+    network->topAffectedStations(k, st1, top_stations);
+    for (const auto& p : top_stations) {
+        std::cout << network->getStations()[p.second]->getName() << " (" << p.first << ")" << std::endl;
+    }
 
     return 0;
 }

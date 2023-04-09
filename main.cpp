@@ -124,13 +124,20 @@ void readLinks() {
  */
 int main() {
 
+    //if(!SetConsoleOutputCP(65001))return 1;
     system("Color 0C");
+
+
 
     int option;
 
     starting_screen();
-
     specify_graph();
+
+    /*for(const auto& x : stations){
+        std::cout << x.first << std::endl;
+    }
+    wait();*/
 
     do{
 
@@ -286,7 +293,7 @@ void specify_graph(){
      */
 
 
-    int option;
+    std::string option;
 
 
     do{
@@ -321,24 +328,25 @@ void specify_graph(){
         std::cout << "  ===========================================================================  " << std::endl;
 
         std::cout << "  > ";
-        std::cin >> option;
+        std::getline(std::cin >> std::ws, option);
 
-        switch (option) {
-            case 1:
-                readStations();
-                readLinks();
-                break;
-            case 2:
-                break;
-            default:
-                clear_screen();
-                std::cout << "  > Invalid Option!" << std::endl;
-                std::cout << "  > Press Enter to Continue..." << std::endl;
-                wait();
-                break;
+        if(option == "1"){
+            readStations();
+            readLinks();
+            break;
+        }
+        else if(option == "2"){
+            break;
+        }
+        else{
+            clear_screen();
+            std::cout << "  > Invalid Option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
         }
 
-    }while(option != 1 && option != 2);
+    }while(option != "1" && option != "2");
+
 
 
 
@@ -348,14 +356,14 @@ void specify_graph(){
 // Button 1 in the main menu
 void train_analysis(){
 
-    int option;
+    std::string option;
 
     /**
      * @brief Train Analysis Menu
      *
      * @details This menu is used to analyze the train network:
      *
-     * [1] Station Capacity - This button calculates the maximum number of trains that can simultaneously travel between two specific stations.
+     * [1] Station Capacity - This button calculates the maximum number of trains that can simultaneously arrive at a given station.
      * [2] High Traffic Routes - This button determines, from all pairs of stations, which ones require the most amount of trains when taking full advantage of the existing network capacity.
      * [3] Budget Allocation - This button indicates where management should assign larger budgets for the purchasing and maintenance of trains. The implementation should be able to report the top-k municipalities and districts, regarding their transportation needs.
      * [4] Station Arrival Capacity - This button reports the maximum number of trains that can simultaneously arrive at a given station, taking into consideration the entire railway grid.
@@ -396,49 +404,216 @@ void train_analysis(){
         std::cout << "  ===========================================================================  " << std::endl;
 
         std::cout << "  > ";
-        std::cin >> option;
+        std::getline(std::cin >> std::ws, option);
 
-        switch(option){
-            case 1:
-                station_capacity();
-                break;
-            case 2:
-                high_traffic_routes();
-                break;
-            case 3:
-                budget_allocation();
-                break;
-            case 4:
-                station_arrival_capacity();
-                break;
-            case 0:
-                break;
-            default:
-                clear_screen();
-                std::cout << "  > Invalid Option!" << std::endl;
-                std::cout << "  > Press Enter to Continue..." << std::endl;
-                wait();
-                break;
+        if (option == "0") {
+            break;
+        }
+        else if (option == "1") {
+            station_capacity();
+        }
+        else if (option == "2") {
+            high_traffic_routes();
+        }
+        else if (option == "3") {
+            budget_allocation();
+        }
+        else if (option == "4") {
+            station_arrival_capacity();
+        }
+        else {
+            clear_screen();
+            std::cout << "  > Invalid Option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
         }
 
-
-    }while(option != 0);
+    }while(option != "0");
 }
 
 // Button 1 in the Train Analysis Menu
 void station_capacity() {
+
+    std::string station1,  station2;
+
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                          --- Station Capacity ---                         ||" << std::endl;
+    std::cout << "||                        (Max Flow Between Stations)                        ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter the name of the source station: ";
+    std::getline(std::cin >> std::ws, station1);
+    std::cout << std::endl;
+    //confirm if station1 exist
+    if(stations.find(station1) == stations.end()){
+        clear_screen();
+        std::cout << "  > The source station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing source station: ";
+            std::getline(std::cin >> std::ws, station1);
+            std::cout << std::endl;
+        } while (stations.find(station1) == stations.end());
+    }
+
+
+    std::cout << "  > Enter the name of the destination station: ";
+    std::getline(std::cin >> std::ws, station2);
+    std::cout << std::endl;
+    //confirm if station2 exist
+    if(stations.find(station2) == stations.end()){
+        clear_screen();
+        std::cout << "  > The destination station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing destination station: ";
+            std::getline(std::cin >> std::ws, station2);
+            std::cout << std::endl;
+        } while (stations.find(station2) == stations.end());
+    }
+
+    auto st1 = stations.at(station1);
+    auto st2 = stations.at(station2);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                          --- Station Capacity ---                         ||" << std::endl;
+    std::cout << "||                        (Max Flow Between Stations)                        ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+    std::cout << "  > Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
+    std::cout << std::endl;
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
+
 }
 
 // Button 2 in the Train Analysis Menu
 void high_traffic_routes() {
+
+    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- High Traffic Routes ---                        ||" << std::endl;
+    std::cout << "||                    (Max Network Flow Between Stations)                    ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "                           > Max network flow: " << network->getMaxFlowNetwork(pairs) << " <" << std::endl;
+    std::cout << std::endl;
+
+    for (const auto& pair : pairs) {
+        std::cout << "  > " << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
+    }
+
+    std::cout << std::endl;
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
+
 }
 
 // Button 3 in the Train Analysis Menu
 void budget_allocation() {
+
+    std::priority_queue<std::pair<int, std::string>> pq;
+    for (const auto &pair: municipality_capacities) pq.emplace(pair.second, pair.first);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                         --- Budget Allocation ---                         ||" << std::endl;
+    std::cout << "||                  (Municipalities with the most capacity)                  ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    int random = rand() % (10 - 3 + 1) + 3;
+
+    std::cout << "                > Top "<< random <<" municipalities with the most capacity <" << std::endl;
+    std::cout << std::endl;
+
+    int n;
+    for (n = 1 ; n <= random ; n++) {
+        auto pair = pq.top();
+        pq.pop();
+        std::cout << "  > " << n << " - " << pair.second << " -> " << pair.first << std::endl;
+    }
+
+    std::cout << std::endl;
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
 }
 
 // Button 4 in the Train Analysis Menu
 void station_arrival_capacity() {
+
+    std::string station_name;
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                      --- Station Arrival Capacity ---                     ||" << std::endl;
+    std::cout << "||                                (Max Trains)                               ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter the name of the station: ";
+    std::getline(std::cin >> std::ws, station_name);
+    std::cout << std::endl;
+
+    //confirm if station exist
+    if(stations.find(station_name) == stations.end()){
+        clear_screen();
+        std::cout << "  > The station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing station: ";
+            std::getline(std::cin >> std::ws, station_name);
+            std::cout << std::endl;
+        } while (stations.find(station_name) == stations.end());
+    }
+
+    auto st = stations.at(station_name);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                      --- Station Arrival Capacity ---                     ||" << std::endl;
+    std::cout << "||                                (Max Trains)                               ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Max trains that can arrive at " << st->getName() << ": " << network->maxTrains(st) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
+
 }
 
 
@@ -455,7 +630,8 @@ void service_allocation(){
      * [0] Go Back - This button returns to the main menu.
      */
 
-    int option;
+
+    std::string option;
 
     do{
         clear_screen();
@@ -489,29 +665,97 @@ void service_allocation(){
         std::cout << "  ===========================================================================  " << std::endl;
 
         std::cout << "  > ";
-        std::cin >> option;
+        std::getline(std::cin >> std::ws, option);
 
-        switch(option){
-            case 1:
-                optimal_route();
-                break;
-            case 0:
-                break;
-            default:
-                clear_screen();
-                std::cout << "  > Invalid Option!" << std::endl;
-                std::cout << "  > Press Enter to Continue..." << std::endl;
-                wait();
-                break;
+        if(option == "1") optimal_route();
+        else if(option == "0") break;
+        else{
+            clear_screen();
+            std::cout << "  > Invalid Option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
         }
 
-
-    }while(option != 0);
+    }while(option != "0");
 
 }
 
 // Button 1 in the Service Allocation Menu
 void optimal_route() {
+
+    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl*/
+
+    std::string station1, station2;
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                           --- Optimal Route ---                           ||" << std::endl;
+    std::cout << "||              (Max Trains with Min Cost Between two Stations)              ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter the name of the source station: ";
+    std::getline(std::cin >> std::ws, station1);
+    std::cout << std::endl;
+    //confirm if station1 exist
+    if(stations.find(station1) == stations.end()){
+        clear_screen();
+        std::cout << "  > The source station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing source station: ";
+            std::getline(std::cin >> std::ws, station1);
+            std::cout << std::endl;
+        } while (stations.find(station1) == stations.end());
+    }
+
+
+    std::cout << "  > Enter the name of the destination station: ";
+    std::getline(std::cin >> std::ws, station2);
+    std::cout << std::endl;
+    //confirm if station2 exist
+    if(stations.find(station2) == stations.end()){
+        clear_screen();
+        std::cout << "  > The destination station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing destination station: ";
+            std::getline(std::cin >> std::ws, station2);
+            std::cout << std::endl;
+        } while (stations.find(station2) == stations.end());
+    }
+
+    auto st1 = stations.at(station1);
+    auto st2 = stations.at(station2);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                           --- Optimal Route ---                           ||" << std::endl;
+    std::cout << "||              (Max Trains with Min Cost Between two Stations)              ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Source Station: " << station1 << std::endl;
+    std::cout << "  > Destination Station: " << station2 << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Max Trains with min cost for the company: " << network->maxCost(st1, st2) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
 }
 
 // Button 3 in the main menu
@@ -528,7 +772,7 @@ void failure_forecasting(){
      * [0] Go Back - This button returns to the main menu.
      */
 
-    int option;
+    std::string option;
 
     do{
         clear_screen();
@@ -562,32 +806,28 @@ void failure_forecasting(){
         std::cout << "  ===========================================================================  " << std::endl;
 
         std::cout << "  > ";
-        std::cin >> option;
+        std::getline(std::cin >> std::ws, option);
 
-        switch(option){
-            case 1:
-                reduced_connectivity();
-                break;
-            case 2:
-                segment_failure_report();
-                break;
-            case 0:
-                break;
-            default:
-                clear_screen();
-                std::cout << "  > Invalid Option!" << std::endl;
-                std::cout << "  > Press Enter to Continue..." << std::endl;
-                wait();
-                break;
+        if(option == "1") reduced_connectivity();
+        else if(option == "2") segment_failure_report();
+        else if(option == "0") break;
+        else{
+            clear_screen();
+            std::cout << "  > Invalid Option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
         }
 
 
-    }while(option != 0);
+    }while(option != "0");
 }
 
 
 // Button 1 in the Failure Forecasting Menu
 void reduced_connectivity() {
+
+
+
 }
 
 // Button 2 in the Failure Forecasting Menu

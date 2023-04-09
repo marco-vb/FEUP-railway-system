@@ -1,8 +1,10 @@
 #include "StationLink.h"
 
+#include <utility>
+
 Link::Link(ptr<Station> src, ptr<Station> dest, int capacity, int service) {
-    this->src = src;
-    this->dest = dest;
+    this->src = std::move(src);
+    this->dest = std::move(dest);
     this->capacity = capacity;
     this->service = service;
 }
@@ -111,6 +113,10 @@ int Station::getMaxFlow() const {
 
 void Station::setMaxFlow(int _maxFlow) {
     this->maxFlow = _maxFlow;
+}
+
+void Station::removeLink(const std::shared_ptr<Link> &link) {
+    this->links.remove(link);
 }
 
 bool Link::isEnabled() const {

@@ -194,9 +194,12 @@ int main() {
     readStations();
     readLinks();
 
-    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st1 = stations.at("Porto Campanhã");
     auto st2 = stations.at("Lisboa Oriente");
 
+    for (auto &l : st1->getLinks()) {
+        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
+    }
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
@@ -219,7 +222,8 @@ int main() {
     }*/
 
     // 2.4 exemplo
-    std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
+    //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
+    //std::cout << "Max trains that can arrive at " << st2->getName() << ": " << network->maxTrains(st2) << std::endl;
 
     // 3.1 exemplo
     /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
@@ -235,8 +239,9 @@ int main() {
     int k = 5; //std::cin >> k;
     vec<std::pair<unsigned int, int>> top_stations(5);
     network->topAffectedStations(k, st1, top_stations);
-    for (const auto& p : top_stations) {
-        std::cout << network->getStations()[p.second]->getName() << " (" << p.first << ")" << std::endl;
+
+    for (auto &l : st1->getLinks()) {
+        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
     }
 
     return 0;

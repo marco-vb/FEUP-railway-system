@@ -196,13 +196,8 @@ ptr<Station> Network::createSuperSource(const vec<ptr<Station>> &sources) {
 }
 
 void Network::removeSuperSource(ptr<Station> &superSource) {
-    for (auto it = links.begin(); it != links.end();)
-        if ((*it)->getSrc() == superSource || (*it)->getDest() == superSource) it = links.erase(it);
-        else it++;
-
-    for (auto it = stations.begin(); it != stations.end();)
-        if (*it == superSource) it = stations.erase(it);
-        else it++;
+    for (auto &l : superSource->getLinks()) removeLink(l);
+    stations.erase(std::find(stations.begin(), stations.end(), superSource));
 }
 
 unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest) {
@@ -268,21 +263,12 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
 
 void Network::topAffectedStations(int k, const ptr<Station> &st_remove, std::vector<std::pair<unsigned int, int>> &ans) {
     vec<unsigned int> max_flows(stations.size(), 0);
-    for (auto &s : stations) max_flows[s->getId()] = maxTrains(s);
+    for (const auto &s : stations) max_flows[s->getId()] = maxTrains(s);
 
     std::priority_queue<std::pair<unsigned int, int>, vec<std::pair<unsigned int, int>>, std::greater<>> pq;
 
-    st_remove->setEnabled(false);
-    for (auto &s : stations) {
-        if (s == st_remove) continue;
-        unsigned int max_flow = maxTrains(s);
-        pq.emplace(max_flows[s->getId()] - max_flow, s->getId());
-    }
-    st_remove->setEnabled(true);
-
-    for (int i = 0; i < k && !pq.empty(); i++) {
-        ans[i] = pq.top();
-        pq.pop();
+    for (int i = 0; i < (int) stations.size(); i++) {
+        std::cout << getStation(i)->getName() << " " << max_flows[i] << std::endl;
     }
 }
 
@@ -314,5 +300,11 @@ void Network::topAffectedStations(int k, const ptr<Link> &l_remove, std::vector<
         ans[i] = pq.top();
         pq.pop();
     }
+}
+
+void Network::removeLink(const std::shared_ptr<Link> &l) {
+    l->getSrc()->removeLink(l);
+    l->getDest()->removeLink(l->getReverse());
+    links.erase(std::find(links.begin(), links.end(), l));
 }
 

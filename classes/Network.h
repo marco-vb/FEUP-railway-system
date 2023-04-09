@@ -259,6 +259,8 @@ public:
      */
     void removeSuperSource(ptr<Station>& superSource);
 
+    void removeLink(const ptr<Link> &l);
+
     void topAffectedStations(int k, const ptr<Station> &st_remove, vec<std::pair<unsigned int, int>> &ans);
     void topAffectedStations(int k, const ptr<Link> &l_remove, vec<std::pair<unsigned int, int>> &ans);
 };

@@ -228,10 +228,7 @@ void starting_screen(){
     std::cout << "||                      --- Press Enter to Continue ---                      ||" << std::endl;
     std::cout << "\\\\                                                                           //" << std::endl;
     std::cout << "  ===========================================================================  " << std::endl;
-    if (similar("Porto Campanha", "Porto Campanhã")) std::cout << "true" << std::endl;
-    else std::cout << "false" << std::endl;
     wait();
-
 }
 
 // Specify the graph
@@ -863,28 +860,4 @@ void clear_screen(){
 
 void wait(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
-}
-
-bool similar(const std::string &s1, const std::string &s2) {
-    double threshold = 0.85;
-    vec<int> v1(26, 0), v2(26, 0);
-
-    for (auto c : s1) {
-        if (c >= 'A' && c <= 'Z') c += 'a' - 'A';
-        if (c >= 'a' && c <= 'z') v1[c - 'a']++;
-    }
-
-    for (auto c : s2) {
-        if (c >= 'A' && c <= 'Z') c += 'a' - 'A';
-        if (c >= 'a' && c <= 'z') v2[c - 'a']++;
-    }
-
-    int count = 0;
-    for (int i = 0; i < 26; i++) if (v1[i] == v2[i] && v1[i] != 0) count += v1[i];
-
-    int min = s1.size() < s2.size() ? s1.size() : s2.size();
-    double similarity = (double) count / min;
-    std::cout << similarity << std::endl;
-
-    return similarity >= threshold;
 }

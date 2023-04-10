@@ -259,6 +259,15 @@ public:
      */
     void removeSuperSource(ptr<Station>& superSource);
 
+    /**
+     * @brief Get k-top affected stations by the removal of a link
+     *
+     * @param l_remove Link to be removed
+     * @param ans Vector of pairs of stations and the respective flow that would be lost
+     *
+     * @details This function returns the k-top affected stations by the removal of a link.
+     * This function has Complexity O(V^2 * E^2) where V is the number of vertices and E is the number of edges.
+     */
     void topAffected(const ptr<Link>& l_remove, vec<std::pair<int, int>> &ans);
 };
 

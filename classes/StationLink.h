@@ -371,6 +371,13 @@ public:
      */
     unsigned int maxPossibleFlow();
 
+    /**
+     * @brief Remove Link method
+     *
+     * @param link Link to be removed
+     *
+     * @details This method removes the link
+     */
     void removeLink(const ptr<Link>& link);
 };
 

@@ -134,11 +134,6 @@ int main() {
     starting_screen();
     specify_graph();
 
-    /*for(const auto& x : stations){
-        std::cout << x.first << std::endl;
-    }
-    wait();*/
-
     do{
 
         clear_screen();
@@ -194,55 +189,10 @@ int main() {
                 break;
         }
 
-    }while(option != 0);
-
-    /*readStations();
-    readLinks();
-
-    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
-    auto st2 = stations.at("Lisboa Oriente");
-
-    // 2.1 exemplo
-    //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
-
-    clock_t begin = clock();
-    // 2.2 exemplo
-    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
-    std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
-    for (const auto& pair : pairs) {
-        std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    std::cout << "Time: " << elapsed_secs << std::endl;*/
-
-    // 2.3 exemplo
-    /*std::priority_queue<std::pair<int, std::string>> pq;
-    for (const auto& pair : municipality_capacities) pq.push({pair.second, pair.first});
-
-    std::cout << "Municipalities with the most capacity:" << std::endl;
-    int n = 5; //std::cin >> n;
-    while (n--) {
-        auto pair = pq.top(); pq.pop();
-        std::cout << pair.second << " (" << pair.first << ")" << std::endl;
-    }*/
-
-    // 2.4 exemplo
-    //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
-
-    // 3.1 exemplo
-    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
-
-    // 4.1 exemplo
-    /* vec<ptr<Station>> remove_stations = {stations.at("Pombal")};
-    vec<ptr<Link>> removed_links;
-
-    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
-    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
+    } while(option != 0);
 
     return 0;
 }
-
 
 void starting_screen(){
 
@@ -264,11 +214,11 @@ void starting_screen(){
     std::cout << "||              (##)              (###)                                      ||" << std::endl;
     std::cout << "||             .-.                                                           ||" << std::endl;
     std::cout << "||             ] [    .-.      _    .-----.                                  ||" << std::endl;
-    std::cout << "||           .\"   \"\"\"\"   \"\"\"\"\"\" \"\"\"\"| .--`                                   ||" << std::endl;
+    std::cout << R"(||           ."   """"   """""" """"| .--`                                   ||)" << std::endl;
     std::cout << "||          (:--:--:--:--:--:--:--:-| [___    .------------------------.     ||" << std::endl;
     std::cout << "||           |D&A  :  :  :  :  :  : [_5_] |'='|.----D------L------M---.|     ||" << std::endl;
     std::cout << "||          /|.___________________________|___|'--.___.--.___.--.___.-'|     ||" << std::endl;
-    std::cout << "||         / ||_.--.______.--.______.--._ |---\\'--\\-.-/==\\-.-/==\\-.-/-'/--   ||" << std::endl;
+    std::cout << R"(||         / ||_.--.______.--.______.--._ |---\'--\-.-/==\-.-/==\-.-/-'/--   ||)" << std::endl;
     std::cout << "||        /__;^=(==)======(==)======(==)=^~^^^ ^^^^(-)^^^^(-)^^^^(-)^^^      ||" << std::endl;
     std::cout << "||  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ||" << std::endl;
     std::cout << "||                                                                           ||" << std::endl;
@@ -278,7 +228,6 @@ void starting_screen(){
     wait();
 
 }
-
 
 // Specify the graph
 void specify_graph(){
@@ -436,7 +385,6 @@ void station_capacity() {
 
     std::string station1,  station2;
 
-
     clear_screen();
     std::cout << "  ===========================================================================  " << std::endl;
     std::cout << "//                                                                           \\\\" << std::endl;
@@ -449,6 +397,7 @@ void station_capacity() {
     std::cout << "  > Enter the name of the source station: ";
     std::getline(std::cin >> std::ws, station1);
     std::cout << std::endl;
+
     //confirm if station1 exist
     if(stations.find(station1) == stations.end()){
         clear_screen();
@@ -528,12 +477,11 @@ void high_traffic_routes() {
     std::cout << std::endl;
     std::cout << "  > Press Enter to Continue..." << std::endl;
     wait();
-
 }
 
 // Button 3 in the Train Analysis Menu
 void budget_allocation() {
-
+    int k;
     std::priority_queue<std::pair<int, std::string>> pq;
     for (const auto &pair: municipality_capacities) pq.emplace(pair.second, pair.first);
 
@@ -546,13 +494,17 @@ void budget_allocation() {
     std::cout << "  ===========================================================================  " << std::endl;
     std::cout << std::endl;
 
-    int random = rand() % (10 - 3 + 1) + 3;
+    do {
+        std::cout << "  > Please enter the number of municipalities to be displayed: ";
+        std::cin >> k;
+        std::cout << std::endl;
+    } while (k < 1 || k > pq.size());
 
-    std::cout << "                > Top "<< random <<" municipalities with the most capacity <" << std::endl;
+    std::cout << "                > Top "<< k <<" municipalities with the most capacity <" << std::endl;
     std::cout << std::endl;
 
     int n;
-    for (n = 1 ; n <= random ; n++) {
+    for (n = 1 ; n <= k ; n++) {
         auto pair = pq.top();
         pq.pop();
         std::cout << "  > " << n << " - " << pair.second << " -> " << pair.first << std::endl;
@@ -615,7 +567,6 @@ void station_arrival_capacity() {
     wait();
 
 }
-
 
 // Button 2 in the main menu
 void service_allocation(){
@@ -682,8 +633,6 @@ void service_allocation(){
 
 // Button 1 in the Service Allocation Menu
 void optimal_route() {
-
-    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl*/
 
     std::string station1, station2;
 
@@ -833,7 +782,6 @@ void reduced_connectivity() {
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
 }
-
 
 void clear_screen(){
     for (int i = 0; i < 50; i++) {

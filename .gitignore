@@ -14,6 +14,9 @@ cmake-build-debug/
 *.o
 *.obj
 
+cmake-build-debug/.ninja_deps
+cmake-build-debug/Testing/Temporary/LastTest.log
+
 # Precompiled Headers
 *.gch
 *.pch

@@ -219,12 +219,12 @@ unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest)
 
 unsigned int Network::maxFlowReduced(const ptr<Station> &src, const ptr<Station> &dest, const vec<ptr<Station>> &_stations, const vec<ptr<Link>> &_links) {
     for (auto &s : _stations) s->setEnabled(false);
-    for (auto &l : _links) l->setEnabled(false);
+    for (auto &l : _links) l->setEnabled(false), l->getReverse()->setEnabled(false);
 
     unsigned int max_flow = maxFlow(src, dest);
 
     for (auto &s : _stations) s->setEnabled(true);
-    for (auto &l : _links) l->setEnabled(true);
+    for (auto &l : _links) l->setEnabled(false), l->getReverse()->setEnabled(false);
 
     return max_flow;
 }
@@ -266,22 +266,31 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
 }
 
 void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std::pair<int, int>> &ans) {
-    vec<unsigned int> max_flows(stations.size());
-    for (auto &s : stations) {
-        auto max_flow = maxTrains(s);
-        max_flows[s->getId()] = max_flow;
-    }
+    vec<std::pair<int, int>> diffs;
+    vec<bool> visited(stations.size(), false);
 
-    vec<std::pair<int, int>> diffs(stations.size());
+    std::queue<ptr<Station>> q;
+    q.push(l_remove->getSrc()); q.push(l_remove->getDest());
+    visited[l_remove->getSrc()->getId()] = true; visited[l_remove->getDest()->getId()] = true;
 
-    l_remove->setEnabled(false); l_remove->getReverse()->setEnabled(false);
-    for (auto &s : stations) {
-        auto max_flow = maxTrains(s);
-        diffs[s->getId()] = {max_flows[s->getId()] - max_flow, s->getId()};
+    while (!q.empty()) {
+        auto s = q.front(); q.pop();
+        int flow_before = maxTrains(s);
+        l_remove->setEnabled(false); l_remove->getReverse()->setEnabled(false);
+        int flow_after = maxTrains(s);
+        l_remove->setEnabled(true); l_remove->getReverse()->setEnabled(true);
+        int diff = flow_before - flow_after;
+        if (diff == 0) continue;
+        diffs.emplace_back(diff, s->getId());
+        for (auto &l : s->getLinks()) {
+            auto w = l->getDest();
+            if (!visited[w->getId()]) {
+                visited[w->getId()] = true;
+                q.push(w);
+            }
+        }
     }
-    l_remove->setEnabled(true); l_remove->getReverse()->setEnabled(true);
 
     std::sort(diffs.begin(), diffs.end(), std::greater<>());
-
-    for (int i = 0; i < ans.size(); i++) ans[i] = diffs[i];
+    for (int i = 0; i < ans.size() && i < diffs.size(); i++) ans[i] = diffs[i];
 }

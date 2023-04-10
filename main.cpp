@@ -69,6 +69,7 @@ void readStations() {
         std::stringstream ss(line);
         std::string name, municipality, township, district;
         std::getline(ss, name, ',');
+        std::transform(name.begin(), name.end(), name.begin(), ::toupper);
         if(stations.find(name) != stations.end()) continue;
         std::getline(ss, district, ',');
         std::getline(ss, municipality, ',');
@@ -92,6 +93,7 @@ void readPartialStations(){
         std::stringstream ss(line);
         std::string name, municipality, township, district;
         std::getline(ss, name, ',');
+        std::transform(name.begin(), name.end(), name.begin(), ::toupper);
         if(stations.find(name) != stations.end()) continue;
         std::getline(ss, district, ',');
         std::getline(ss, municipality, ',');
@@ -122,7 +124,9 @@ void readLinks() {
         std::string st1, st2, service;
         int capacity;
         std::getline(ss, st1, ',');
+        std::transform(st1.begin(), st1.end(), st1.begin(), ::toupper);
         std::getline(ss, st2, ',');
+        std::transform(st2.begin(), st2.end(), st2.begin(), ::toupper);
         ss >> capacity; ss.ignore();
         ss >> service;
         if (service[service.size()-1] == '\r') service = service.substr(0, service.size() - 1);
@@ -150,7 +154,9 @@ void readPartialLinks() {
         std::string st1, st2, service;
         int capacity;
         std::getline(ss, st1, ',');
+        std::transform(st1.begin(), st1.end(), st1.begin(), ::toupper);
         std::getline(ss, st2, ',');
+        std::transform(st2.begin(), st2.end(), st2.begin(), ::toupper);
         ss >> capacity; ss.ignore();
         ss >> service;
         if (service[service.size()-1] == '\r') service = service.substr(0, service.size() - 1);
@@ -177,21 +183,10 @@ void readPartialLinks() {
  * @return 0
  */
 int main() {
-
-    //if(!SetConsoleOutputCP(65001))return 1;
     system("Color 0C");
-
-
-
     std::string option;
-
     starting_screen();
     specify_graph();
-
-    /*for(const auto& x : stations){
-        std::cout << x.first << std::endl;
-    }
-    wait();*/
 
     do{
 
@@ -248,43 +243,6 @@ int main() {
         }
     } while(option != "0");
 
-    // 2.1 exemplo
-    //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
-
-    // 2.2 exemplo
-    /*vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
-    std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
-    for (const auto& pair : pairs) {
-        std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }*/
-
-    // 2.3 exemplo
-    /*std::priority_queue<std::pair<int, std::string>> pq;
-    for (const auto& pair : municipality_capacities) pq.push({pair.second, pair.first});
-
-    std::cout << "Municipalities with the most capacity:" << std::endl;
-    int n = 5; //std::cin >> n;
-    while (n--) {
-        auto pair = pq.top(); pq.pop();
-        std::cout << pair.second << " (" << pair.first << ")" << std::endl;
-    }*/
-
-    // 2.4 exemplo
-    //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
-    //std::cout << "Max trains that can arrive at " << st2->getName() << ": " << network->maxTrains(st2) << std::endl;
-
-    // 3.1 exemplo
-    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
-
-    // 4.1 exemplo
-    /* vec<ptr<Station>> remove_stations = {stations.at("Pombal")};
-    vec<ptr<Link>> removed_links;
-
-    std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
-    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
-
-    // 4.2 exemplo
-
     return 0;
 }
 
@@ -309,11 +267,11 @@ void starting_screen(){
     std::cout << "||              (##)              (###)                                      ||" << std::endl;
     std::cout << "||             .-.                                                           ||" << std::endl;
     std::cout << "||             ] [    .-.      _    .-----.                                  ||" << std::endl;
-    std::cout << "||           .\"   \"\"\"\"   \"\"\"\"\"\" \"\"\"\"| .--`                                   ||" << std::endl;
+    std::cout <<R"(||           ."   """"   """""" """"| .--`                                   ||)" << std::endl;
     std::cout << "||          (:--:--:--:--:--:--:--:-| [___    .------------------------.     ||" << std::endl;
     std::cout << "||           |D&A  :  :  :  :  :  : [_5_] |'='|.----D------L------M---.|     ||" << std::endl;
     std::cout << "||          /|.___________________________|___|'--.___.--.___.--.___.-'|     ||" << std::endl;
-    std::cout << "||         / ||_.--.______.--.______.--._ |---\\'--\\-.-/==\\-.-/==\\-.-/-'/--   ||" << std::endl;
+    std::cout <<R"(||         / ||_.--.______.--.______.--._ |---\'--\-.-/==\-.-/==\-.-/-'/--   ||)" << std::endl;
     std::cout << "||        /__;^=(==)======(==)======(==)=^~^^^ ^^^^(-)^^^^(-)^^^^(-)^^^      ||" << std::endl;
     std::cout << "||  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ||" << std::endl;
     std::cout << "||                                                                           ||" << std::endl;
@@ -324,10 +282,8 @@ void starting_screen(){
 
 }
 
-
 // Specify the graph
 void specify_graph(){
-
     /**
      * @brief Specify Graph Menu
      *
@@ -336,11 +292,7 @@ void specify_graph(){
      * [1] Complete Railway System - This button creates a complete graph.
      * [2] Partial Railway System - This button creates a subgraph.
      */
-
-
     std::string option;
-
-
     do{
         clear_screen();
         std::cout << "  ===========================================================================  " << std::endl;
@@ -492,6 +444,7 @@ void station_capacity() {
 
     std::cout << "  > Enter the name of the source station: ";
     std::getline(std::cin >> std::ws, station1);
+    std::transform(station1.begin(), station1.end(), station1.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station1 exist
     if(stations.find(station1) == stations.end()){
@@ -512,6 +465,7 @@ void station_capacity() {
 
     std::cout << "  > Enter the name of the destination station: ";
     std::getline(std::cin >> std::ws, station2);
+    std::transform(station2.begin(), station2.end(), station2.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station2 exist
     if(stations.find(station2) == stations.end() || station2 == station1){
@@ -623,6 +577,7 @@ void station_arrival_capacity() {
 
     std::cout << "  > Enter the name of the station: ";
     std::getline(std::cin >> std::ws, station_name);
+    std::transform(station_name.begin(), station_name.end(), station_name.begin(), ::toupper);
     std::cout << std::endl;
 
     //confirm if station exist
@@ -740,6 +695,7 @@ void optimal_route() {
 
     std::cout << "  > Enter the name of the source station: ";
     std::getline(std::cin >> std::ws, station1);
+    std::transform(station1.begin(), station1.end(), station1.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station1 exist
     if(stations.find(station1) == stations.end()){
@@ -760,6 +716,7 @@ void optimal_route() {
 
     std::cout << "  > Enter the name of the destination station: ";
     std::getline(std::cin >> std::ws, station2);
+    std::transform(station2.begin(), station2.end(), station2.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station2 exist
     if(stations.find(station2) == stations.end() || station2 == station1){
@@ -886,6 +843,7 @@ void reduced_connectivity() {
 
     std::cout << "  > Enter the name of the source station: ";
     std::getline(std::cin >> std::ws, station1);
+    std::transform(station1.begin(), station1.end(), station1.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station1 exist
     if(stations.find(station1) == stations.end()){
@@ -906,6 +864,7 @@ void reduced_connectivity() {
 
     std::cout << "  > Enter the name of the destination station: ";
     std::getline(std::cin >> std::ws, station2);
+    std::transform(station2.begin(), station2.end(), station2.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station2 exist
     if(stations.find(station2) == stations.end() || station2 == station1){
@@ -937,6 +896,7 @@ void reduced_connectivity() {
 
     std::cout << "  > Enter the name of the station to remove: ";
     std::getline(std::cin >> std::ws, station_remove);
+    std::transform(station_remove.begin(), station_remove.end(), station_remove.begin(), ::toupper);
     std::cout << std::endl;
     //confirm if station_remove exist
     if(stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2){
@@ -979,12 +939,14 @@ void reduced_connectivity() {
 
         std::cout << "  > Do you want to remove another station? (y/n): ";
         std::getline(std::cin >> std::ws, option);
+        std::transform(option.begin(), option.end(), option.begin(), ::toupper);
         std::cout << std::endl;
 
         if(option == "y" || option == "Y"){
             clear_screen();
             std::cout << "  > Enter the name of the station to remove: ";
             std::getline(std::cin >> std::ws, station_remove);
+            std::transform(station_remove.begin(), station_remove.end(), station_remove.begin(), ::toupper);
             std::cout << std::endl;
             //confirm if station_remove exist
             if(stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2 || std::find(remove_stations.begin(), remove_stations.end(), stations.at(station_remove)) != remove_stations.end()){
@@ -998,6 +960,7 @@ void reduced_connectivity() {
                     clear_screen();
                     std::cout << "  > Please enter the name of a existing station, diferent of source and destination: ";
                     std::getline(std::cin >> std::ws, station_remove);
+                    std::transform(station_remove.begin(), station_remove.end(), station_remove.begin(), ::toupper);
                     std::cout << std::endl;
                 } while (stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2);
             }
@@ -1090,6 +1053,7 @@ void segment_failure_report() {
 
     std::cout << "  > Enter station name to remove a link: ";
     std::getline(std::cin >> std::ws, station1);
+    std::transform(station1.begin(), station1.end(), station1.begin(), ::toupper);
     std::cout << std::endl;
 
     //confirm if station exist
@@ -1103,6 +1067,7 @@ void segment_failure_report() {
             clear_screen();
             std::cout << "  > Please enter the name of a existing station: ";
             std::getline(std::cin >> std::ws, station1);
+            std::transform(station1.begin(), station1.end(), station1.begin(), ::toupper);
             std::cout << std::endl;
         } while (stations.find(station1) == stations.end());
     }
@@ -1128,6 +1093,7 @@ void segment_failure_report() {
 
     std::cout << "  > Enter station name: ";
     std::getline(std::cin >> std::ws, station2);
+    std::transform(station2.begin(), station2.end(), station2.begin(), ::toupper);
     std::cout << std::endl;
 
     //confirm if station exist
@@ -1141,6 +1107,7 @@ void segment_failure_report() {
             clear_screen();
             std::cout << "  > Please enter the name of a valid station: ";
             std::getline(std::cin >> std::ws, station2);
+            std::transform(station2.begin(), station2.end(), station2.begin(), ::toupper);
             std::cout << std::endl;
         } while (stations.find(station2) == stations.end() || station1 == station2 || !is_linked(station1,station2));
     }

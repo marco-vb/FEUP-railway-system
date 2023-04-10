@@ -50,7 +50,7 @@ vec<ptr<Link>> Network::getLinks() {
 }
 
 bool Network::linkExists(const ptr<Station> &st1, const ptr<Station> &st2) {
-    for(auto &l : st1->getLinks()) if (l->getDest() == st2) return true;
+    for (auto &l : st1->getLinks()) if (l->getDest() == st2) return true;
     return false;
 }
 
@@ -161,9 +161,9 @@ unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>
             unsigned int flow = maxFlow(stations[i], stations[j]);
 
             if (flow > max_flow) {
-            max_flow = flow;
-            pairs.clear();
-            pairs.emplace_back(stations[i], stations[j]);
+                max_flow = flow;
+                pairs.clear();
+                pairs.emplace_back(stations[i], stations[j]);
             }
             else if (flow == max_flow) pairs.emplace_back(stations[i], stations[j]);
         }
@@ -179,15 +179,19 @@ unsigned int Network::maxTrains(const ptr<Station> &sink) {
         if (s->getLinks().size() == 1) sources.push_back(s);
     }
 
-    ptr<Station> super_source = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
-    stations.push_back(super_source);
-
-    for (auto &s : sources) addLink(super_source, s, 10000000, STANDARD);
-
+    ptr<Station> super_source;
+    createSuperSource(super_source, sources);
     unsigned int max_trains = maxFlow(super_source, sink);
     removeSuperSource(super_source);
 
     return max_trains;
+}
+
+void Network::createSuperSource(ptr<Station> &ss, const vec<ptr<Station>> &sources) {
+    ss = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
+    stations.push_back(ss);
+
+    for (auto &s : sources) addLink(ss, s, 10000000, STANDARD);
 }
 
 void Network::removeSuperSource(ptr<Station> &superSource) {
@@ -259,4 +263,25 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
         }
     }
     return dest->isVisited();
+}
+
+void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std::pair<int, int>> &ans) {
+    vec<unsigned int> max_flows(stations.size());
+    for (auto &s : stations) {
+        auto max_flow = maxTrains(s);
+        max_flows[s->getId()] = max_flow;
+    }
+
+    vec<std::pair<int, int>> diffs(stations.size());
+
+    l_remove->setEnabled(false); l_remove->getReverse()->setEnabled(false);
+    for (auto &s : stations) {
+        auto max_flow = maxTrains(s);
+        diffs[s->getId()] = {max_flows[s->getId()] - max_flow, s->getId()};
+    }
+    l_remove->setEnabled(true); l_remove->getReverse()->setEnabled(true);
+
+    std::sort(diffs.begin(), diffs.end(), std::greater<>());
+
+    for (int i = 0; i < ans.size(); i++) ans[i] = diffs[i];
 }

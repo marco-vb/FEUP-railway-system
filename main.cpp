@@ -994,28 +994,25 @@ void reduced_connectivity() {
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
 
-    vec<unsigned int> max_flows(stations.size());
-    std::cout << "first loop" << std::endl;
-    for (auto &station : stations) {
-        auto s = station.second;
-        auto max_flow = network->maxTrains(s);
-        max_flows[s->getId()] = max_flow;
-        if (s->getName() == "Lisboa Oriente") std::cout << "Id: " << s->getId() << " " << s->getName() << " " << max_flow << std::endl;
-    }
-    auto l = stations.at("Lisboa Oriente")->getLinks().front();
-    l->setEnabled(false);
-    l->getReverse()->setEnabled(false);
-    std::cout << "second loop" << std::endl;
-    for (auto &station : stations) {
-        auto s = station.second;
-        auto max_flow = network->maxTrains(s);
-        if (max_flows[s->getId()] != max_flow) {
-            std::cout << s->getName() << " " << max_flows[s->getId()]- max_flow << std::endl;
-        }
-    }
-    std::cout << "after second loop" << std::endl;
-    wait();
+    int k; // std::cin >> k;
 
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Failure Forecasting ---                        ||" << std::endl;
+    std::cout << "||                          (Segment Failure Report)                         ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+
+
+    vec<std::pair<int, int>> topk(k); // Top k affected stations {Diff in flow, Id};
+    network->topAffected(stations.at("Porto Campanha")->getLinks().front(), topk);
+
+    std::cout << "Top " << k << " affected stations:" << std::endl;
+    for (auto &p : topk) {
+        std::cout << "Station " << network->getStation(p.second)->getName() << " with " << p.first << " difference in flow" << std::endl;
+    }
+    wait();
 
 }
 

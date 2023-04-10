@@ -261,3 +261,31 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
     return dest->isVisited();
 }
 
+void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std::pair<int, int>> &ans) {
+    vec<unsigned int> max_flows(stations.size());
+    std::cout << "first loop" << std::endl;
+    for (auto &s : stations) {
+        auto max_flow = maxTrains(s);
+        max_flows[s->getId()] = max_flow;
+        if (s->getName() == "Porto Campanhã") std::cout << "Id: " << s->getId() << " " << s->getName() << " " << max_flow << std::endl;
+    }
+
+    vec<std::pair<int, int>> diffs(stations.size());
+
+    l_remove->setEnabled(false); l_remove->getReverse()->setEnabled(false);
+    for (auto &s : stations) {
+        auto max_flow = maxTrains(s);
+        diffs[s->getId()] = {max_flows[s->getId()] - max_flow, s->getId()};
+        if (max_flows[s->getId()] - max_flow > 0) {
+            std::cout << s->getName() << " was affected." << std::endl;
+        }
+    }
+    l_remove->setEnabled(true); l_remove->getReverse()->setEnabled(true);
+
+    std::sort(diffs.begin(), diffs.end(), std::greater<>());
+
+    for (int i = 0; i < ans.size(); i++) {
+        ans[i] = diffs[i];
+    }
+}
+

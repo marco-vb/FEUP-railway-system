@@ -258,6 +258,8 @@ public:
      * @details Removes a super source from the network. This function as Complexity O(n) where n is size of the adjacency list of the super source
      */
     void removeSuperSource(ptr<Station>& superSource);
+
+    void topAffected(const ptr<Link>& l_remove, vec<std::pair<int, int>> &ans);
 };
 
 

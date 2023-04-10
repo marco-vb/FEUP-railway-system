@@ -248,7 +248,7 @@ public:
      * @details Creates a super source from a vector of source stations and adds it to the network.
      * This function as Complexity O(n) where n is the number of stations passed as parameter
      */
-    ptr<Station> createSuperSource(const vec<ptr<Station>>& sources);
+    void createSuperSource(ptr<Station> &ss, const vec<ptr<Station>> &sources);
 
     /**
      * @brief Remove Super Source

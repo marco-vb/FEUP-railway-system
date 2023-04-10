@@ -179,15 +179,19 @@ unsigned int Network::maxTrains(const ptr<Station> &sink) {
         if (s->getLinks().size() == 1) sources.push_back(s);
     }
 
-    ptr<Station> super_source = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
-    stations.push_back(super_source);
-
-    for (auto &s : sources) addLink(super_source, s, 10000000, STANDARD);
-
+    ptr<Station> super_source;
+    createSuperSource(super_source, sources);
     unsigned int max_trains = maxFlow(super_source, sink);
     removeSuperSource(super_source);
 
     return max_trains;
+}
+
+void Network::createSuperSource(ptr<Station> &ss, const vec<ptr<Station>> &sources) {
+    ss = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
+    stations.push_back(ss);
+
+    for (auto &s : sources) addLink(ss, s, 10000000, STANDARD);
 }
 
 void Network::removeSuperSource(ptr<Station> &superSource) {
@@ -263,11 +267,9 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
 
 void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std::pair<int, int>> &ans) {
     vec<unsigned int> max_flows(stations.size());
-    std::cout << "first loop" << std::endl;
     for (auto &s : stations) {
         auto max_flow = maxTrains(s);
         max_flows[s->getId()] = max_flow;
-        if (s->getName() == "Porto Campanhã") std::cout << "Id: " << s->getId() << " " << s->getName() << " " << max_flow << std::endl;
     }
 
     vec<std::pair<int, int>> diffs(stations.size());
@@ -276,16 +278,11 @@ void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std
     for (auto &s : stations) {
         auto max_flow = maxTrains(s);
         diffs[s->getId()] = {max_flows[s->getId()] - max_flow, s->getId()};
-        if (max_flows[s->getId()] - max_flow > 0) {
-            std::cout << s->getName() << " was affected." << std::endl;
-        }
     }
     l_remove->setEnabled(true); l_remove->getReverse()->setEnabled(true);
 
     std::sort(diffs.begin(), diffs.end(), std::greater<>());
 
-    for (int i = 0; i < ans.size(); i++) {
-        ans[i] = diffs[i];
-    }
+    for (int i = 0; i < ans.size(); i++) ans[i] = diffs[i];
 }
 

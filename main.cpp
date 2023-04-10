@@ -124,9 +124,8 @@ void readLinks() {
  */
 int main() {
 
-
     //if(!SetConsoleOutputCP(65001))return 1;
-    system("Color 0C");
+    //system("Color 0C");
 
 
 
@@ -193,26 +192,13 @@ int main() {
             std::cout << "  > Press Enter to Continue..." << std::endl;
             wait();
         }
+    } while(option != "0");
 
-
-
-    }while(option != "0");
-
-/*
-    readStations();
-    readLinks();
-
-    auto st1 = stations.at("Porto Campanhã");
-    auto st2 = stations.at("Lisboa Oriente");
-
-    for (auto &l : st1->getLinks()) {
-        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
-    }*/
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
     // 2.2 exemplo
-/*    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+    /*vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
@@ -244,15 +230,8 @@ int main() {
     std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
 
     // 4.2 exemplo
-/*    int k = 5; //std::cin >> k;
-    vec<std::pair<unsigned int, int>> top_stations(5);
-    network->topAffectedStations(k, st1, top_stations);
 
-    for (auto &l : st1->getLinks()) {
-        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
-    }
-
-    return 0;*/
+    return 0;
 }
 
 

@@ -229,25 +229,37 @@ unsigned int Network::maxFlowReduced(const ptr<Station> &src, const ptr<Station>
     return max_flow;
 }
 
+struct _pq {
+    std::queue<ptr<Station>> st;
+    std::queue<ptr<Station>> al;
+    void push(const ptr<Station> &s, int service) {
+        if (service == STANDARD) st.push(s);
+        else al.push(s);
+    }
+    ptr<Station> extract() {
+        if (!st.empty()) { auto s = st.front(); st.pop(); return s; }
+        else { auto s = al.front(); al.pop(); return s; }
+    }
+    bool empty() { return st.empty() && al.empty(); }
+};
+
 bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest) {
     for (auto &s : stations) s->setVisited(false), s->setPath(nullptr);
 
-    std::priority_queue<ptr<Station>, vec<ptr<Station>>, std::function<bool(ptr<Station>, ptr<Station>)>> pq(
-            [](const ptr<Station> &s1, const ptr<Station> &s2) { return s1->getCost() < s2->getCost(); });
+    _pq pq;
 
-    pq.push(src);
+    pq.push(src, STANDARD);
     src->setVisited(true);
 
     while (!pq.empty() && !dest->isVisited()) {
-        ptr<Station> s = pq.top(); pq.pop();
+        ptr<Station> s = pq.extract();
 
         for (auto &l : s->getLinks()) {
             auto w = l->getDest();
             if (!w->isVisited() && l->getFlow() < l->getCapacity()) {
                 w->setVisited(true);
                 w->setPath(l);
-                w->setCost(l->getCost());
-                pq.push(w);
+                pq.push(w, l->getService());
             }
         }
 
@@ -257,8 +269,7 @@ bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Stat
             if (!w->isVisited() && l->getFlow() > 0) {
                 w->setVisited(true);
                 w->setPath(l);
-                w->setCost(l->getCost());
-                pq.push(w);
+                pq.push(w, l->getService());
             }
         }
     }

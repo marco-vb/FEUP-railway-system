@@ -550,7 +550,7 @@ void budget_allocation() {
     std::cout << std::endl;
 
     int n;
-    for (n = 1 ; n <= random ; n++) {
+    for (n = 1 ; n <= random && n < municipality_capacities.size(); n++) {
         auto pair = pq.top();
         pq.pop();
         std::cout << "  > " << n << " - " << pair.second << " -> " << pair.first << std::endl;

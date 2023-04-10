@@ -124,12 +124,13 @@ void readLinks() {
  */
 int main() {
 
+
     //if(!SetConsoleOutputCP(65001))return 1;
     system("Color 0C");
 
 
 
-    int option;
+    std::string option;
 
     starting_screen();
     specify_graph();
@@ -172,49 +173,50 @@ int main() {
         std::cout << "  ===========================================================================  " << std::endl;
 
         std::cout << "  > ";
-        std::cin >> option;
+        std::getline(std::cin >> std::ws, option);
 
-        switch(option){
-            case 1:
-                train_analysis();
-                break;
-            case 2:
-                service_allocation();
-                break;
-            case 3:
-                failure_forecasting();
-                break;
-            case 0:
-                break;
-            default:
-                clear_screen();
-                std::cout << " > Invalid Option!" << std::endl;
-                std::cout << " > Press Enter to Continue...";
-                wait();
-                break;
+        if(option == "1"){
+            train_analysis();
+        }
+        else if(option == "2"){
+            service_allocation();
+        }
+        else if(option == "3"){
+            failure_forecasting();
+        }
+        else if(option == "0"){
+            break;
+        }
+        else{
+            clear_screen();
+            std::cout << "  > Invalid Option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
         }
 
-    }while(option != 0);
 
-    /*readStations();
+
+    }while(option != "0");
+
+/*
+    readStations();
     readLinks();
 
-    auto st1 = stations.at("Vila Nova de Gaia-Devesas");
+    auto st1 = stations.at("Porto Campanhã");
     auto st2 = stations.at("Lisboa Oriente");
 
+    for (auto &l : st1->getLinks()) {
+        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
+    }*/
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
-    clock_t begin = clock();
     // 2.2 exemplo
-    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+/*    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
-    }
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    std::cout << "Time: " << elapsed_secs << std::endl;*/
+    }*/
 
     // 2.3 exemplo
     /*std::priority_queue<std::pair<int, std::string>> pq;
@@ -229,6 +231,7 @@ int main() {
 
     // 2.4 exemplo
     //std::cout << "Max trains that can arrive at " << st1->getName() << ": " << network->maxTrains(st1) << std::endl;
+    //std::cout << "Max trains that can arrive at " << st2->getName() << ": " << network->maxTrains(st2) << std::endl;
 
     // 3.1 exemplo
     /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl;*/
@@ -240,7 +243,16 @@ int main() {
     std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
     std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
 
-    return 0;
+    // 4.2 exemplo
+/*    int k = 5; //std::cin >> k;
+    vec<std::pair<unsigned int, int>> top_stations(5);
+    network->topAffectedStations(k, st1, top_stations);
+
+    for (auto &l : st1->getLinks()) {
+        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
+    }
+
+    return 0;*/
 }
 
 
@@ -682,8 +694,6 @@ void service_allocation(){
 
 // Button 1 in the Service Allocation Menu
 void optimal_route() {
-
-    /*std::cout << "Max cost between " << st1->getName() << " and " << st2->getName() << ": \n" << network->maxCost(st1, st2) << std::endl*/
 
     std::string station1, station2;
 

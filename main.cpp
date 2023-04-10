@@ -49,6 +49,8 @@ void segment_failure_report(); // Menu Button 3.2
 // Support Functions
 void clear_screen();
 void wait();
+bool is_number(const std::string& s);
+bool is_linked(const std::string& s1, const std::string& s2);
 
 /**
  * @brief Reads the Stations
@@ -80,6 +82,29 @@ void readStations() {
     file.close();
 }
 
+void readPartialStations(){
+    std::ifstream file("../data/partial_stations.csv");
+    std::string line;
+    std::getline(file, line);
+    int id = 0;
+    stations.clear();
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string name, municipality, township, district;
+        std::getline(ss, name, ',');
+        if(stations.find(name) != stations.end()) continue;
+        std::getline(ss, district, ',');
+        std::getline(ss, municipality, ',');
+        std::getline(ss, township, ',');
+        std::getline(ss, line);     // ignore this
+        auto station = make<Station>(id++, name, municipality, township, district);
+        network->addStation(station);
+        stations[name] = station;
+        municipality_capacities[municipality] = 0;
+    }
+    file.close();
+}
+
 
 /**
  * @brief Reads the Links
@@ -90,6 +115,34 @@ void readStations() {
  */
 void readLinks() {
     std::ifstream file("../data/network.csv");
+    std::string line;
+    std::getline(file, line);
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string st1, st2, service;
+        int capacity;
+        std::getline(ss, st1, ',');
+        std::getline(ss, st2, ',');
+        ss >> capacity; ss.ignore();
+        ss >> service;
+        if (service[service.size()-1] == '\r') service = service.substr(0, service.size() - 1);
+        int srvc = service == "STANDARD" ? STANDARD : PENDULAR;
+        network->addLink(stations.at(st1), stations.at(st2), capacity, srvc);
+        std::string municipality1 = stations.at(st1)->getMunicipality();
+        std::string municipality2 = stations.at(st2)->getMunicipality();
+        if (municipality1 != municipality2) {
+            municipality_capacities[municipality1] += capacity;
+            municipality_capacities[municipality2] += capacity;
+        }
+        else {
+            municipality_capacities[municipality1] += capacity;
+        }
+    }
+    file.close();
+}
+
+void readPartialLinks() {
+    std::ifstream file("../data/partial_network.csv");
     std::string line;
     std::getline(file, line);
     while (std::getline(file, line)) {
@@ -328,6 +381,8 @@ void specify_graph(){
             break;
         }
         else if(option == "2"){
+            readPartialStations();
+            readPartialLinks();
             break;
         }
         else{
@@ -338,9 +393,6 @@ void specify_graph(){
         }
 
     }while(option != "1" && option != "2");
-
-
-
 
 }
 
@@ -994,6 +1046,8 @@ void reduced_connectivity() {
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
 
+    std::string option;
+    std::string station1, station2;
     int k; // std::cin >> k;
 
     clear_screen();
@@ -1003,17 +1057,141 @@ void segment_failure_report() {
     std::cout << "||                          (Segment Failure Report)                         ||" << std::endl;
     std::cout << "\\\\                                                                           //" << std::endl;
     std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
 
+    std::cout << "  > Number of stations to be reported: ";
+    std::getline(std::cin >> std::ws, option);
+    std::cout << std::endl;
 
-    vec<std::pair<int, int>> topk(k); // Top k affected stations {Diff in flow, Id};
-    network->topAffected(stations.at("Porto Campanha")->getLinks().front(), topk);
+    do {
+        if (!is_number(option)) {
+            clear_screen();
+            std::cout << "  > Invalid option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
 
-    std::cout << "Top " << k << " affected stations:" << std::endl;
-    for (auto &p : topk) {
-        std::cout << "Station " << network->getStation(p.second)->getName() << " with " << p.first << " difference in flow" << std::endl;
+            clear_screen();
+            std::cout << "  > Please enter the number of stations to be reported: ";
+            std::getline(std::cin >> std::ws, option);
+            std::cout << std::endl;
+        }
+    } while (!is_number(option));
+
+    k = std::stoi(option);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Failure Forecasting ---                        ||" << std::endl;
+    std::cout << "||                          (Segment Failure Report)                         ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter station name to remove a link: ";
+    std::getline(std::cin >> std::ws, station1);
+    std::cout << std::endl;
+
+    //confirm if station exist
+    if (stations.find(station1) == stations.end()) {
+        clear_screen();
+        std::cout << "  > The station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing station: ";
+            std::getline(std::cin >> std::ws, station1);
+            std::cout << std::endl;
+        } while (stations.find(station1) == stations.end());
     }
-    wait();
 
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Failure Forecasting ---                        ||" << std::endl;
+    std::cout << "||                          (Segment Failure Report)                         ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter station name to remove a link with: " << station1 << std::endl;
+
+    std::cout << "  > Links from " << station1 << ":" << std::endl;
+    std::cout << std::endl;
+
+    for (const auto &x: stations.at(station1)->getLinks()){
+        std::cout << "  > " << x->getDest()->getName() << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << "  > Enter station name: ";
+    std::getline(std::cin >> std::ws, station2);
+    std::cout << std::endl;
+
+    //confirm if station exist
+    if (stations.find(station2) == stations.end() || station1 == station2 || !is_linked(station1,station2)) {
+        clear_screen();
+        std::cout << "  > The station does not exist or is not linked to source station!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a valid station: ";
+            std::getline(std::cin >> std::ws, station2);
+            std::cout << std::endl;
+        } while (stations.find(station2) == stations.end() || station1 == station2 || !is_linked(station1,station2));
+    }
+
+    auto st1 = stations.at(station1);
+    auto st2 = stations.at(station2);
+    ptr<Link> link;
+
+    for (const auto &x: st1->getLinks()){
+        if (x->getDest() == st2){
+            link = x;
+            break;
+        }
+    }
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Failure Forecasting ---                        ||" << std::endl;
+    std::cout << "||                          (Segment Failure Report)                         ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Removed link between " << station1 << " and " << station2 << std::endl;
+    std::cout << std::endl;
+    std::cout << "  > Top " << k << " affected stations: " << std::endl;
+    std::cout << std::endl;
+
+    int n = 1;
+    vec<std::pair<int, int>> topk(k); // Top k affected stations {Diff in flow, Id};
+    network->topAffected(link, topk);
+    for (auto &p : topk) {
+        if(p.first != 0) {
+            std::cout << "  > " << n << " Station " << network->getStation(p.second)->getName() << " with " << p.first << " difference in flow" << std::endl;
+            n++;
+        }
+        else{
+            if(n == 1){
+                std::cout << "  > No affected stations" << std::endl;
+                break;
+            }
+            std::cout << std::endl;
+            std::cout << "  > No more affected stations" << std::endl;
+            break;
+        }
+    }
+    std::cout << std::endl;
+
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
 }
 
 
@@ -1025,4 +1203,17 @@ void clear_screen(){
 
 void wait(){
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
+}
+
+bool is_number(const std::string& s){
+    return !s.empty() && std::find_if(s.begin(), s.end(), [](char c) { return !std::isdigit(c); }) == s.end();
+}
+
+bool is_linked(const std::string& s1, const std::string& s2){
+    for(const auto &x: stations.at(s1)->getLinks()){
+        if(x->getDest()->getName() == s2){
+            return true;
+        }
+    }
+    return false;
 }

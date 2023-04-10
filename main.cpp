@@ -67,6 +67,7 @@ void readStations() {
         std::stringstream ss(line);
         std::string name, municipality, township, district;
         std::getline(ss, name, ',');
+        if (stations.find(name) != stations.end()) continue;
         std::getline(ss, district, ',');
         std::getline(ss, municipality, ',');
         std::getline(ss, township, ',');
@@ -774,13 +775,80 @@ void failure_forecasting(){
 
 // Button 1 in the Failure Forecasting Menu
 void reduced_connectivity() {
+    std::string station1, station2;
+
+    std::cout << "  > Enter the name of the source station: ";
+    std::getline(std::cin >> std::ws, station1);
+    std::cout << std::endl;
+    //confirm if station1 exist
+    if(stations.find(station1) == stations.end()){
+        clear_screen();
+        std::cout << "  > The source station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing source station: ";
+            std::getline(std::cin >> std::ws, station1);
+            std::cout << std::endl;
+        } while (stations.find(station1) == stations.end());
+    }
 
 
+    std::cout << "  > Enter the name of the destination station: ";
+    std::getline(std::cin >> std::ws, station2);
+    std::cout << std::endl;
+    //confirm if station2 exist
+    if(stations.find(station2) == stations.end()){
+        clear_screen();
+        std::cout << "  > The destination station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
 
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing destination station: ";
+            std::getline(std::cin >> std::ws, station2);
+            std::cout << std::endl;
+        } while (stations.find(station2) == stations.end());
+    }
+
+    auto st1 = stations.at(station1);
+    auto st2 = stations.at(station2);
+
+    vec<ptr<Station>> st_remove;
+    vec<ptr<Link>> ln_remove;
+
+    std::cout << "Max flow in reduced network: " << network->maxFlowReduced(st1, st2, st_remove, ln_remove) << std::endl;
+    wait();
 }
 
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
+    vec<unsigned int> max_flows(stations.size());
+    std::cout << "first loop" << std::endl;
+    for (auto &station : stations) {
+        auto s = station.second;
+        auto max_flow = network->maxTrains(s);
+        max_flows[s->getId()] = max_flow;
+        if (s->getName() == "Porto Campanhã") std::cout << "Id: " << s->getId() << " " << s->getName() << " " << max_flow << std::endl;
+    }
+    auto l = stations.at("Porto Campanhã")->getLinks().front();
+    l->setEnabled(false);
+    l->getReverse()->setEnabled(false);
+    std::cout << "second loop" << std::endl;
+    for (auto &station : stations) {
+        auto s = station.second;
+        auto max_flow = network->maxTrains(s);
+        if (max_flows[s->getId()] != max_flow) {
+            std::cout << s->getName() << " " << max_flows[s->getId()]- max_flow << std::endl;
+        }
+    }
+    wait();
+    starting_screen();
 }
 
 void clear_screen(){

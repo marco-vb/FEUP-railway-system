@@ -105,6 +105,10 @@ void Station::setCost(int _cost) {
     this->cost = _cost;
 }
 
+void Station::removeLink(const std::shared_ptr<Link> &link) {
+    this->links.remove(link);
+}
+
 bool Link::isEnabled() const {
     return this->enabled;
 }

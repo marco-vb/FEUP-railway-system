@@ -370,6 +370,8 @@ public:
      * @details This method gets the max possible flow of the station. This function as a Complexity of O(n)
      */
     unsigned int maxPossibleFlow();
+
+    void removeLink(const ptr<Link>& link);
 };
 
 

@@ -145,7 +145,6 @@ void Network::updatePath(const ptr<Station> &source, const ptr<Station> &dest, i
     }
 }
 
-
 //check this
 unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs) {
     unsigned int max_flow = 0;
@@ -174,35 +173,31 @@ unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>
 }
 
 unsigned int Network::maxTrains(const ptr<Station> &sink) {
-    if (sink->getLinks().size() == 1) return sink->getLinks().front()->getCapacity();
-
     vec<ptr<Station>> sources;
-    for (auto &s : stations) if (s->getLinks().size() == 1) sources.push_back(s);
+    for (auto &s : stations) {
+        if (s->getId() == sink->getId()) continue;
+        if (s->getLinks().size() == 1) sources.push_back(s);
+    }
 
-    ptr<Station> super_source = createSuperSource(sources);
+    ptr<Station> super_source = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
+    stations.push_back(super_source);
+
+    for (auto &s : sources) addLink(super_source, s, 10000000, STANDARD);
+
     unsigned int max_trains = maxFlow(super_source, sink);
     removeSuperSource(super_source);
 
     return max_trains;
 }
 
-ptr<Station> Network::createSuperSource(const vec<ptr<Station>> &sources) {
-    ptr<Station> super_source = make<Station>(-1, "N/A", "N/A", "N/A", "N/A");
-    stations.push_back(super_source);
-
-    for (auto &s : sources) addLink(super_source, s, 10000000, STANDARD);
-
-    return super_source;
-}
-
 void Network::removeSuperSource(ptr<Station> &superSource) {
-    for (auto it = links.begin(); it != links.end();)
-        if ((*it)->getSrc() == superSource || (*it)->getDest() == superSource) it = links.erase(it);
-        else it++;
-
-    for (auto it = stations.begin(); it != stations.end();)
-        if (*it == superSource) it = stations.erase(it);
-        else it++;
+    for (auto &l : superSource->getLinks()) {
+        auto s = l->getDest();
+        s->removeLink(l->getReverse());
+        s->removeLink(l);
+        links.erase(std::find(links.begin(), links.end(), l));
+    }
+    stations.erase(std::find(stations.begin(), stations.end(), superSource));
 }
 
 unsigned int Network::maxCost(const ptr<Station> &src, const ptr<Station> &dest) {

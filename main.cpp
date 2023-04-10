@@ -124,7 +124,6 @@ void readLinks() {
  */
 int main() {
 
-
     //if(!SetConsoleOutputCP(65001))return 1;
     system("Color 0C");
 
@@ -193,26 +192,13 @@ int main() {
             std::cout << "  > Press Enter to Continue..." << std::endl;
             wait();
         }
+    } while(option != "0");
 
-
-
-    }while(option != "0");
-
-/*
-    readStations();
-    readLinks();
-
-    auto st1 = stations.at("Porto Campanhã");
-    auto st2 = stations.at("Lisboa Oriente");
-
-    for (auto &l : st1->getLinks()) {
-        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
-    }*/
     // 2.1 exemplo
     //std::cout << "Max flow between " << st1->getName() << " and " << st2->getName() << ": " << network->maxFlow(st1, st2) << std::endl;
 
     // 2.2 exemplo
-/*    vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
+    /*vec<std::pair<ptr<Station>, ptr<Station>>> pairs;
     std::cout << "Max network flow: " << network->getMaxFlowNetwork(pairs) << std::endl;
     for (const auto& pair : pairs) {
         std::cout << pair.first->getName() << " -> " << pair.second->getName() << std::endl;
@@ -244,15 +230,8 @@ int main() {
     std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;*/
 
     // 4.2 exemplo
-/*    int k = 5; //std::cin >> k;
-    vec<std::pair<unsigned int, int>> top_stations(5);
-    network->topAffectedStations(k, st1, top_stations);
 
-    for (auto &l : st1->getLinks()) {
-        std::cout << l->getSrc()->getName() << " -> " << l->getDest()->getName() << std::endl;
-    }
-
-    return 0;*/
+    return 0;
 }
 
 
@@ -482,19 +461,19 @@ void station_capacity() {
     std::getline(std::cin >> std::ws, station2);
     std::cout << std::endl;
     //confirm if station2 exist
-    if(stations.find(station2) == stations.end()){
+    if(stations.find(station2) == stations.end() || station2 == station1){
         clear_screen();
-        std::cout << "  > The destination station does not exist!" << std::endl;
+        std::cout << "  > The destination station does not exist or is alredy used as source!" << std::endl;
         std::cout << "  > Press Enter to Continue..." << std::endl;
         wait();
 
         clear_screen();
         do {
             clear_screen();
-            std::cout << "  > Please enter the name of a existing destination station: ";
+            std::cout << "  > Please enter the name of a existing destination station, or not used yet: ";
             std::getline(std::cin >> std::ws, station2);
             std::cout << std::endl;
-        } while (stations.find(station2) == stations.end());
+        } while (stations.find(station2) == stations.end() || station2 == station1);
     }
 
     auto st1 = stations.at(station1);
@@ -730,19 +709,19 @@ void optimal_route() {
     std::getline(std::cin >> std::ws, station2);
     std::cout << std::endl;
     //confirm if station2 exist
-    if(stations.find(station2) == stations.end()){
+    if(stations.find(station2) == stations.end() || station2 == station1){
         clear_screen();
-        std::cout << "  > The destination station does not exist!" << std::endl;
+        std::cout << "  > The destination station does not exist or is alredy used as source!" << std::endl;
         std::cout << "  > Press Enter to Continue..." << std::endl;
         wait();
 
         clear_screen();
         do {
             clear_screen();
-            std::cout << "  > Please enter the name of a existing destination station: ";
+            std::cout << "  > Please enter the name of a existing destination station, or not used yet: ";
             std::getline(std::cin >> std::ws, station2);
             std::cout << std::endl;
-        } while (stations.find(station2) == stations.end());
+        } while (stations.find(station2) == stations.end() || station2 == station1);
     }
 
     auto st1 = stations.at(station1);
@@ -836,12 +815,184 @@ void failure_forecasting(){
 // Button 1 in the Failure Forecasting Menu
 void reduced_connectivity() {
 
+    std::string station_remove;
+    std::string station1, station2;
+    vec<ptr<Station>> remove_stations;
+    vec<ptr<Link>> removed_links;
 
+    std::string option;
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Reduced Connectivity ---                       ||" << std::endl;
+    std::cout << "||                         (Source and Sink Stations)                        ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter the name of the source station: ";
+    std::getline(std::cin >> std::ws, station1);
+    std::cout << std::endl;
+    //confirm if station1 exist
+    if(stations.find(station1) == stations.end()){
+        clear_screen();
+        std::cout << "  > The source station does not exist!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing source station: ";
+            std::getline(std::cin >> std::ws, station1);
+            std::cout << std::endl;
+        } while (stations.find(station1) == stations.end());
+    }
+
+
+    std::cout << "  > Enter the name of the destination station: ";
+    std::getline(std::cin >> std::ws, station2);
+    std::cout << std::endl;
+    //confirm if station2 exist
+    if(stations.find(station2) == stations.end() || station2 == station1){
+        clear_screen();
+        std::cout << "  > The destination station does not exist or is alredy used as source!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing destination station, or not used yet: ";
+            std::getline(std::cin >> std::ws, station2);
+            std::cout << std::endl;
+        } while (stations.find(station2) == stations.end() || station2 == station1);
+    }
+
+    auto st1 = stations.at(station1);
+    auto st2 = stations.at(station2);
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Reduced Connectivity ---                       ||" << std::endl;
+    std::cout << "||                             (Remove Stations)                             ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Enter the name of the station to remove: ";
+    std::getline(std::cin >> std::ws, station_remove);
+    std::cout << std::endl;
+    //confirm if station_remove exist
+    if(stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2){
+        clear_screen();
+        std::cout << "  > The station does not exist or is alredy used as source or destination!" << std::endl;
+        std::cout << "  > Press Enter to Continue..." << std::endl;
+        wait();
+
+        clear_screen();
+        do {
+            clear_screen();
+            std::cout << "  > Please enter the name of a existing station, diferent of source and destination: ";
+            std::getline(std::cin >> std::ws, station_remove);
+            std::cout << std::endl;
+        } while (stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2);
+    }
+
+    auto st_remove = stations.at(station_remove);
+    remove_stations.push_back(st_remove);
+
+    do{
+        clear_screen();
+        std::cout << "  ===========================================================================  " << std::endl;
+        std::cout << "//                                                                           \\\\" << std::endl;
+        std::cout << "||                        --- Reduced Connectivity ---                       ||" << std::endl;
+        std::cout << "||                             (Remove Stations)                             ||" << std::endl;
+        std::cout << "\\\\                                                                           //" << std::endl;
+        std::cout << "  ===========================================================================  " << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "  > Source Station: " << st1->getName() << std::endl;
+        std::cout << "  > Destination Station: " << st2->getName() << std::endl;
+
+        std::cout << "  > Stations to remove: ";
+        for (auto &station: remove_stations) {
+            std::cout << station->getName() << "; ";
+        }
+        std::cout << std::endl;
+
+        std::cout << "  > Do you want to remove another station? (y/n): ";
+        std::getline(std::cin >> std::ws, option);
+        std::cout << std::endl;
+
+        if(option == "y" || option == "Y"){
+            clear_screen();
+            std::cout << "  > Enter the name of the station to remove: ";
+            std::getline(std::cin >> std::ws, station_remove);
+            std::cout << std::endl;
+            //confirm if station_remove exist
+            if(stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2 || std::find(remove_stations.begin(), remove_stations.end(), stations.at(station_remove)) != remove_stations.end()){
+                clear_screen();
+                std::cout << "  > The station does not exist or is alredy used as source or destination or one of the alredy stations to remove!" << std::endl;
+                std::cout << "  > Press Enter to Continue..." << std::endl;
+                wait();
+
+                clear_screen();
+                do {
+                    clear_screen();
+                    std::cout << "  > Please enter the name of a existing station, diferent of source and destination: ";
+                    std::getline(std::cin >> std::ws, station_remove);
+                    std::cout << std::endl;
+                } while (stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2);
+            }
+
+            auto st_remove = stations.at(station_remove);
+            remove_stations.push_back(st_remove);
+        }
+        else if(option != "n" && option != "N"){
+            clear_screen();
+            std::cout << "  > Invalid option!" << std::endl;
+            std::cout << "  > Press Enter to Continue..." << std::endl;
+            wait();
+        }
+
+
+    }while(option != "n" && option != "N");
+
+    clear_screen();
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << "//                                                                           \\\\" << std::endl;
+    std::cout << "||                        --- Reduced Connectivity ---                       ||" << std::endl;
+    std::cout << "||                           (Flow Between Stations)                         ||" << std::endl;
+    std::cout << "\\\\                                                                           //" << std::endl;
+    std::cout << "  ===========================================================================  " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Source Station: " << st1->getName() << std::endl;
+    std::cout << "  > Destination Station: " << st2->getName() << std::endl;
+
+    std::cout << "  > Stations to remove: ";
+    for (auto &station: remove_stations) {
+        std::cout << station->getName() << "; ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "  > Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
+    std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "  > Press Enter to Continue..." << std::endl;
+    wait();
 
 }
 
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
+
+
+
 }
 
 

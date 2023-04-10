@@ -208,11 +208,6 @@ protected:
     int cost = 0;
 
     /**
-     * @brief Station Max Flow received (when used as a sink with super source)
-     */
-    int maxFlow = 0;
-
-    /**
      * @brief List of Station Links
      */
     std::list<ptr<Link>> links;
@@ -312,24 +307,6 @@ public:
      * @details This method sets the cost of the station
      */
     void setCost(int cost);
-
-    /**
-     * @brief Get Max Flow method
-     *
-     * @return Max Flow of the station
-     *
-     * @details This method gets the max flow of the station
-     */
-    int getMaxFlow() const;
-
-    /**
-     * @brief Set Max Flow method
-     *
-     * @param maxFlow Max Flow of the station
-     *
-     * @details This method sets the max flow of the station
-     */
-    void setMaxFlow(int maxFlow);
 
     /**
      * @brief Is Enabled method

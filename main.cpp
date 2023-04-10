@@ -67,6 +67,7 @@ void readStations() {
         std::stringstream ss(line);
         std::string name, municipality, township, district;
         std::getline(ss, name, ',');
+        if(stations.find(name) != stations.end()) continue;
         std::getline(ss, district, ',');
         std::getline(ss, municipality, ',');
         std::getline(ss, township, ',');
@@ -922,6 +923,7 @@ void reduced_connectivity() {
             std::cout << station->getName() << "; ";
         }
         std::cout << std::endl;
+        std::cout << std::endl;
 
         std::cout << "  > Do you want to remove another station? (y/n): ";
         std::getline(std::cin >> std::ws, option);
@@ -948,7 +950,7 @@ void reduced_connectivity() {
                 } while (stations.find(station_remove) == stations.end() || station_remove == station1 || station_remove == station2);
             }
 
-            auto st_remove = stations.at(station_remove);
+            st_remove = stations.at(station_remove);
             remove_stations.push_back(st_remove);
         }
         else if(option != "n" && option != "N"){
@@ -978,6 +980,7 @@ void reduced_connectivity() {
         std::cout << station->getName() << "; ";
     }
     std::cout << std::endl;
+    std::cout << std::endl;
 
     std::cout << "  > Max flow between " << st1->getName() << " and " << st2->getName() << " in reduced network: ";
     std::cout << network->maxFlowReduced(st1, st2, remove_stations, removed_links) << std::endl;
@@ -991,6 +994,27 @@ void reduced_connectivity() {
 // Button 2 in the Failure Forecasting Menu
 void segment_failure_report() {
 
+    vec<unsigned int> max_flows(stations.size());
+    std::cout << "first loop" << std::endl;
+    for (auto &station : stations) {
+        auto s = station.second;
+        auto max_flow = network->maxTrains(s);
+        max_flows[s->getId()] = max_flow;
+        if (s->getName() == "Lisboa Oriente") std::cout << "Id: " << s->getId() << " " << s->getName() << " " << max_flow << std::endl;
+    }
+    auto l = stations.at("Lisboa Oriente")->getLinks().front();
+    l->setEnabled(false);
+    l->getReverse()->setEnabled(false);
+    std::cout << "second loop" << std::endl;
+    for (auto &station : stations) {
+        auto s = station.second;
+        auto max_flow = network->maxTrains(s);
+        if (max_flows[s->getId()] != max_flow) {
+            std::cout << s->getName() << " " << max_flows[s->getId()]- max_flow << std::endl;
+        }
+    }
+    std::cout << "after second loop" << std::endl;
+    wait();
 
 
 }

@@ -1,7 +1,5 @@
 #include "StationLink.h"
 
-#include <utility>
-
 Link::Link(ptr<Station> src, ptr<Station> dest, int capacity, int service) {
     this->src = std::move(src);
     this->dest = std::move(dest);
@@ -78,9 +76,9 @@ bool Station::isVisited() const {
 }
 
 unsigned int Station::maxPossibleFlow() {
-    unsigned int _mf = 0;
-    for (const auto& link : this->links) _mf += link->getCapacity();
-    return _mf;
+    unsigned int maxFlow = 0;
+    for (const auto& link : this->links) maxFlow += link->getCapacity();
+    return maxFlow;
 }
 
 bool Station::isEnabled() const {
@@ -105,14 +103,6 @@ int Station::getCost() const {
 
 void Station::setCost(int _cost) {
     this->cost = _cost;
-}
-
-int Station::getMaxFlow() const {
-    return this->maxFlow;
-}
-
-void Station::setMaxFlow(int _maxFlow) {
-    this->maxFlow = _maxFlow;
 }
 
 void Station::removeLink(const std::shared_ptr<Link> &link) {
@@ -146,4 +136,3 @@ void Link::setFlow(int _flow) {
 int Link::getCost() const {
     return this->service == STANDARD ? STANDARD_COST : PENDULAR_COST;
 }
-

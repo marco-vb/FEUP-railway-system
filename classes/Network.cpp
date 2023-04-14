@@ -59,8 +59,6 @@ unsigned int Network::maxFlow(const ptr<Station> &src, const ptr<Station> &dest)
 
     for (auto &l : links) l->setFlow(0);
 
-    vec<ptr<Link>> path;
-
     while (getAugmentingPath(src, dest)) {
         int flow = getBottleneck(src, dest);
         max_flow += flow;
@@ -145,7 +143,6 @@ void Network::updatePath(const ptr<Station> &source, const ptr<Station> &dest, i
     }
 }
 
-//check this
 unsigned int Network::getMaxFlowNetwork(vec<std::pair<ptr<Station>, ptr<Station>>>& pairs) {
     unsigned int max_flow = 0;
     std::sort(stations.begin(), stations.end(), [](ptr<Station>& s1, ptr<Station>& s2) { return s1->maxPossibleFlow() > s2->maxPossibleFlow(); });
@@ -224,59 +221,53 @@ unsigned int Network::maxFlowReduced(const ptr<Station> &src, const ptr<Station>
     unsigned int max_flow = maxFlow(src, dest);
 
     for (auto &s : _stations) s->setEnabled(true);
-    for (auto &l : _links) l->setEnabled(false), l->getReverse()->setEnabled(false);
+    for (auto &l : _links) l->setEnabled(true), l->getReverse()->setEnabled(true);
 
     return max_flow;
 }
 
-struct _pq {
-    std::queue<ptr<Station>> st;
-    std::queue<ptr<Station>> al;
-    void push(const ptr<Station> &s, int service) {
-        if (service == STANDARD) st.push(s);
-        else al.push(s);
+struct CompareStations {
+    bool operator()(const ptr<Station> &s1, const ptr<Station> &s2) const {
+        return s1->getCost() < s2->getCost();
     }
-    ptr<Station> extract() {
-        if (!st.empty()) { auto s = st.front(); st.pop(); return s; }
-        else { auto s = al.front(); al.pop(); return s; }
-    }
-    bool empty() { return st.empty() && al.empty(); }
 };
 
 bool Network::getAugmentingPathWithCosts(const ptr<Station> &src, const ptr<Station> &dest) {
-    for (auto &s : stations) s->setVisited(false), s->setPath(nullptr);
+    for (auto &s : stations) s->setVisited(false), s->setPath(nullptr), s->setCost(1000000);
 
-    _pq pq;
+    std::priority_queue<ptr<Station>, vec<ptr<Station>>, CompareStations> pq;
 
-    pq.push(src, STANDARD);
+    pq.push(src);
     src->setVisited(true);
+    src->setCost(0);
 
     while (!pq.empty() && !dest->isVisited()) {
-        ptr<Station> s = pq.extract();
+        ptr<Station> s = pq.top(); pq.pop();
 
         for (auto &l : s->getLinks()) {
             auto w = l->getDest();
-            if (!w->isVisited() && l->getFlow() < l->getCapacity()) {
+            if (!w->isVisited() && l->getFlow() < l->getCapacity() && w->getCost() > s->getCost() + l->getCost()) {
                 w->setVisited(true);
                 w->setPath(l);
-                pq.push(w, l->getService());
+                w->setCost(s->getCost() + l->getCost());
+                pq.push(w);
             }
         }
 
         for (auto &_l : s->getLinks()) {
             auto l = _l->getReverse();
             auto w = l->getDest();
-            if (!w->isVisited() && l->getFlow() > 0) {
+            if (!w->isVisited() && l->getFlow() > 0 && w->getCost() > s->getCost() + l->getCost()) {
                 w->setVisited(true);
                 w->setPath(l);
-                pq.push(w, l->getService());
+                pq.push(w);
             }
         }
     }
     return dest->isVisited();
 }
 
-void Network::topAffected(const std::shared_ptr<Link> &l_remove, std::vector<std::pair<int, int>> &ans) {
+void Network::topAffected(const ptr<Link> &l_remove, vec<std::pair<int, int>> &ans) {
     vec<std::pair<int, int>> diffs;
     vec<bool> visited(stations.size(), false);
 
